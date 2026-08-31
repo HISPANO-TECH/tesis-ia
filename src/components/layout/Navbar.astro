@@ -14,59 +14,60 @@ const whatsappHref = "https://api.whatsapp.com/send/?phone=51927580985&text=Hola
 <div class="sticky top-0 z-50">
   <!-- Topbar - dorado sobre azul profundo -->
   <div class="bg-[#0B1D3A] text-amber-100">
-    <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-6 px-6 py-2.5 lg:px-8">
-      <p class="flex items-center gap-2 text-[12px] font-medium tracking-wide sm:text-[13px]">
-        <span class="inline-flex h-2 w-2 animate-pulse-soft rounded-full bg-amber-400"></span>
-        <span class="hidden sm:inline">Pack IAs Investigador Pro · Acceso inmediato · Cupos limitados</span>
-        <span class="sm:hidden">Pack IAs Investigador Pro</span>
-        <span class="hidden lg:inline text-[#2e4a7a] mx-2">|</span>
-        <span class="hidden lg:inline text-amber-200/70">Asesoría con protocolo de tu universidad</span>
+    <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-4 py-2 sm:px-6 lg:px-8">
+      <p class="flex min-w-0 items-center gap-2 text-[11px] font-medium tracking-wide sm:text-[13px]">
+        <span class="inline-flex h-2 w-2 shrink-0 animate-pulse-soft rounded-full bg-amber-400"></span>
+        <span class="truncate sm:hidden">Pack IAs Investigador Pro</span>
+        <span class="hidden truncate sm:inline lg:hidden">Pack IAs Investigador Pro · Cupos limitados</span>
+        <span class="hidden truncate lg:inline">Pack IAs Investigador Pro · Acceso inmediato · Cupos limitados</span>
+        <span class="hidden xl:inline text-[#2e4a7a] mx-2">|</span>
+        <span class="hidden truncate xl:inline text-amber-200/70">Asesoría con protocolo de tu universidad</span>
       </p>
-      <div class="hidden items-center gap-3 sm:flex">
-        <a href="mailto:informes@asesorestesisperu.com" class="text-xs text-amber-200/70 hover:text-amber-300">informes@asesorestesisperu.com</a>
-        <span class="h-3 w-px bg-[#1e3a5a]"></span>
-        <a href={whatsappHref} target="_blank" rel="noopener" class="text-xs font-semibold text-amber-400 hover:text-amber-300">WhatsApp</a>
+      <div class="hidden items-center gap-3 md:flex">
+        <a href="mailto:informes@asesorestesisperu.com" class="hidden whitespace-nowrap text-xs text-amber-200/70 hover:text-amber-300 lg:inline">informes@asesorestesisperu.com</a>
+        <span class="hidden h-3 w-px bg-[#1e3a5a] lg:block"></span>
+        <a href={whatsappHref} target="_blank" rel="noopener" class="whitespace-nowrap text-xs font-semibold text-amber-400 hover:text-amber-300">WhatsApp</a>
       </div>
     </div>
   </div>
 
   <!-- Main navbar - azul profundo a azul medio con borde dorado - EXTENDIDO -->
   <nav class="border-b-2 border-amber-400/40 bg-gradient-to-r from-[#0B1D3A] via-[#1e3a8a] to-[#274cab] shadow-lg shadow-blue-950/30 dark:from-[#070f24] dark:via-[#0B1D3A] dark:to-[#1e3a8a]">
-    <div class="mx-auto flex h-[84px] max-w-[1440px] items-center justify-between gap-8 px-6 lg:px-8">
-      <div class="flex shrink-0 items-center gap-4">
-        <a href="/" class="flex items-center gap-2.5">
-          <span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-amber-400 shadow-md sm:h-11 sm:w-11">
+    <div class="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between gap-4 px-4 sm:gap-6 sm:px-6 lg:h-[84px] lg:px-8">
+      <div class="flex min-w-0 shrink-0 items-center gap-3">
+        <a href="/" class="flex items-center gap-2">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-amber-400 shadow-md sm:h-11 sm:w-11">
             <svg class="h-5 w-5 text-[#0B1D3A] sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2a7 7 0 0 1 7 7c0 3.5-2.5 6-5 8 -1 1 -2 1 -3 0 -2.5-2 -5-4.5 -5-8a7 7 0 0 1 7-7Z" />
               <path d="M9 12h6" />
               <path d="M9 15h6" />
             </svg>
           </span>
-          <span class="font-display text-xl font-bold leading-none tracking-tight text-white sm:text-2xl">
+          <span class="font-display text-lg font-bold leading-none tracking-tight text-white sm:text-2xl">
             Tesis<span class="text-amber-300">IA</span><span class="hidden sm:inline text-amber-200/70 text-base font-semibold ml-1">.com</span>
           </span>
         </a>
-        <span class="hidden xl:inline-flex ml-4 rounded-full bg-amber-400 px-3.5 py-1 text-[11px] font-bold uppercase tracking-widest text-[#0B1D3A] shadow-sm">Investigador Pro</span>
+        <span class="hidden 2xl:inline-flex ml-3 rounded-full bg-amber-400 px-3.5 py-1 text-[11px] font-bold uppercase tracking-widest text-[#0B1D3A] shadow-sm">Investigador Pro</span>
       </div>
 
-      <!-- Desktop links - MÁS SEPARADOS -->
-      <div class="hidden items-center gap-2 lg:flex xl:gap-3">
+      <!-- Desktop links - MÁS SEPARADOS (solo en xl+, si no hamburguesa) -->
+      <div class="hidden items-center gap-2 xl:flex 2xl:gap-3">
         {navLinks.map((l) => (
           <a href={l.href} class="nav-link">{l.label}</a>
         ))}
       </div>
 
-      <div class="flex shrink-0 items-center gap-3">
-        <button data-theme-toggle class="hidden lg:flex h-11 w-11 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-white hover:bg-white/20" aria-label="Cambiar tema">
+      <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+        <button data-theme-toggle class="hidden xl:flex h-11 w-11 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-white hover:bg-white/20" aria-label="Cambiar tema">
           <svg class="hidden h-5 w-5 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
           <svg class="block h-5 w-5 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
-        <a href="/#planes" class="hidden sm:inline-flex items-center gap-2 rounded-full bg-amber-400 px-5 py-2.5 font-display text-xs font-bold uppercase tracking-wide text-[#0B1D3A] shadow hover:bg-amber-300 transition lg:text-sm">Ver planes</a>
+        <a href="/#planes" class="hidden md:inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-amber-400 px-4 py-2 font-display text-[11px] font-bold uppercase tracking-wide text-[#0B1D3A] shadow hover:bg-amber-300 transition lg:px-5 lg:py-2.5 lg:text-xs">Ver planes</a>
         <a href={whatsappHref} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2.5 font-display text-xs font-bold uppercase tracking-wide text-[#0B1D3A] shadow-md hover:bg-amber-50 transition sm:px-5 sm:text-sm">
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           <span class="hidden sm:inline">WhatsApp</span><span class="sm:hidden">Escribir</span>
         </a>
-        <button id="nav-toggle" class="flex h-11 w-11 flex-col items-center justify-center gap-[5px] rounded-xl border border-white/20 bg-white/10 lg:hidden" aria-label="Abrir menú">
+        <button id="nav-toggle" class="flex h-11 w-11 shrink-0 flex-col items-center justify-center gap-[5px] rounded-xl border border-white/20 bg-white/10 xl:hidden" aria-label="Abrir menú">
           <span class="block h-[2px] w-5 rounded-full bg-white"></span>
           <span class="block h-[2px] w-5 rounded-full bg-white"></span>
           <span class="block h-[2px] w-5 rounded-full bg-white"></span>
@@ -76,7 +77,7 @@ const whatsappHref = "https://api.whatsapp.com/send/?phone=51927580985&text=Hola
   </nav>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="pointer-events-none fixed inset-0 z-[60] lg:hidden">
+  <div id="mobile-menu" class="pointer-events-none fixed inset-0 z-[60] xl:hidden">
     <div id="nav-overlay" class="absolute inset-0 bg-[#0B1D3A]/60 opacity-0 backdrop-blur-sm transition-opacity"></div>
     <aside class="absolute right-0 top-0 flex h-full w-[320px] translate-x-full flex-col overflow-y-auto bg-gradient-to-b from-[#0B1D3A] to-[#1e3a8a] px-6 py-7 shadow-2xl transition-transform duration-300">
       <button id="nav-close" class="mb-6 flex h-10 w-10 items-center justify-center self-end rounded-full bg-white/10 text-white hover:bg-white/20" aria-label="Cerrar menú">
