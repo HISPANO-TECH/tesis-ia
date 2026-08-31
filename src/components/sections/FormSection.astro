@@ -1,0 +1,218 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<section id="contacto" class="bg-[#fffbeb] py-16 dark:bg-slate-900 md:py-20">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
+      <!-- Info -->
+      <div class="reveal">
+        <div class="inline-flex items-center gap-2 rounded-full bg-[#0B1D3A] px-3 py-1 text-xs font-bold uppercase tracking-widest text-amber-300">
+          <Icon name="lucide:mail" class="h-3.5 w-3.5" /> Contacto directo
+        </div>
+        <h2 class="mt-3 font-display text-[30px] font-bold leading-none tracking-tight text-[#0B1D3A] dark:text-white md:text-[38px]">
+          Cuéntanos tu tesis y <span class="text-[#1e3a8a] dark:text-amber-400">te decimos qué plan te conviene</span>
+        </h2>
+        <p class="mt-3 text-slate-600 dark:text-slate-400">
+          Respuesta en &lt; 2 horas (Lun–Sáb 9am–8pm). Sin compromiso, sin spam. Te responde un asesor humano, no un bot.
+        </p>
+
+        <div class="mt-6 grid gap-3">
+          <div class="flex items-center gap-3 rounded-2xl border border-amber-200 bg-white p-4 dark:bg-slate-800 dark:border-slate-700">
+            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-400 text-[#0B1D3A]"><Icon name="lucide:phone" class="h-5 w-5" /></span>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-widest text-slate-500">WhatsApp</div>
+              <a href="https://api.whatsapp.com/send/?phone=51927580985&text=Hola%2C%20quiero%20contactarme%20para%20recibir%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20en%20tesis%20universitaria%20en%20Per%C3%BA.%20Vengo%20de%20tesis-ia.com&type=phone_number&app_absent=0" target="_blank" class="text-sm font-bold text-[#0B1D3A] dark:text-white hover:text-amber-600">+51 927 580 985</a>
+            </div>
+            <span class="ml-auto h-2 w-2 rounded-full bg-emerald-500 animate-pulse-soft"></span>
+          </div>
+          <div class="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 dark:bg-slate-800 dark:border-slate-700">
+            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#0B1D3A] text-amber-300"><Icon name="lucide:mail" class="h-5 w-5" /></span>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-widest text-slate-500">Email</div>
+              <a href="mailto:informes@asesorestesisperu.com" class="text-sm font-bold text-[#0B1D3A] dark:text-white hover:text-amber-600">informes@asesorestesisperu.com</a>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 dark:bg-slate-800 dark:border-slate-700">
+            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-[#1e3a8a] dark:bg-slate-700 dark:text-amber-300"><Icon name="lucide:map-pin" class="h-5 w-5" /></span>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-widest text-slate-500">Cobertura</div>
+              <div class="text-sm font-medium text-slate-700 dark:text-slate-300">Lima · Perú · Atención remota a todo el país</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 rounded-2xl bg-[#0B1D3A] p-5 text-white">
+          <div class="flex items-center gap-2 text-amber-300 text-xs font-bold uppercase tracking-widest"><Icon name="lucide:shield-check" class="h-4 w-4" /> Compromiso</div>
+          <p class="mt-2 text-sm leading-relaxed text-blue-100">No hacemos tu tesis por ti. Te damos método, IAs verificadas y acompañamiento para que <strong class="text-white">sustentes con criterio y sin plagio</strong>.</p>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form id="tesis-form" class="reveal rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm dark:bg-slate-800 dark:border-slate-700 md:p-7" style="--reveal-delay:120ms" novalidate>
+        <h3 class="font-display text-lg font-bold tracking-tight text-[#0B1D3A] dark:text-white">Solicita información gratuita</h3>
+        <p class="mt-1 text-xs text-slate-500">Todos los campos con * son obligatorios</p>
+
+        <div class="mt-5 grid gap-4">
+          <div class="grid gap-4 sm:grid-cols-2">
+            <label class="grid gap-1.5">
+              <span class="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-300">Nombre *</span>
+              <input name="nombre" required placeholder="Ej. Ana Torres" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 dark:bg-slate-900 dark:border-slate-700 dark:text-white" />
+              <span class="hidden text-xs text-red-600" data-error="nombre">Ingresa tu nombre</span>
+            </label>
+            <label class="grid gap-1.5">
+              <span class="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-300">WhatsApp *</span>
+              <input name="whatsapp" required inputmode="numeric" placeholder="Ej. 927580985" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 dark:bg-slate-900 dark:border-slate-700 dark:text-white" />
+              <span class="hidden text-xs text-red-600" data-error="whatsapp">Número válido (9 dígitos)</span>
+            </label>
+          </div>
+
+          <label class="grid gap-1.5">
+            <span class="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-300">Email</span>
+            <input name="email" type="email" placeholder="ana@email.com" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 dark:bg-slate-900 dark:border-slate-700 dark:text-white" />
+          </label>
+
+          <div class="grid gap-4 sm:grid-cols-2">
+            <label class="grid gap-1.5">
+              <span class="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-300">Universidad *</span>
+              <input name="universidad" required placeholder="Ej. UNMSM, UCV, UNI" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 dark:bg-slate-900 dark:border-slate-700 dark:text-white" />
+              <span class="hidden text-xs text-red-600" data-error="universidad">Indica tu universidad</span>
+            </label>
+            <label class="grid gap-1.5">
+              <span class="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-300">Carrera *</span>
+              <input name="carrera" required placeholder="Ej. Psicología" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 dark:bg-slate-900 dark:border-slate-700 dark:text-white" />
+              <span class="hidden text-xs text-red-600" data-error="carrera">Indica tu carrera</span>
+            </label>
+          </div>
+
+          <div class="grid gap-4 sm:grid-cols-2">
+            <label class="grid gap-1.5">
+              <span class="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-300">Nivel</span>
+              <select name="nivel" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none focus:border-amber-400 dark:bg-slate-900 dark:border-slate-700 dark:text-white">
+                <option value="Pregrado">Pregrado</option>
+                <option value="Maestría">Maestría</option>
+                <option value="Doctorado">Doctorado</option>
+                <option value="Título por tesis">Título por tesis</option>
+              </select>
+            </label>
+            <label class="grid gap-1.5">
+              <span class="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-300">Avance actual</span>
+              <select name="avance" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none focus:border-amber-400 dark:bg-slate-900 dark:border-slate-700 dark:text-white">
+                <option value="0-20% - Idea/tema">0-20% - Idea/tema</option>
+                <option value="20-50% - Marco/metodología">20-50% - Marco/metodología</option>
+                <option value="50-80% - Resultados/discusión">50-80% - Resultados/discusión</option>
+                <option value="80-100% - Sustentación">80-100% - Sustentación</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="grid gap-1.5">
+            <span class="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-300">Plan de interés</span>
+            <select name="plan" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none focus:border-amber-400 dark:bg-slate-900 dark:border-slate-700 dark:text-white">
+              <option value="No sé, asesoráme">No sé, asesórame</option>
+              <option value="Impulso $20">Impulso $20</option>
+              <option value="Avance $35">Avance $35</option>
+              <option value="Graduación $49">Graduación $49</option>
+            </select>
+          </label>
+
+          <label class="grid gap-1.5">
+            <span class="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-300">Cuéntanos brevemente tu tema / duda *</span>
+            <textarea name="mensaje" required rows="3" placeholder="Ej. Mi tesis es sobre clima laboral y rotación en retail, estoy en capítulo III..." class="rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 dark:bg-slate-900 dark:border-slate-700 dark:text-white"></textarea>
+            <span class="hidden text-xs text-red-600" data-error="mensaje">Cuéntanos tu tema (mín. 10 caracteres)</span>
+          </label>
+
+          <!-- honeypot -->
+          <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off" />
+
+          <label class="flex items-start gap-2 text-xs leading-snug text-slate-600 dark:text-slate-400">
+            <input type="checkbox" name="privacidad" required class="mt-0.5 h-4 w-4 rounded border-slate-300 text-amber-500 focus:ring-amber-400" />
+            Acepto la <a href="/privacidad" class="font-bold text-[#1e3a8a] underline dark:text-amber-300">política de privacidad</a> y ser contactado por WhatsApp/email. *
+          </label>
+          <span class="hidden text-xs text-red-600" data-error="privacidad">Debes aceptar la política</span>
+
+          <div class="grid gap-3 sm:grid-cols-2">
+            <button type="submit" class="inline-flex items-center justify-center gap-2 rounded-full bg-amber-400 px-6 py-3 font-display text-sm font-bold uppercase tracking-wide text-[#0B1D3A] hover:bg-amber-300">
+              <Icon name="lucide:send" class="h-4 w-4" /> Enviar por WhatsApp
+            </button>
+            <a id="mailto-link" href="mailto:informes@asesorestesisperu.com" class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[#0B1D3A] px-6 py-3 font-display text-sm font-bold uppercase tracking-wide text-[#0B1D3A] hover:bg-[#0B1D3A] hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-[#0B1D3A]">
+              <Icon name="lucide:mail" class="h-4 w-4" /> Enviar por Email
+            </a>
+          </div>
+          <p id="form-status" class="hidden rounded-xl bg-amber-50 px-3 py-2 text-xs text-amber-800 dark:bg-amber-950/30 dark:text-amber-300"></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById("tesis-form");
+  const status = document.getElementById("form-status");
+  const mailtoLink = document.getElementById("mailto-link");
+
+  function showError(name, show) {
+    const el = form.querySelector(`[data-error="${name}"]`);
+    if (el) el.classList.toggle("hidden", !show);
+    const input = form.querySelector(`[name="${name}"]`);
+    if (input) input.classList.toggle("border-red-400", show);
+  }
+
+  function buildMessage(fd) {
+    const lines = [
+      `Hola, quiero contactarme para recibir información sobre asesoría en tesis universitaria en Perú. Vengo de tesis-ia.com - Pack IAs Investigador Pro`,
+      ``,
+      `Nombre: ${fd.get("nombre")}`,
+      `WhatsApp: ${fd.get("whatsapp")}`,
+      `Email: ${fd.get("email") || "-"}`,
+      `Universidad: ${fd.get("universidad")}`,
+      `Carrera: ${fd.get("carrera")}`,
+      `Nivel: ${fd.get("nivel")}`,
+      `Avance: ${fd.get("avance")}`,
+      `Plan interés: ${fd.get("plan")}`,
+      `Tema/duda: ${fd.get("mensaje")}`,
+    ];
+    return lines.join("\n");
+  }
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const fd = new FormData(form);
+    if (fd.get("website")) return; // honeypot
+
+    let valid = true;
+    const nombre = String(fd.get("nombre")||"").trim();
+    const whatsapp = String(fd.get("whatsapp")||"").replace(/\D/g,"");
+    const universidad = String(fd.get("universidad")||"").trim();
+    const carrera = String(fd.get("carrera")||"").trim();
+    const mensaje = String(fd.get("mensaje")||"").trim();
+    const privacidad = form.querySelector('[name="privacidad"]').checked;
+
+    showError("nombre", nombre.length < 2); if (nombre.length < 2) valid=false;
+    showError("whatsapp", !/^\d{9}$/.test(whatsapp)); if (!/^\d{9}$/.test(whatsapp)) valid=false;
+    showError("universidad", universidad.length < 2); if (universidad.length < 2) valid=false;
+    showError("carrera", carrera.length < 2); if (carrera.length < 2) valid=false;
+    showError("mensaje", mensaje.length < 10); if (mensaje.length < 10) valid=false;
+    showError("privacidad", !privacidad); if (!privacidad) valid=false;
+
+    if (!valid) {
+      status.textContent = "Revisa los campos marcados en rojo.";
+      status.className = "rounded-xl bg-red-50 px-3 py-2 text-xs text-red-700 dark:bg-red-950/30 dark:text-red-300";
+      status.classList.remove("hidden");
+      return;
+    }
+
+    const msg = buildMessage(fd);
+    const waUrl = `https://api.whatsapp.com/send/?phone=51927580985&text=${encodeURIComponent(msg)}&type=phone_number&app_absent=0`;
+    // mailto
+    const mailSubject = encodeURIComponent(`Consulta tesis-ia.com - ${nombre} - ${fd.get("carrera")}`);
+    const mailBody = encodeURIComponent(msg + `\n\nEnviado desde tesis-ia.com`);
+    mailtoLink.href = `mailto:informes@asesorestesisperu.com?subject=${mailSubject}&body=${mailBody}`;
+
+    status.textContent = "Redirigiendo a WhatsApp con tu mensaje... Si no se abre, usa el botón Email.";
+    status.className = "rounded-xl bg-amber-50 px-3 py-2 text-xs text-amber-800 dark:bg-amber-950/30 dark:text-amber-300";
+    status.classList.remove("hidden");
+
+    window.open(waUrl, "_blank", "noopener");
+  });
+</script>

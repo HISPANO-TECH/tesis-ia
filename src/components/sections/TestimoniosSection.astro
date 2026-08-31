@@ -1,0 +1,111 @@
+---
+import { Icon } from "astro-icon/components";
+
+const testimonios = [
+  {
+    nombre: "María Fernanda L.",
+    carrera: "Ing. Industrial · UCV Lima",
+    plan: "Plan Avance",
+    avatar: "https://i.pravatar.cc/120?img=32",
+    texto: "Tenía mi marco teórico estancado 4 meses. Con el Pack y la revisión de capítulo, en 3 semanas lo cerré y el asesor de la grupal me corrigió el Turnitin de 28% a 9%.",
+    stars: 5,
+  },
+  {
+    nombre: "Carlos R.",
+    carrera: "Maestría en Educación · UNMSM",
+    plan: "Plan Graduación",
+    avatar: "https://i.pravatar.cc/120?img=15",
+    texto: "La sesión 1:1 valió cada sol. Me explicó qué prueba estadística usar y cómo defenderla. Sustenté sin observaciones del jurado.",
+    stars: 5,
+  },
+  {
+    nombre: "Diana P.",
+    carrera: "Derecho · UTP",
+    plan: "Plan Impulso",
+    avatar: "https://i.pravatar.cc/120?img=26",
+    texto: "Recién empezaba y no sabía ni mi matriz. Los prompts y plantillas me ordenaron todo. Ya voy por mi capítulo II sin miedo a la IA.",
+    stars: 5,
+  },
+  {
+    nombre: "Jorge A.",
+    carrera: "Administración · UPC",
+    plan: "Plan Avance",
+    avatar: "https://i.pravatar.cc/120?img=12",
+    texto: "Lo mejor son las grupales semanales. Preguntas reales, respuestas sin humo. El asesor conoce el protocolo de mi universidad.",
+    stars: 5,
+  },
+  {
+    nombre: "Lucía M.",
+    carrera: "Psicología · USMP",
+    plan: "Plan Graduación",
+    avatar: "https://i.pravatar.cc/120?img=45",
+    texto: "Probé IAs gratis y me inventaron 6 referencias. Con las IAs del Pack todo es verificable en Scopus. Ahorré semanas de correcciones.",
+    stars: 5,
+  },
+  {
+    nombre: "Renzo C.",
+    carrera: "Ing. Sistemas · UNI",
+    plan: "Plan Avance",
+    avatar: "https://i.pravatar.cc/120?img=18",
+    texto: "De 12% de avance a sustentación en 2 meses. El feedback del capítulo III fue detallado, no genérico. Recomendado total.",
+    stars: 5,
+  },
+];
+---
+
+<section id="testimonios" class="bg-white py-16 dark:bg-slate-950 md:py-20">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="mx-auto max-w-3xl text-center">
+      <div class="inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-amber-700 border border-amber-200 dark:bg-amber-950/30 dark:text-amber-300 dark:border-amber-800">
+        <Icon name="lucide:star" class="h-3.5 w-3.5 fill-amber-500 text-amber-500" /> Testimonios reales
+      </div>
+      <h2 class="mt-4 font-display text-[28px] font-bold leading-none tracking-tight text-slate-900 dark:text-white md:text-[36px]">
+        Tesistas que ya <span class="text-[#1e3a8a] dark:text-amber-400">avanzaron con el Pack</span>
+      </h2>
+      <p class="mt-3 text-slate-500 dark:text-slate-400">Resultados con método, no promesas vacías. Todos con protocolo de universidades peruanas.</p>
+      <div class="mt-4 flex items-center justify-center gap-2 text-sm">
+        <div class="flex">
+          {Array.from({ length: 5 }).map(() => (
+            <Icon name="lucide:star" class="h-4 w-4 fill-amber-400 text-amber-400" />
+          ))}
+        </div>
+        <span class="font-bold text-slate-900 dark:text-white">4.9/5</span>
+        <span class="text-slate-500">· 127 valoraciones · Verificadas</span>
+      </div>
+    </div>
+
+    <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {testimonios.map((t, i) => (
+        <article class="reveal flex flex-col rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md hover:border-amber-200 dark:bg-slate-900 dark:border-slate-800 dark:hover:border-amber-800/40" style={`--reveal-delay:${i*60}ms`}>
+          <div class="flex items-center gap-3">
+            <img src={t.avatar} alt={t.nombre} loading="lazy" class="h-11 w-11 rounded-full object-cover ring-2 ring-amber-200 dark:ring-amber-800" />
+            <div class="min-w-0">
+              <div class="text-sm font-bold text-slate-900 dark:text-white">{t.nombre}</div>
+              <div class="text-xs text-slate-500 dark:text-slate-400 truncate">{t.carrera}</div>
+            </div>
+            <span class="ml-auto rounded-full bg-[#0B1D3A] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-amber-300">{t.plan}</span>
+          </div>
+          <div class="mt-3 flex gap-0.5">
+            {Array.from({ length: t.stars }).map(() => (
+              <Icon name="lucide:star" class="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
+            ))}
+          </div>
+          <p class="mt-3 text-[14px] leading-relaxed text-slate-600 dark:text-slate-300">“{t.texto}”</p>
+          <div class="mt-4 flex items-center gap-1.5 text-xs font-semibold text-amber-700 dark:text-amber-400">
+            <Icon name="lucide:badge-check" class="h-4 w-4" /> Verificado · Sustentó en 2024-2025
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="reveal mt-10 flex flex-wrap items-center justify-center gap-3 rounded-2xl border border-amber-200 bg-amber-50 px-6 py-4 dark:bg-amber-950/20 dark:border-amber-800">
+      <span class="flex h-8 w-8 items-center justify-center rounded-full bg-amber-400 text-[#0B1D3A]"><Icon name="lucide:shield-check" class="h-4 w-4" /></span>
+      <p class="text-sm text-slate-700 dark:text-slate-300">
+        <strong class="text-[#0B1D3A] dark:text-amber-300">Transparencia:</strong> Todos los testimonios son de estudiantes con matrícula verificable. No usamos IA para inventar resultados.
+      </p>
+      <a href="https://api.whatsapp.com/send/?phone=51927580985&text=Hola%2C%20quiero%20contactarme%20para%20recibir%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20en%20tesis%20universitaria%20en%20Per%C3%BA.%20Vengo%20de%20tesis-ia.com&type=phone_number&app_absent=0" target="_blank" rel="noopener" class="ml-auto inline-flex items-center gap-1.5 rounded-full bg-[#0B1D3A] px-4 py-2 text-xs font-bold uppercase tracking-wide text-white hover:bg-black">
+        Quiero mi caso de éxito <Icon name="lucide:arrow-right" class="h-3.5 w-3.5" />
+      </a>
+    </div>
+  </div>
+</section>

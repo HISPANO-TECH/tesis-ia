@@ -1,0 +1,147 @@
+---
+import { Icon } from "astro-icon/components";
+
+const planes = [
+  {
+    name: "IMPULSO",
+    subtitle: "Recién empieza su tesis",
+    price: "20",
+    badge: null,
+    features: [
+      { label: "Acceso a IAs", value: "Pack IAs Investigador Pro" },
+      { label: "Plantillas y manuales", value: "Kit básico (Prompts, manuales, videos, plantillas)" },
+      { label: "Asesoría grupal", value: "1 sesión grupal / mes" },
+      { label: "Asesoría individual", value: "—", muted: true },
+      { label: "Revisión de capítulos", value: "—", muted: true },
+      { label: "Soporte", value: "Comunidad WhatsApp" },
+    ],
+    cta: "Empezar con Impulso",
+  },
+  {
+    name: "AVANCE",
+    subtitle: "Tiene avance, quiere terminar más rápido",
+    price: "35",
+    badge: "Más vendido",
+    features: [
+      { label: "Acceso a IAs", value: "Pack IAs Investigador Pro" },
+      { label: "Plantillas y manuales", value: "Kit básico (Prompts, manuales, videos, plantillas)" },
+      { label: "Asesoría grupal", value: "1 sesión grupal / semanal" },
+      { label: "Asesoría individual", value: "—", muted: true },
+      { label: "Revisión de capítulos", value: "Revisión integral de 1 capítulo/mes con feedback" },
+      { label: "Soporte", value: "Comunidad + prioridad" },
+    ],
+    cta: "Elegir Avance",
+  },
+  {
+    name: "GRADUACIÓN",
+    subtitle: "Quiere sustentar cuanto antes",
+    price: "49",
+    badge: "Asesoría 1:1",
+    features: [
+      { label: "Acceso a IAs", value: "Pack IAs Investigador Pro" },
+      { label: "Plantillas y manuales", value: "Kit básico (Prompts, manuales, videos, plantillas)" },
+      { label: "Asesoría grupal", value: "1 sesión grupal / semanal" },
+      { label: "Asesoría individual", value: "1 sesión personalizada / mes" },
+      { label: "Revisión de capítulos", value: "Revisión integral de 1 capítulo/mes con feedback" },
+      { label: "Soporte", value: "Línea directa con asesor asignado" },
+    ],
+    cta: "Ir por Graduación",
+  },
+];
+const whatsappBase = "https://api.whatsapp.com/send/?phone=51927580985&text=";
+function wa(plan: string) {
+  return whatsappBase + encodeURIComponent(`Hola, quiero contactarme para recibir información sobre asesoría en tesis universitaria en Perú. Vengo de tesis-ia.com y quiero el plan ${plan} del Pack IAs Investigador Pro. ¿Cómo adquiero mi acceso?`) + "&type=phone_number&app_absent=0";
+}
+---
+
+<section id="planes" class="bg-[#fffbeb] py-16 dark:bg-slate-900 md:py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="mx-auto max-w-3xl text-center">
+      <div class="inline-flex items-center gap-2 rounded-full bg-amber-100 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-amber-800 dark:bg-amber-950 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
+        Inversión clara · sin letra chica
+      </div>
+      <h2 class="split-letters mt-4 font-display text-[30px] font-bold leading-none tracking-tight text-slate-900 dark:text-white md:text-[40px]">
+        PLANES DE TESIS <span class="text-[#1e3a8a] dark:text-amber-400">CON IA</span>
+      </h2>
+      <p class="mt-3 text-slate-500 dark:text-slate-400">Elige según tu momento. Todos incluyen el Pack IAs Investigador Pro.</p>
+    </div>
+
+    <!-- Comparison responsive -->
+    <div class="mt-10 grid gap-6 lg:grid-cols-3 lg:gap-5">
+      {planes.map((p, idx) => (
+        <article
+          class={`reveal relative flex flex-col rounded-[28px] border bg-white p-6 pt-8 shadow-sm transition hover:shadow-xl md:p-7 md:pt-10 ${idx===1 ? "border-amber-400 shadow-lg shadow-amber-900/10 scale-[1.02] lg:-translate-y-2 overflow-visible" : "border-slate-200 dark:border-slate-800 overflow-visible"} dark:bg-slate-800`}
+          style={`--reveal-delay:${idx*100}ms`}
+        >
+          {p.badge && (
+            <div class={`absolute -top-3.5 left-1/2 z-20 flex -translate-x-1/2 items-center gap-1.5 rounded-full border-2 border-white px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white shadow-lg dark:border-slate-800 ${idx===1 ? "bg-amber-500" : "bg-[#0B1D3A]"}`}>
+              {idx===1 && <Icon name="lucide:star" class="h-3.5 w-3.5 fill-white" />} {p.badge}
+            </div>
+          )}
+          <div class="text-center">
+            <h3 class="font-display text-xl font-bold uppercase tracking-wide text-slate-900 dark:text-white">{p.name}</h3>
+            <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">{p.subtitle}</p>
+            <div class="mt-4 flex items-baseline justify-center gap-1">
+              <span class="text-sm font-bold text-slate-500">US$</span>
+              <span class="font-display text-[42px] font-bold leading-none tracking-tight text-slate-900 dark:text-white">{p.price}</span>
+              <span class="text-sm font-semibold text-slate-500">/ mes</span>
+            </div>
+            {idx===1 && <div class="mt-2 text-xs font-bold text-amber-600">Ahorras 29% vs. asesoría suelta</div>}
+          </div>
+
+          <ul class="mt-6 flex-1 space-y-3">
+            {p.features.map((f) => (
+              <li class="flex gap-3 rounded-xl bg-slate-50 px-3 py-2.5 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-700/60">
+                <span class={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${f.muted ? "bg-slate-200 text-slate-500 dark:bg-slate-700" : "bg-amber-400 text-[#0B1D3A]"}`}>
+                  {f.muted ? <Icon name="lucide:minus" class="h-3 w-3" /> : <Icon name="lucide:check" class="h-3 w-3" />}
+                </span>
+                <div class="min-w-0">
+                  <div class="text-[11px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">{f.label}</div>
+                  <div class={`text-sm leading-snug ${f.muted ? "text-slate-400 dark:text-slate-500" : "text-slate-800 dark:text-slate-100 font-medium"}`}>{f.value}</div>
+                </div>
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href={wa(p.name)}
+            target="_blank"
+            rel="noopener"
+            class={`mt-6 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 font-display text-sm font-bold uppercase tracking-wide shadow transition hover:scale-[1.02] ${idx===1 ? "bg-amber-400 text-[#0B1D3A] hover:bg-amber-300 shadow-amber-900/20" : idx===2 ? "bg-[#0B1D3A] text-white hover:bg-black dark:bg-white dark:text-slate-900" : "bg-white border-2 border-[#1e3a8a] text-[#1e3a8a] hover:bg-[#1e3a8a] hover:text-white"}`}
+          >
+            {p.cta} <Icon name="lucide:arrow-right" class="h-4 w-4" />
+          </a>
+          <p class="mt-3 text-center text-xs text-slate-400">Acceso inmediato · Cancela cuando quieras</p>
+        </article>
+      ))}
+    </div>
+
+    <!-- Tabla comparativa desktop -->
+    <div class="reveal mt-12 hidden overflow-hidden rounded-[20px] border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-800 lg:block">
+      <div class="grid grid-cols-4 gap-0 text-sm">
+        <div class="bg-slate-50 p-4 font-bold text-slate-600 dark:bg-slate-900 dark:text-slate-300">Comparativa rápida</div>
+        <div class="p-4 text-center font-display font-bold uppercase text-slate-800 dark:text-white">Impulso $20</div>
+        <div class="bg-amber-50 p-4 text-center font-display font-bold uppercase text-amber-700 dark:bg-amber-950/30 inline-flex items-center justify-center gap-1">Avance $35 <Icon name="lucide:star" class="h-4 w-4" /></div>
+        <div class="p-4 text-center font-display font-bold uppercase text-[#0B1D3A] dark:text-amber-300">Graduación $49</div>
+      </div>
+      <div class="divide-y divide-slate-100 dark:divide-slate-700 text-sm">
+        {[
+          ["Kit + IAs", "check", "check", "check"],
+          ["Asesoría grupal", "1/mes", "1/semana", "1/semana"],
+          ["1:1 personalizada", "minus", "minus", "1/mes"],
+          ["Revisión capítulo", "minus", "1/mes", "1/mes"],
+          ["Soporte", "Comunidad", "Prioritario", "Línea directa"],
+        ].map((row) => (
+          <div class="grid grid-cols-4">
+            <div class="bg-slate-50 px-4 py-2.5 font-medium text-slate-700 dark:bg-slate-900 dark:text-slate-300">{row[0]}</div>
+            <div class="px-4 py-2.5 flex justify-center text-slate-600 dark:text-slate-200">{row[1]==="check" ? <Icon name="lucide:check" class="h-4 w-4 text-amber-600" /> : row[1]==="minus" ? <Icon name="lucide:minus" class="h-4 w-4 text-slate-400" /> : row[1]}</div>
+            <div class="bg-amber-50/50 px-4 py-2.5 flex justify-center font-semibold text-amber-700 dark:bg-amber-950/20 dark:text-amber-300">{row[2]==="check" ? <Icon name="lucide:check" class="h-4 w-4 text-amber-600" /> : row[2]==="minus" ? <Icon name="lucide:minus" class="h-4 w-4 text-slate-400" /> : row[2]}</div>
+            <div class="px-4 py-2.5 flex justify-center text-slate-600 dark:text-slate-200">{row[3]==="check" ? <Icon name="lucide:check" class="h-4 w-4 text-amber-600" /> : row[3]==="minus" ? <Icon name="lucide:minus" class="h-4 w-4 text-slate-400" /> : row[3]}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <p class="mt-6 text-center text-xs text-slate-400">Precios referenciales en USD. El acceso al Pack IAs Investigador Pro está incluido en los tres planes. Soporte por WhatsApp en horario de oficina Lima (GMT-5).</p>
+  </div>
+</section>

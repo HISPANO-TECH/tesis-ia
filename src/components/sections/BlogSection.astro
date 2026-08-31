@@ -1,0 +1,104 @@
+---
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
+
+const posts = (await getCollection("blog"))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+---
+
+<section id="blog" class="bg-white py-16 dark:bg-slate-950 md:py-20">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#1e3a8a] border border-blue-200 dark:bg-blue-950/30 dark:text-blue-200 dark:border-blue-800">
+          <Icon name="lucide:book-open" class="h-3.5 w-3.5" /> Blog · Guía práctica
+        </div>
+        <h2 class="mt-3 font-display text-[28px] font-bold leading-none tracking-tight text-[#0B1D3A] dark:text-white md:text-[36px]">
+          Aprende a usar la IA <span class="text-amber-600 dark:text-amber-400">sin mitos</span>
+        </h2>
+        <p class="mt-2 text-slate-600 dark:text-slate-400">Artículos cortos, accionables y con ejemplos de tesis peruanas reales. Sin humo.</p>
+      </div>
+      <a href="/blog" class="hidden items-center gap-2 rounded-full border-2 border-[#0B1D3A] px-5 py-2.5 font-display text-xs font-bold uppercase tracking-wide text-[#0B1D3A] hover:bg-[#0B1D3A] hover:text-white dark:border-white dark:text-white sm:inline-flex">
+        Ver todos los artículos <Icon name="lucide:arrow-right" class="h-4 w-4" />
+      </a>
+    </div>
+
+    <div class="mt-8 grid gap-6 md:grid-cols-3">
+      {posts.map((post, i) => (
+        <a href={`/blog/${post.id}`} class="reveal blog-card group relative flex flex-col overflow-hidden rounded-[20px] border border-slate-200 bg-white shadow-sm transition hover:shadow-xl hover:border-amber-200 dark:bg-slate-900 dark:border-slate-800" style={`--reveal-delay:${i*70}ms`}>
+          <div class="relative h-48 overflow-hidden">
+            <img
+              src={post.data.image ?? `https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&q=80&auto=format&fit=crop`}
+              alt={post.data.title}
+              loading="lazy"
+              class="parallax-img h-full w-full object-cover scale-105 transition duration-700 group-hover:scale-110"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0B1D3A]/85 via-[#1e3a8a]/30 to-transparent"></div>
+            <div class="shine absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100" style="background: radial-gradient(400px circle at var(--mx,50%) var(--my,50%), rgba(245,158,11,0.25), transparent 40%);"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-5">
+              <span class="inline-flex w-fit rounded-full bg-amber-400 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-[#0B1D3A]">{post.data.category}</span>
+              <div class="mt-2 flex items-center gap-2 text-xs font-medium text-amber-100">
+                <Icon name="lucide:calendar" class="h-3.5 w-3.5" /> {post.data.date.toLocaleDateString("es-PE", { day: "2-digit", month: "short", year: "numeric" })}
+                <span>·</span> <Icon name="lucide:clock-3" class="h-3.5 w-3.5" /> 4 min
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-1 flex-col p-5">
+            <h3 class="font-display text-[16px] font-bold leading-snug text-[#0B1D3A] group-hover:text-[#1e3a8a] dark:text-white line-clamp-2">{post.data.title}</h3>
+            <p class="mt-2 line-clamp-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{post.data.description}</p>
+            <div class="mt-4 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-amber-600 dark:text-amber-400">
+              Leer artículo <Icon name="lucide:arrow-right" class="h-3.5 w-3.5 transition group-hover:translate-x-1" />
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="reveal mt-8 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 dark:bg-amber-950/20 dark:border-amber-800">
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="flex h-8 w-8 items-center justify-center rounded-full bg-amber-400 text-[#0B1D3A]"><Icon name="lucide:lightbulb" class="h-4 w-4" /></span>
+        <p class="text-sm text-slate-700 dark:text-slate-300"><strong class="text-[#0B1D3A] dark:text-amber-300">¿Por qué blog para SEO?</strong> Cada artículo captura búsquedas informacionales (“cómo hacer marco teórico”, “qué prueba estadística usar”) y las lleva a tu landing transaccional. Así construyes autoridad temática y no dependes solo de una keyword.</p>
+      </div>
+    </div>
+
+    <div class="mt-6 flex justify-center sm:hidden">
+      <a href="/blog" class="inline-flex items-center gap-2 rounded-full bg-[#0B1D3A] px-6 py-3 text-sm font-bold uppercase tracking-wide text-white">Ver blog completo <Icon name="lucide:arrow-right" class="h-4 w-4" /></a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .blog-card .shine { pointer-events: none; }
+</style>
+
+<script>
+  // Efecto brillo que sigue el mouse + parallax suave al scroll
+  const cards = document.querySelectorAll(".blog-card");
+  cards.forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      card.style.setProperty("--mx", `${x}%`);
+      card.style.setProperty("--my", `${y}%`);
+    });
+  });
+
+  // Parallax ligero al hacer scroll (solo img)
+  const parallaxImgs = document.querySelectorAll(".parallax-img");
+  const onScroll = () => {
+    const scrolled = window.scrollY;
+    parallaxImgs.forEach((img) => {
+      const rect = img.closest(".blog-card")?.getBoundingClientRect();
+      if (!rect) return;
+      const speed = 0.15;
+      const yPos = (rect.top - window.innerHeight * 0.5) * speed * -1;
+      img.style.transform = `translateY(${yPos * 0.3}px) scale(1.05)`;
+    });
+  };
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    window.addEventListener("scroll", onScroll, { passive: true });
+  }
+</script>
