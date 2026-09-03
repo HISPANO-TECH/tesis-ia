@@ -2,3 +2,6 @@ dist/
 node_modules/
 .astro/
 .env
+php/config.php
+# Local Pi runtime state
+.atl/
