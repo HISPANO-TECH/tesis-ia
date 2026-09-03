@@ -14,18 +14,32 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
+const postDate = post.data.date.toISOString();
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Article",
   headline: post.data.title,
   description: post.data.description,
-  datePublished: post.data.date.toISOString(),
-  author: { "@type": "Organization", name: "Tesis IA" },
+  datePublished: postDate,
+  dateModified: postDate,
+  inLanguage: "es",
+  author: { "@type": "Organization", name: "Tesis IA", url: "https://tesis-ia.com" },
   publisher: { "@type": "Organization", name: "Tesis IA", logo: { "@type": "ImageObject", url: "https://tesis-ia.com/favicon.svg" } },
+  image: post.data.image,
+  mainEntityOfPage: `https://tesis-ia.com/blog/${post.id}`,
 };
 ---
 
-<Layout title={post.data.title} description={post.data.description} jsonLd={[jsonLd]}>
+<Layout
+  title={post.data.title}
+  description={post.data.description}
+  image={post.data.image}
+  imageAlt={post.data.title}
+  type="article"
+  publishedTime={postDate}
+  jsonLd={[jsonLd]}
+>
   <article class="bg-white dark:bg-slate-950">
     <div class="relative overflow-hidden bg-[#0B1D3A] py-14">
       <div class="absolute inset-0">
