@@ -155,9 +155,9 @@ import { Icon } from "astro-icon/components";
   const submitLabel = form?.querySelector(".submit-label");
   const waAlt = document.getElementById("wa-alt");
 
-  // API PHP (cPanel). Ruta relativa: funciona cuando el dominio sirve los .php.
-  // Si la web está en Netlify y el PHP en otro dominio, cambia a la URL absoluta.
-  const API_URL = "/enviar-contacto.php";
+  // API PHP (cPanel) — public/api/*.php se copia a dist/api/ en cada build.
+  // Ruta relativa: funciona cuando el dominio sirve los .php (como academic-navigator-astro).
+  const API_URL = "/api/contact.php";
   const WHATSAPP_PHONE = "51927580985";
 
   function showError(name, show) {
