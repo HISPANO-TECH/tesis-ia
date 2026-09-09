@@ -13,10 +13,22 @@ import { Icon } from "astro-icon/components";
         <p class="mt-1 max-w-[80ch] font-body text-[15px] font-semibold leading-snug text-[#0B1D3A]">
           La sola aplicación de las IAs <span class="underline decoration-[#0B1D3A] underline-offset-4">no garantiza</span> un buen desarrollo de tu tesis. Sin metodología, datos propios y criterio del jurado, no hay sustentación que aguante.
         </p>
+        <p class="mt-2 max-w-[80ch] font-body text-[14px] leading-snug text-[#0B1D3A]/85">
+          Por eso el <strong>Pack IAs Investigador Pro</strong> no vende accesos sueltos: suma kit metodológico, plantillas por capítulo y asesor humano desde <strong>US$20 al mes</strong>.
+        </p>
       </div>
-      <a href="/#mitos" class="shrink-0 inline-flex items-center gap-2 rounded-full bg-[#0B1D3A] px-6 py-3 font-display text-xs font-bold uppercase tracking-wide text-white hover:bg-black whitespace-nowrap">
-        Ver mitos <Icon name="lucide:arrow-right" class="h-4 w-4" />
-      </a>
+      <div class="flex w-full shrink-0 flex-col gap-2 sm:w-auto">
+        <button
+          type="button"
+          data-pack-modal
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#0B1D3A] px-6 py-3 font-display text-xs font-bold uppercase tracking-wide text-white transition hover:bg-black"
+        >
+          Ver promoción del Pack <Icon name="lucide:arrow-right" class="h-4 w-4" />
+        </button>
+        <a href="/#mitos" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border-2 border-[#0B1D3A] px-6 py-2.5 font-display text-xs font-bold uppercase tracking-wide text-[#0B1D3A] transition hover:bg-[#0B1D3A] hover:text-white">
+          Ver mitos
+        </a>
+      </div>
     </div>
   </div>
 </section>
