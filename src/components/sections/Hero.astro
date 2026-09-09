@@ -6,22 +6,8 @@ const whatsappHref = waLink(
   "Hola, quiero contactarme para recibir información sobre asesoría en tesis universitaria. Vengo de tesis-ia.com - Pack IAs Investigador Pro"
 );
 
-// IAs de investigación del Pack: son las mismas en los 3 planes (por eso van
-// fuera del slide) y se muestran en chips de 2 columnas para no aglutinar.
-const iasPack = [
-  { name: "ChatGPT Pro", icon: "simple-icons:openai" },
-  { name: "Claude Max", icon: "simple-icons:claude" },
-  { name: "Gemini Ultra", icon: "simple-icons:googlegemini" },
-  { name: "Perplexity Pro", icon: "simple-icons:perplexity" },
-  { name: "SuperGrok Heavy", icon: "simple-icons:x" },
-  { name: "NotebookLM Ultra", icon: "lucide:notebook-pen" },
-  { name: "Turnitin", icon: "lucide:file-search" },
-  { name: "QuillBot Premium", icon: "lucide:pen-line" },
-  { name: "WriteHuman", icon: "lucide:wand" },
-  { name: "Gamma Ultra", icon: "lucide:layers" },
-  { name: "Canva Pro", icon: "simple-icons:canva" },
-  { name: "Zotero · APA 7", icon: "simple-icons:zotero" },
-];
+// En la tarjeta no listamos herramientas ni marcas: mostramos el resultado que
+// el tesista consigue con cada plan, que es lo que realmente compra.
 
 // Beneficios que ya están en todos los planes: no diferencian, así que no
 // ocupan sitio en la tarjeta del hero.
@@ -41,6 +27,12 @@ const slides = [
     chips: ["Título y problema con criterio", "Prompts y plantillas listas", "Comunidad de tesistas"],
     cardBadge: { label: "Para empezar", icon: "lucide:rocket" },
     nota: "Todo el Pack incluido",
+    mejoras: [
+      "Defines tu título y tu problema sin dar vueltas meses",
+      "Aprendes a pedirle a la IA lo que tu asesor sí va a aceptar",
+      "Trabajas con fuentes reales y verificables, no inventadas",
+      "Entregas tu proyecto con el formato de tu universidad",
+    ],
   },
   {
     plan: PLANES[1],
@@ -51,6 +43,12 @@ const slides = [
     chips: ["IAs con fuentes reales", "Protocolo de tu universidad", "Anti-plagio con criterio"],
     cardBadge: { label: PLANES[1].badge ?? "Más vendido", icon: "lucide:star" },
     nota: "Ahorras 29%",
+    mejoras: [
+      "Cierras un capítulo al mes en vez de quedarte trabado",
+      "Bajas tu similitud antes de que la vea tu universidad",
+      "Redactas resultados y discusión con respaldo bibliográfico",
+      "Levantas las observaciones con feedback de un asesor real",
+    ],
   },
   {
     plan: PLANES[2],
@@ -61,6 +59,12 @@ const slides = [
     chips: ["Sesión 1:1 cada mes", "Preparación de sustentación", "Línea directa con tu asesor"],
     cardBadge: { label: PLANES[2].badge ?? "Asesoría 1:1", icon: "lucide:user-check" },
     nota: "Incluye 1:1",
+    mejoras: [
+      "Cierras tu tesis completa y la dejas lista para presentar",
+      "Llegas a la sustentación sabiendo qué te va a preguntar el jurado",
+      "Defiendes tu metodología y tus resultados con seguridad",
+      "Corriges las observaciones del jurado acompañado 1:1",
+    ],
   },
 ];
 
@@ -85,6 +89,8 @@ const DOT_ACTIVE =
     class="relative"
     data-hero-carousel
     data-hero-initial={initialIndex}
+    data-dot-idle={DOT_IDLE}
+    data-dot-active={DOT_ACTIVE}
     role="region"
     aria-roledescription="carrusel"
     aria-label="Planes de asesoría con el Pack IAs Investigador Pro"
@@ -201,26 +207,26 @@ const DOT_ACTIVE =
                         </div>
                       </div>
 
-                      {/* IAs de investigación incluidas */}
+                      {/* Lo que el tesista consigue con este plan */}
                       <div class="mt-3 rounded-2xl border border-slate-200 bg-white p-3.5 dark:border-slate-700 dark:bg-slate-800/60">
                         <div class="flex items-center justify-between gap-2">
                           <div class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#1e3a8a] dark:text-amber-300">
-                            <Icon name="lucide:package-check" class="h-3.5 w-3.5" /> Incluye Pack IAs Investigador Pro
+                            <Icon name="lucide:trending-up" class="h-3.5 w-3.5" /> Lo que vas a mejorar
                           </div>
-                          <span class="shrink-0 rounded-full bg-[#0B1D3A] px-2 py-0.5 text-[10px] font-bold text-amber-300">15+ IAs</span>
+                          <span class="shrink-0 rounded-full bg-[#0B1D3A] px-2 py-0.5 text-[10px] font-bold text-amber-300">Plan {s.plan.name}</span>
                         </div>
 
-                        <div class="mt-2.5 grid grid-cols-2 gap-1.5">
-                          {iasPack.map((t) => (
-                            <div class="flex items-center gap-2 rounded-lg border border-slate-100 bg-slate-50 px-2 py-1.5 dark:border-slate-800 dark:bg-slate-900/60">
-                              <Icon name={t.icon} class="h-3.5 w-3.5 shrink-0 text-[#1e3a8a] dark:text-amber-300" />
-                              <span class="truncate text-[11.5px] font-semibold text-slate-700 dark:text-slate-200">{t.name}</span>
-                            </div>
+                        <ul class="mt-2.5 grid gap-1.5">
+                          {s.mejoras.map((m) => (
+                            <li class="flex items-start gap-2 rounded-lg border border-slate-100 bg-slate-50 px-2.5 py-1.5 dark:border-slate-800 dark:bg-slate-900/60">
+                              <Icon name="lucide:check" class="mt-[3px] h-3.5 w-3.5 shrink-0 text-amber-500" />
+                              <span class="text-[11.5px] font-semibold leading-snug text-slate-700 dark:text-slate-200">{m}</span>
+                            </li>
                           ))}
-                        </div>
+                        </ul>
 
                         <p class="mt-2 text-[11px] leading-snug text-slate-500 dark:text-slate-400">
-                          + Scribd · flujos a <strong class="text-slate-600 dark:text-slate-300">Scopus, SciELO y Scholar</strong> · Udemy, Domestika y Platzi
+                          Con método propio, <strong class="text-slate-600 dark:text-slate-300">IAs académicas</strong> y acompañamiento de un asesor humano.
                         </p>
                       </div>
 
@@ -291,9 +297,13 @@ const DOT_ACTIVE =
   </div>
 </section>
 
-<script define:vars={{ DOT_IDLE, DOT_ACTIVE }}>
+<script>
+  // Script empaquetado (no inline): así lo permite la CSP de producción,
+  // que solo acepta scripts servidos desde el propio dominio.
   const root = document.querySelector("[data-hero-carousel]");
   if (root) {
+    const DOT_IDLE = root.dataset.dotIdle;
+    const DOT_ACTIVE = root.dataset.dotActive;
     const track = root.querySelector("[data-hero-track]");
     const slides = Array.from(root.querySelectorAll("[data-hero-slide]"));
     const dots = Array.from(root.querySelectorAll("[data-hero-dot]"));
