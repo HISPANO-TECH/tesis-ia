@@ -2,15 +2,62 @@
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import { Icon } from "astro-icon/components";
+import { SITE } from "../../site.config";
 
 const posts = (await getCollection("blog"))
   .filter((p) => !p.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 const categories = [...new Set(posts.map((p) => p.data.category))];
+
+// Tiempo de lectura real por artículo (≈200 palabras/min).
+const readingTime = (body: string | undefined) =>
+  Math.max(2, Math.round((body?.trim().split(/\s+/).length ?? 0) / 200));
+
+// Keywords agregadas de todos los artículos: refuerzan la relevancia temática del índice.
+const indexKeywords = [
+  "blog tesis con ia",
+  "guias de tesis peru",
+  "como hacer tesis con inteligencia artificial",
+  ...new Set(posts.flatMap((p) => [...p.data.keywords, ...p.data.tags])),
+].slice(0, 25);
+
+const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Inicio", item: `${SITE.url}/` },
+    { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE.url}/blog/` },
+  ],
+};
+
+const collectionLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Blog de tesis con IA — Tesis IA",
+  description:
+    "Guías prácticas para usar inteligencia artificial en tu tesis en Perú: antiplagio y Turnitin, marco teórico con fuentes reales, prompts, estadística y cronograma.",
+  url: `${SITE.url}/blog/`,
+  inLanguage: "es",
+  isPartOf: { "@type": "WebSite", name: SITE.name, url: SITE.url },
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: posts.map((p, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: p.data.title,
+      url: `${SITE.url}/blog/${p.id}/`,
+    })),
+  },
+};
 ---
 
-<Layout title="Blog - Guías de tesis con IA" description="Blog de tesis-ia.com: guías prácticas para usar IA en tu tesis sin plagio, con método y criterio de jurado peruano.">
+<Layout
+  title="Blog de tesis con IA — guías paso a paso para tesistas en Perú"
+  description="Guías prácticas para hacer tu tesis con inteligencia artificial en Perú: evitar plagio en Turnitin, marco teórico con fuentes reales de Scopus, prompts validados, análisis estadístico en SPSS y cronograma realista."
+  keywords={indexKeywords}
+  jsonLd={[breadcrumbLd, collectionLd]}
+>
   <section class="relative overflow-hidden bg-[#0B1D3A] py-16 dark:bg-[#070f24]">
     <div class="absolute inset-0">
       <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1600&q=80&auto=format&fit=crop" alt="Biblioteca tesis" class="parallax-bg h-full w-full object-cover opacity-30 scale-105" />
@@ -46,7 +93,7 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
               <span class="absolute bottom-3 left-3 rounded-full bg-amber-400 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-[#0B1D3A]">{post.data.category}</span>
             </div>
             <div class="flex flex-1 flex-col p-6">
-              <div class="text-xs font-bold uppercase tracking-widest text-amber-600">{post.data.date.toLocaleDateString("es-PE")} · 4 min</div>
+              <div class="text-xs font-bold uppercase tracking-widest text-amber-600">{post.data.date.toLocaleDateString("es-PE")} · {readingTime(post.body)} min</div>
               <h2 class="mt-2 font-display text-lg font-bold leading-snug text-[#0B1D3A] group-hover:text-[#1e3a8a] dark:text-white line-clamp-2">{post.data.title}</h2>
               <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400 line-clamp-3">{post.data.description}</p>
               <div class="mt-4 flex flex-wrap gap-1.5">
@@ -58,6 +105,57 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
             </div>
           </a>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bloque SEO: texto semántico + enlazado interno hacia cada guía y hacia el Pack -->
+  <section class="border-t border-amber-100 bg-white py-12 dark:border-slate-800 dark:bg-slate-950">
+    <div class="mx-auto max-w-4xl px-6">
+      <h2 class="font-display text-2xl font-bold tracking-tight text-[#0B1D3A] dark:text-white md:text-[30px]">
+        Guías de tesis con inteligencia artificial, ordenadas por etapa
+      </h2>
+      <p class="mt-3 text-[15px] leading-relaxed text-slate-600 dark:text-slate-300">
+        Este blog resuelve las dudas reales de un tesista peruano de pregrado, maestría o doctorado que decide
+        <strong>usar inteligencia artificial en su tesis</strong> sin arriesgar la sustentación: cómo evitar que
+        Turnitin marque similitud, cómo construir un marco teórico con fuentes verificables en Scopus y SciELO,
+        qué prompts funcionan de verdad, qué prueba estadística corresponde a tu diseño y cuánto se puede acelerar
+        el cronograma sin mentirte. Cada guía sigue el mismo criterio: la IA acelera, el método aprueba.
+      </p>
+
+      <div class="mt-6 grid gap-4 md:grid-cols-3">
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900">
+          <h3 class="font-display text-sm font-bold uppercase tracking-widest text-amber-600">Empezar bien</h3>
+          <ul class="mt-3 space-y-2 text-sm text-slate-600 dark:text-slate-300">
+            <li><a href="/blog/tesis-en-un-mes-mito-realidad" class="hover:text-[#1e3a8a] hover:underline dark:hover:text-amber-300">Cronograma realista de tesis con IA</a></li>
+            <li><a href="/blog/prompts-tesis-que-si-funcionan" class="hover:text-[#1e3a8a] hover:underline dark:hover:text-amber-300">Prompts para tesis que sí funcionan</a></li>
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900">
+          <h3 class="font-display text-sm font-bold uppercase tracking-widest text-amber-600">Fuentes y redacción</h3>
+          <ul class="mt-3 space-y-2 text-sm text-slate-600 dark:text-slate-300">
+            <li><a href="/blog/marco-teorico-con-ia-pasos" class="hover:text-[#1e3a8a] hover:underline dark:hover:text-amber-300">Marco teórico con IA sin fuentes inventadas</a></li>
+            <li><a href="/blog/scopus-vs-ia-gratis-diferencias" class="hover:text-[#1e3a8a] hover:underline dark:hover:text-amber-300">Scopus vs. IA gratis: qué nota el jurado</a></li>
+            <li><a href="/blog/como-usar-ia-tesis-sin-plagio" class="hover:text-[#1e3a8a] hover:underline dark:hover:text-amber-300">Usar IA sin plagio y sin castigo de Turnitin</a></li>
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900">
+          <h3 class="font-display text-sm font-bold uppercase tracking-widest text-amber-600">Resultados y defensa</h3>
+          <ul class="mt-3 space-y-2 text-sm text-slate-600 dark:text-slate-300">
+            <li><a href="/blog/analisis-estadistico-tesis-que-prueba-elegir" class="hover:text-[#1e3a8a] hover:underline dark:hover:text-amber-300">Qué prueba estadística elegir en tu tesis</a></li>
+            <li><a href="/blog/que-ias-sirven-para-hacer-tesis" class="hover:text-[#1e3a8a] hover:underline dark:hover:text-amber-300">Qué IAs sirven realmente para tesis</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-5 dark:border-amber-800 dark:bg-amber-950/20">
+        <p class="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+          Todo lo que explicamos aquí se aplica con las herramientas del
+          <a href="/#pack" class="font-bold text-[#1e3a8a] underline underline-offset-2 dark:text-amber-300">Pack IAs Investigador Pro</a>:
+          ChatGPT Pro, Claude Max, Gemini Ultra, Perplexity Pro, Turnitin, NotebookLM, QuillBot, Gamma y Canva Pro,
+          más prompts, plantillas y asesoría humana desde
+          <a href="/#planes" class="font-bold text-[#1e3a8a] underline underline-offset-2 dark:text-amber-300">US$20 al mes</a>.
+        </p>
       </div>
     </div>
   </section>

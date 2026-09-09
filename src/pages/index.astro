@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Hero from "../components/sections/Hero.astro";
 import AlertSection from "../components/sections/AlertSection.astro";
 import MitosSection from "../components/sections/MitosSection.astro";
+import PackSection from "../components/sections/PackSection.astro";
 import PlanesSection from "../components/sections/PlanesSection.astro";
 import CtaSection from "../components/sections/CtaSection.astro";
 import TestimoniosSection from "../components/sections/TestimoniosSection.astro";
@@ -39,6 +40,7 @@ const breadcrumbLd = {
   jsonLd={[productLd, breadcrumbLd]}
 >
   <Hero />
+  <PackSection />
   <AlertSection />
   <MitosSection />
   <PlanesSection />

@@ -3,7 +3,24 @@ title: "Scopus vs IA gratis: por qué tu jurado nota la diferencia"
 description: "Comparativa real entre una IA gratuita y una con acceso a Scopus para tu tesis en Perú: alucinaciones, DOI falsos, calidad de referencias y por qué el jurado lo detecta."
 date: 2026-03-15
 category: "IA y Tesis"
+updated: 2026-09-08
 tags: ["scopus", "ia gratis", "referencias", "chatgpt", "ia academica"]
+keywords:
+  - "scopus vs ia gratis"
+  - "ia con acceso a scopus"
+  - "referencias inventadas por chatgpt"
+  - "alucinaciones de la ia en tesis"
+  - "como verificar un doi"
+related: ["marco-teorico-con-ia-pasos", "que-ias-sirven-para-hacer-tesis"]
+faq:
+  - q: "¿ChatGPT puede buscar artículos en Scopus?"
+    a: "Por sí solo no. Un modelo de lenguaje sin navegación ni conexión a bases indexadas reconstruye referencias plausibles a partir de patrones, y por eso inventa autores y DOI. Solo las configuraciones con búsqueda en tiempo real o conectadas a índices académicos devuelven artículos verificables."
+  - q: "¿Cómo sé si una referencia que me dio la IA es real?"
+    a: "Copia el título exacto en Google Scholar y compara autores, año y revista. Después ingresa el DOI en doi.org: si no redirige al artículo, la referencia no existe. El chequeo toma menos de un minuto por fuente y debe hacerse con todas, sin excepción."
+  - q: "¿Qué es una alucinación de la IA en una tesis?"
+    a: "Es una salida que suena correcta pero no corresponde a nada real: un autor que nunca publicó ese estudio, un DOI con formato válido que no resuelve, o una cifra atribuida a un informe inexistente. En una tesis es la causa más común de observaciones graves del jurado sobre el marco teórico."
+  - q: "¿Vale la pena pagar una IA para la tesis?"
+    a: "Depende de la etapa. Para entender conceptos, una IA gratuita alcanza. Para el marco teórico, los antecedentes y la discusión —donde cada referencia debe existir y ser verificable— una herramienta con búsqueda académica te ahorra horas de verificación manual y evita observaciones que cuestan semanas de correcciones."
 image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1200&q=80&auto=format&fit=crop"
 ---
 
@@ -32,6 +49,17 @@ Esto se llama alucinación y es el riesgo número uno al usar IA en una tesis.
 ### Verificación
 - **IA gratuita:** debes verificar manualmente cada una de las 20 referencias (te toma horas).
 - **IA académica:** minimiza los errores, aunque siempre debes confirmar la fuente original.
+
+## Qué es una base indexada y por qué le importa a tu jurado
+
+Cuando tu asesor dice "necesito fuentes indexadas", se refiere a artículos publicados en revistas con revisión de pares y registradas en un índice reconocido. En orden de exigencia habitual en Perú:
+
+- **Scopus y Web of Science** — índices internacionales; es lo que piden la mayoría de programas de maestría y doctorado para los antecedentes internacionales.
+- **SciELO y Redalyc** — literatura latinoamericana arbitrada, ideal para antecedentes nacionales y regionales en español.
+- **Renati (SUNEDU)** — repositorio nacional de tesis; sirve para antecedentes nacionales y para ver cómo resolvieron el método otros tesistas de tu línea.
+- **Google Scholar** — buscador, no índice: encuentra de todo, incluido material sin arbitraje. Úsalo para localizar y verificar, no como criterio de calidad.
+
+Una IA gratuita no distingue entre estos niveles: te entrega con la misma seguridad un artículo de Scopus y una entrada de blog. Esa distinción es justamente lo que revisa el jurado cuando abre tu lista de referencias.
 
 ## Por qué tu jurado lo detecta
 
@@ -73,8 +101,10 @@ En el Pack IAs Investigador Pro, las IAs del workspace están orientadas a inves
 - Apoyo en formato APA 7 e importación de referencias.
 - Prompts y flujos diseñados para cada capítulo de la tesis.
 
-Eso no elimina tu responsabilidad de leer, entender y citar bien: la herramienta reduce el error, el criterio lo pones tú.
+Eso no elimina tu responsabilidad de leer, entender y citar bien: la herramienta reduce el error, el criterio lo pones tú. Puedes ver qué modelo conviene en cada etapa en [qué IAs sirven realmente para hacer una tesis](/blog/que-ias-sirven-para-hacer-tesis).
 
 ## Conclusión
 
-No es "gratis vs. pago" por esnobismo: es **referencias reales vs. referencias inventadas**, y eso es exactamente lo que tu jurado evalúa. Si tu presupuesto no alcanza una herramienta académica, al menos verifica manualmente cada fuente de la IA gratuita. Si quieres acceso a IAs con bases académicas, plantillas y acompañamiento, revisa los planes de tesis con IA desde $20/mes.
+No es "gratis vs. pago" por esnobismo: es **referencias reales vs. referencias inventadas**, y eso es exactamente lo que tu jurado evalúa. Si tu presupuesto no alcanza una herramienta académica, al menos verifica manualmente cada fuente de la IA gratuita.
+
+El siguiente paso natural es armar el capítulo II con ese material: sigue el proceso de [marco teórico con IA sin fuentes inventadas](/blog/marco-teorico-con-ia-pasos) y cuida la similitud con la guía de [cómo usar IA sin plagio](/blog/como-usar-ia-tesis-sin-plagio). Si quieres el acceso completo —Perplexity Pro, Claude Max, NotebookLM y las demás IAs de búsqueda académica— está todo en el [Pack IAs Investigador Pro](/#pack) desde $20/mes.

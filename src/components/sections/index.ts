@@ -1,6 +1,7 @@
 export { default as Hero } from "./Hero.astro";
 export { default as AlertSection } from "./AlertSection.astro";
 export { default as MitosSection } from "./MitosSection.astro";
+export { default as PackSection } from "./PackSection.astro";
 export { default as PlanesSection } from "./PlanesSection.astro";
 export { default as TestimoniosSection } from "./TestimoniosSection.astro";
 export { default as SeoPeruSection } from "./SeoPeruSection.astro";

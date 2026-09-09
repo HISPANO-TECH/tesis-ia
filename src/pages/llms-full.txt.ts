@@ -66,6 +66,17 @@ Tesis-IA.com ofrece el Pack IAs Investigador Pro: un workspace de inteligencias 
 
 Todos los precios en USD, acceso inmediato, cancela cuando quieras.
 
+## 4.1 Qué incluye el Pack IAs Investigador Pro (herramientas)
+Un solo acceso a un workspace con las IAs premium que necesita un tesista. Incluido en los tres planes.
+
+- IAs de redacción y razonamiento: ChatGPT Pro y Plus (borradores, esquemas, estilo), Claude Max (lectura de capítulos y documentos largos), Gemini Pro y Ultra (investigación asistida y documentos), SuperGrok Heavy y Pro (razonamiento largo para discusión y argumentación).
+- Búsqueda académica y lectura: Perplexity Pro (búsqueda con citas rastreables), NotebookLM Pro y Ultra (biblioteca de PDFs con respuestas citadas), Scribd (descarga de textos académicos), flujos de trabajo hacia bases indexadas (Scopus, SciELO, Redalyc, Google Scholar).
+- Antiplagio y redacción limpia: Turnitin (similitud y detección de IA), WriteHuman (humanización de texto), QuillBot Premium (parafraseo y corrección), Zotero + plantillas APA 7 del kit.
+- Sustentación, diseño y formación: Gamma Ultra (diapositivas con créditos renovables), Canva Pro (figuras y diseño con IA), Udemy, Domestika y Platzi (cursos incluidos), biblioteca de prompts, manuales, videos y plantillas por capítulo.
+- Extras: soporte 24/7, sesiones Meet y asesorías, comunidad WhatsApp con más de 400 investigadores, nuevas IAs incorporadas sin costo adicional.
+
+Nota de precio: contratadas por separado, estas herramientas superan los US$300/mes según precios de lista públicos; en el Pack están incluidas desde US$20/mes junto al kit metodológico y el acompañamiento humano. Las marcas pertenecen a sus respectivos titulares; el servicio es de asesoría y guía, no de suplantación académica.
+
 ## 5. Kit incluido (todos los planes)
 - Prompts validados para cada capítulo (introducción, marco, metodología, resultados, discusión, conclusiones)
 - Manuales de uso de IAs académicas
@@ -84,8 +95,14 @@ Todos los precios en USD, acceso inmediato, cancela cuando quieras.
 La IA puede sugerir pruebas, pero el investigador debe justificar: tipo de variable, normalidad (Shapiro-Wilk o Kolmogorov-Smirnov), diseño (correlacional, comparativo, experimental) y exponer ante jurado. El Pack enseña a elegir (Pearson, Spearman, t de Student, ANOVA, Chi-cuadrado, U de Mann-Whitney, Wilcoxon, Kruskal-Wallis) e interpretar sin delegar a ciegas.
 
 ## 8. Cobertura y universidades
-Atención remota nacional en Perú: Lima Metropolitana y Callao, Costa Norte (Trujillo, Chiclayo, Piura, Chimbote), Costa Sur (Arequipa, Tacna, Ica, Moquegua), Sierra (Cusco, Huancayo, Ayacucho, Huánuco), Selva (Iquitos, Pucallpa, Tarapoto) y Norte Andino (Cajamarca, Huaraz, Jaén).
-Protocolos que acompañamos (mención informativa de compatibilidad, sin vínculo oficial): UNMSM, UNI, PUCP, USMP, UCV, UPC, UTP, UNSA, UNT, UNSAAC, UContinental, UCSS, UNFV, UPN, Científica del Sur, USIL y más.
+Atención remota en toda Latinoamérica, con acompañamiento según el criterio de tu universidad:
+- Perú: Lima, Callao, Arequipa, Trujillo, Cusco, Piura, Chiclayo, Huancayo, Iquitos, Cajamarca. Universidades frecuentes: UNMSM, PUCP, UNI, UCV, UNSA, UNT, UPC, UNSAAC, UTP, USMP, UNFV, UPN.
+- Ecuador: Quito, Guayaquil, Cuenca, Ambato, Loja, Manta. Universidades frecuentes: UCE, PUCE, ESPOL, U. de Cuenca, UTPL, UG.
+- Colombia: Bogotá, Medellín, Cali, Barranquilla, Bucaramanga, Cartagena. Universidades frecuentes: UNAL, U. de Antioquia, Javeriana, Uniandes, Univalle, Uninorte.
+- México: CDMX, Guadalajara, Monterrey, Puebla, Mérida, Querétaro. Universidades frecuentes: UNAM, IPN, Tec de Monterrey, UdeG, BUAP, UANL.
+- Bolivia: La Paz, Santa Cruz, Cochabamba, Sucre, Oruro, Tarija. Universidades frecuentes: UMSA, UAGRM, UMSS, USFX, UCB, UPB.
+- Chile: Santiago, Valparaíso, Concepción, Antofagasta, Temuco. Universidades frecuentes: U. de Chile, PUC, USACH, UdeC, PUCV, UACh.
+Adaptamos formato de citación (APA 7, Vancouver, IEEE, ISO 690), estructura de capítulos, rúbrica de sustentación y control antiplagio al reglamento de cada escuela. Mención informativa de compatibilidad, sin vínculo oficial con las universidades.
 
 ## 9. FAQ extendida
 - ¿Reemplaza asesor universitario? No, lo complementa.
@@ -108,6 +125,7 @@ Para el contenido íntegro de cada artículo, visita las URLs listadas en /llms.
 
 ## 12. SEO / Sitemap
 - ${SITE.url}/ — landing principal
+- ${SITE.url}/#pack — qué incluye el Pack IAs Investigador Pro (herramientas)
 - ${SITE.url}/blog/ — índice de guías
 - ${SITE.url}/privacidad/ — política de privacidad
 - ${SITE.url}/terminos/ — términos y condiciones

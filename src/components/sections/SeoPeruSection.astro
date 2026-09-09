@@ -1,17 +1,53 @@
 ---
 import { Icon } from "astro-icon/components";
 
-const regiones = [
-  { nombre: "Lima Metropolitana", detalle: "Lima, Callao, Barranca, Cañete", icon: "lucide:building-2" },
-  { nombre: "Costa Norte", detalle: "Trujillo, Chiclayo, Piura, Chimbote", icon: "lucide:waves" },
-  { nombre: "Costa Sur", detalle: "Arequipa, Tacna, Ica, Moquegua", icon: "lucide:sun" },
-  { nombre: "Sierra Centro-Sur", detalle: "Cusco, Huancayo, Ayacucho, Huánuco", icon: "lucide:mountain" },
-  { nombre: "Selva y Oriente", detalle: "Iquitos, Pucallpa, Tarapoto, Cajamarca", icon: "lucide:trees" },
-  { nombre: "Norte Andino", detalle: "Cajamarca, Huaraz, Jaén", icon: "lucide:map-pinned" },
+// Cobertura LATAM: país + principales ciudades + universidades más frecuentes.
+// Las universidades viven aquí (y no en una lista suelta) para no repetirlas.
+const paises = [
+  {
+    nombre: "Perú",
+    flag: "🇵🇪",
+    ciudades: "Lima, Callao, Arequipa, Trujillo, Cusco, Piura, Chiclayo, Huancayo",
+    universidades: ["UNMSM", "PUCP", "UNI", "UCV", "UNSA", "UNT", "UPC", "UNSAAC"],
+  },
+  {
+    nombre: "Ecuador",
+    flag: "🇪🇨",
+    ciudades: "Quito, Guayaquil, Cuenca, Ambato, Loja, Manta",
+    universidades: ["UCE", "PUCE", "ESPOL", "U. de Cuenca", "UTPL", "UG"],
+  },
+  {
+    nombre: "Colombia",
+    flag: "🇨🇴",
+    ciudades: "Bogotá, Medellín, Cali, Barranquilla, Bucaramanga, Cartagena",
+    universidades: ["UNAL", "U. de Antioquia", "Javeriana", "Uniandes", "Univalle", "Uninorte"],
+  },
+  {
+    nombre: "México",
+    flag: "🇲🇽",
+    ciudades: "CDMX, Guadalajara, Monterrey, Puebla, Mérida, Querétaro",
+    universidades: ["UNAM", "IPN", "Tec de Monterrey", "UdeG", "BUAP", "UANL"],
+  },
+  {
+    nombre: "Bolivia",
+    flag: "🇧🇴",
+    ciudades: "La Paz, Santa Cruz, Cochabamba, Sucre, Oruro, Tarija",
+    universidades: ["UMSA", "UAGRM", "UMSS", "USFX", "UCB", "UPB"],
+  },
+  {
+    nombre: "Chile",
+    flag: "🇨🇱",
+    ciudades: "Santiago, Valparaíso, Concepción, Antofagasta, Temuco",
+    universidades: ["U. de Chile", "PUC", "USACH", "UdeC", "PUCV", "UACh"],
+  },
 ];
 
-const universidades = [
-  "UNMSM", "UNI", "PUCP", "USMP", "UCV", "UPC", "UTP", "UNSA", "UNT", "UNSAAC", "UContinental", "UCSS", "UNFV", "UPN", "Científica del Sur", "USIL"
+// Lo que adaptamos al reglamento de cada universidad
+const protocolos = [
+  { t: "Formato de citación", d: "APA 7, Vancouver, IEEE o ISO 690 según tu escuela.", icon: "lucide:quote" },
+  { t: "Estructura de capítulos", d: "Esquema oficial de proyecto y de tesis de tu facultad.", icon: "lucide:list-tree" },
+  { t: "Rúbrica de sustentación", d: "Preparación de defensa con los criterios de tu jurado.", icon: "lucide:clipboard-check" },
+  { t: "Control antiplagio", d: "Turnitin y el porcentaje de similitud que acepta tu universidad.", icon: "lucide:shield-check" },
 ];
 
 const niveles = [
@@ -24,7 +60,7 @@ const niveles = [
 
 <section id="cobertura" class="relative overflow-hidden bg-[#0B1D3A] py-16 dark:bg-[#070f24] md:py-20">
   <div class="absolute inset-0">
-    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1600&q=80&auto=format&fit=crop" alt="Perú universidades" class="parallax-peru h-full w-full object-cover opacity-20 scale-105" />
+    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1600&q=80&auto=format&fit=crop" alt="Universidades de Latinoamérica" class="parallax-peru h-full w-full object-cover opacity-20 scale-105" />
     <div class="absolute inset-0 bg-gradient-to-b from-[#0B1D3A]/85 via-[#0B1D3A]/70 to-[#1e3a8a]/90"></div>
     <div id="peru-shine" class="absolute inset-0 opacity-0 transition duration-500" style="background: radial-gradient(800px circle at var(--mx,50%) var(--my,30%), rgba(245,158,11,0.15), transparent 45%);"></div>
   </div>
@@ -32,10 +68,10 @@ const niveles = [
   <div class="relative mx-auto max-w-7xl px-6">
     <div class="mx-auto max-w-3xl text-center">
       <div class="inline-flex items-center gap-2 rounded-full bg-amber-400 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0B1D3A]">
-        <Icon name="lucide:map-pinned" class="h-3.5 w-3.5" /> Cobertura nacional
+        <Icon name="lucide:globe-2" class="h-3.5 w-3.5" /> Cobertura en LATAM
       </div>
       <h2 class="mt-4 font-display text-[28px] font-bold leading-none tracking-tight text-white md:text-[38px]">
-        Acompañamiento <span class="text-amber-300">en todo el Perú</span>, con criterio de tu universidad
+        Acompañamiento <span class="text-amber-300">en todo LATAM</span>, según el criterio de tu universidad
       </h2>
       <p class="mt-3 text-blue-100/80">
         No hacemos tu tesis por ti. Te <strong class="text-amber-200">guiamos con método, IAs verificadas y revisión humana</strong> adaptada al protocolo de tu escuela. Ético, trazable y defendible ante jurado.
@@ -46,17 +82,28 @@ const niveles = [
     </div>
 
     <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {regiones.map((r, i) => (
+      {paises.map((p, i) => (
         <div class="reveal group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur transition hover:bg-white/10 hover:border-amber-400/30" style={`--reveal-delay:${i*60}ms`}>
           <div class="shine absolute inset-0 opacity-0 group-hover:opacity-100 transition" style="background: radial-gradient(400px circle at var(--mx,50%) var(--my,50%), rgba(245,158,11,0.18), transparent 40%);"></div>
-          <div class="relative flex items-start gap-3">
-            <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-400 text-[#0B1D3A]"><Icon name={r.icon} class="h-5 w-5" /></span>
-            <div>
-              <div class="text-sm font-bold text-white">{r.nombre}</div>
-              <div class="text-xs leading-snug text-blue-200/70">{r.detalle}</div>
-            </div>
+
+          <div class="relative flex items-center gap-3">
+            <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-400 text-lg leading-none">{p.flag}</span>
+            <div class="font-display text-base font-bold tracking-tight text-white">{p.nombre}</div>
           </div>
-          <div class="relative mt-3 text-xs font-medium text-amber-200/80">Atención remota · Sesiones por Zoom · Material grabado</div>
+
+          <div class="relative mt-3 flex items-start gap-2 text-xs leading-snug text-blue-200/75">
+            <Icon name="lucide:map-pin" class="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber-300" />
+            <span>{p.ciudades}</span>
+          </div>
+
+          <div class="relative mt-3 flex flex-wrap gap-1.5">
+            {p.universidades.map((u) => (
+              <span class="rounded-full border border-white/10 bg-white/10 px-2.5 py-1 text-[11px] font-semibold text-white/90">{u}</span>
+            ))}
+            <span class="rounded-full border border-amber-400/30 bg-amber-400/15 px-2.5 py-1 text-[11px] font-semibold text-amber-200">y más</span>
+          </div>
+
+          <div class="relative mt-3 border-t border-white/10 pt-3 text-[11px] font-medium text-amber-200/80">Atención remota · Sesiones por Zoom · Material grabado</div>
         </div>
       ))}
     </div>
@@ -65,15 +112,18 @@ const niveles = [
       <div class="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h3 class="font-display text-lg font-bold tracking-tight text-[#0B1D3A] dark:text-white">Protocolos universitarios que acompañamos</h3>
-          <p class="mt-1 max-w-2xl text-sm text-slate-600 dark:text-slate-400">Adaptamos plantillas, estructura y criterios de evaluación a tu reglamento. Tú mantienes la autoría; nosotros aportamos orden, fuentes verificadas y feedback.</p>
+          <p class="mt-1 max-w-2xl text-sm text-slate-600 dark:text-slate-400">Adaptamos plantillas, estructura y criterios de evaluación al reglamento de tu universidad. Tú mantienes la autoría; nosotros aportamos orden, fuentes verificadas y feedback.</p>
         </div>
-        <span class="inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-800"> <Icon name="lucide:graduation-cap" class="h-3.5 w-3.5" /> +30 universidades</span>
+        <span class="inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-800"> <Icon name="lucide:graduation-cap" class="h-3.5 w-3.5" /> +120 universidades de LATAM</span>
       </div>
-      <div class="mt-5 flex flex-wrap gap-2">
-        {universidades.map((u) => (
-          <span class="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300">{u}</span>
+      <div class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {protocolos.map((c) => (
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800">
+            <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#0B1D3A] text-amber-300"><Icon name={c.icon} class="h-4.5 w-4.5" /></span>
+            <div class="mt-2.5 font-display text-sm font-bold text-slate-900 dark:text-white">{c.t}</div>
+            <div class="mt-1 text-xs leading-snug text-slate-500 dark:text-slate-400">{c.d}</div>
+          </div>
         ))}
-        <span class="rounded-full bg-[#0B1D3A] px-3 py-1.5 text-xs font-bold text-amber-300">y más · consulta tu escuela</span>
       </div>
       <p class="mt-3 text-xs text-slate-500">Mención informativa de compatibilidad. No implica vínculo oficial con las universidades.</p>
     </div>

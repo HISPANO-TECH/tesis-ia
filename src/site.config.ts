@@ -14,6 +14,12 @@ export const SITE = {
     "turnitin ia",
     "tesis peru",
     "investigador pro",
+    "mejores ias para tesis",
+    "chatgpt pro tesis",
+    "claude max tesis",
+    "perplexity pro academico",
+    "notebooklm tesis",
+    "pack de ias para investigadores",
   ],
   locale: "es",
   organization: {

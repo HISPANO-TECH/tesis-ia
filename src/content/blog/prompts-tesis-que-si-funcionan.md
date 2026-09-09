@@ -3,7 +3,24 @@ title: "10 prompts para tesis que sí funcionan (y 5 que te hacen perder tiempo)
 description: "Prompts validados para tesis en Perú: introducción, objetivos, hipótesis, metodología y discusión. Aprende a pedirle contexto a la IA para evitar texto genérico."
 date: 2026-03-01
 category: "Prompts"
+updated: 2026-09-08
 tags: ["prompts", "ia", "tesis", "prompts para tesis"]
+keywords:
+  - "prompts para tesis"
+  - "prompts para chatgpt tesis"
+  - "como pedirle a la ia que redacte mi tesis"
+  - "prompt para marco teorico"
+  - "prompt para matriz de consistencia"
+related: ["marco-teorico-con-ia-pasos", "que-ias-sirven-para-hacer-tesis"]
+faq:
+  - q: "¿Qué es un prompt para tesis?"
+    a: "Es la instrucción que le das a la IA con el contexto académico de tu investigación: tu carrera y universidad, tu problema y objetivos, tu población y muestra, y el rol que debe asumir la herramienta. Cuanto más específico el contexto, menos genérico y más útil es el texto que devuelve."
+  - q: "¿Cuál es el mejor prompt para hacer una tesis?"
+    a: "No existe un prompt único que resuelva una tesis; existen prompts por etapa. Los que funcionan son los que piden una sola cosa a la vez —planteamiento del problema, objetivos, matriz de consistencia, una dimensión del marco, interpretación de una tabla— y terminan pidiéndole a la IA que haga preguntas antes de responder."
+  - q: "¿Por qué la IA me da texto tan genérico?"
+    a: "Porque le estás dando poco contexto. Si no conoce tu problema, tu población, tu instrumento ni tus fuentes, solo puede escribir lo que serviría para cualquier tesis. Pega tu matriz de consistencia y tus fuentes validadas en el prompt y la diferencia es inmediata."
+  - q: "¿Puedo usar estos prompts en cualquier IA?"
+    a: "Sí, funcionan en cualquier modelo conversacional. La diferencia aparece en las tareas que exigen fuentes reales: para buscar literatura necesitas una herramienta con búsqueda académica, porque un modelo sin acceso a bases indexadas inventará las referencias por más preciso que sea tu prompt."
 image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80&auto=format&fit=crop"
 ---
 
@@ -52,6 +69,18 @@ Mientras más contexto, menos genérico es el resultado.
 ### 10. Para la discusión
 > "Con mis resultados [resumen] y los antecedentes [lista con autor y año], redacta un borrador de discusión que compare mis hallazgos con cada antecedente, explique coincidencias y diferencias, y proponga posibles causas en mi contexto."
 
+## La estructura de un prompt académico que funciona
+
+Todos los prompts anteriores comparten el mismo esqueleto de cinco piezas. Si lo memorizas, puedes construir el tuyo para cualquier situación:
+
+1. **Rol** — "Actúa como asesor metodológico de tesis en [carrera]".
+2. **Contexto** — universidad, línea de investigación, problema, población y muestra.
+3. **Tarea concreta** — una sola cosa a la vez: un objetivo, una dimensión, una tabla.
+4. **Formato de salida** — extensión, si va en tabla o prosa, norma de citación (APA 7).
+5. **Restricciones** — "no inventes referencias", "usa solo las fuentes que te doy", "pregúntame antes de asumir".
+
+El error más común no es escribir mal el prompt, sino **pedir demasiado de una sola vez**. Un prompt por sección produce material aprovechable; un prompt que pide el capítulo completo produce relleno.
+
 ## 5 prompts que te hacen perder el tiempo
 
 ### 1. "Hazme la tesis completa"
@@ -75,4 +104,6 @@ Un truco muy útil: termina tus prompts con **"antes de responder, pregúntame t
 
 ## Conclusión
 
-Los prompts no son fórmulas mágicas: son una forma de **estructurar tu trabajo con la IA como asistente**. Úsalos sobre tu información real, verifica cada fuente y reescribe con tu voz. En el Pack IAs Investigador Pro de tesis-ia.com encontrarás una biblioteca de prompts validados por capítulo, junto con manuales, plantillas y revisión de tu avance.
+Los prompts no son fórmulas mágicas: son una forma de **estructurar tu trabajo con la IA como asistente**. Úsalos sobre tu información real, verifica cada fuente y reescribe con tu voz.
+
+Combínalos con el método de [marco teórico sin fuentes inventadas](/blog/marco-teorico-con-ia-pasos), con la guía de [análisis estadístico](/blog/analisis-estadistico-tesis-que-prueba-elegir) para el capítulo IV y con las [reglas para no disparar Turnitin](/blog/como-usar-ia-tesis-sin-plagio). La biblioteca completa de prompts validados por capítulo, más manuales, plantillas y revisión de tu avance, está en el [Pack IAs Investigador Pro](/#pack).

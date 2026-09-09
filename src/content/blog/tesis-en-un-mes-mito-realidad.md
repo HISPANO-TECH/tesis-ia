@@ -3,7 +3,24 @@ title: "¿Tesis en un mes con IA? Mito, realidad y cronograma honesto"
 description: "¿Cuánto puedes acelerar tu tesis con IA en Perú? Cronograma realista de 8 semanas, qué partes sí se aceleran y qué no puedes tercerizar sin arriesgar tu sustentación."
 date: 2026-02-05
 category: "Planificación"
+updated: 2026-09-08
 tags: ["cronograma", "ia", "tesis", "plan de tesis"]
+keywords:
+  - "cuanto tiempo toma hacer una tesis"
+  - "hacer tesis en un mes"
+  - "cronograma de tesis 8 semanas"
+  - "como avanzar rapido mi tesis"
+  - "tesis con ia en cuanto tiempo"
+related: ["prompts-tesis-que-si-funcionan", "marco-teorico-con-ia-pasos"]
+faq:
+  - q: "¿Se puede hacer una tesis en un mes con IA?"
+    a: "Una tesis completa desde cero, con trabajo de campo y sustentación sólida, no. Lo que sí es posible en un mes es un avance importante —proyecto, marco teórico y metodología— si dedicas entre 15 y 20 horas semanales y ya tienes el tema definido. La recolección de datos y las correcciones del asesor imponen tiempos que ninguna herramienta acelera."
+  - q: "¿Cuánto tiempo se ahorra realmente usando IA en la tesis?"
+    a: "Entre un 30% y un 40% en tareas de redacción, organización bibliográfica, formato de citas y preparación de diapositivas. En el trabajo de campo, la depuración de datos y la interpretación con contexto propio, el ahorro es marginal porque ese trabajo sigue siendo tuyo."
+  - q: "¿Cuántas horas a la semana necesito para avanzar mi tesis?"
+    a: "El cronograma de ocho semanas de esta guía asume entre 15 y 20 horas semanales, es decir, unas dos a tres horas diarias. Con menos de 10 horas semanales el plazo realista se duplica, y conviene planificarlo así desde el inicio en lugar de descubrirlo a mitad de camino."
+  - q: "¿Qué parte de la tesis no puedo delegar en la IA?"
+    a: "La recolección de datos, la elección de la metodología, la interpretación de resultados en tu contexto y la respuesta a las observaciones del jurado. Son exactamente las cuatro cosas por las que te van a preguntar en la sustentación."
 image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=1200&q=80&auto=format&fit=crop"
 ---
 
@@ -64,6 +81,18 @@ Este cronograma asume que dedicas unas 15-20 horas semanales y que tienes una id
 
 ¿Es posible en menos? Sí, si ya tienes avance (datos recogidos, marco a medio cerrar). El plan Avance está pensado exactamente para eso: acompañamiento grupal semanal + revisión de un capítulo al mes.
 
+## Qué pasa si tienes menos horas por semana
+
+El cronograma anterior asume 15 a 20 horas semanales. Si trabajas o llevas cursos, ajústalo con honestidad en lugar de fallarle a un plan imposible:
+
+| Horas por semana | Plazo realista | Recomendación |
+| --- | --- | --- |
+| 20 o más | 8 semanas | Cronograma completo tal como está |
+| 10 a 15 | 3 a 4 meses | Bloques fijos de 3 horas, 4 días a la semana |
+| Menos de 10 | 5 a 6 meses | Una sola tarea por semana, sin saltarte el fichaje de fuentes |
+
+Un detalle que casi nadie calcula: entre que entregas un capítulo y recibes las observaciones de tu asesor suelen pasar de una a dos semanas. En un cronograma de ocho semanas eso significa que **debes entregar avances parciales mientras sigues escribiendo**, nunca esperar la respuesta con los brazos cruzados.
+
 ## Qué NO debes delegar jamás
 
 ### La recolección de datos
@@ -91,4 +120,6 @@ Este es exactamente el modelo del Pack IAs Investigador Pro: herramientas de IA 
 
 ## Conclusión
 
-¿Tesis en un mes con IA? Con método y mucho trabajo, un **avance importante** sí es posible; una tesis completa de cero, con campo y sustentación sólida, difícilmente. No te dejes engañar por promesas de "tesis en un fin de semana". Planifica con honestidad, usa la IA como herramienta y acompáñate de quien conoce tu universidad. Revisa los planes de tesis con IA para elegir el que mejor se adapte a tu momento.
+¿Tesis en un mes con IA? Con método y mucho trabajo, un **avance importante** sí es posible; una tesis completa de cero, con campo y sustentación sólida, difícilmente. No te dejes engañar por promesas de "tesis en un fin de semana". Planifica con honestidad, usa la IA como herramienta y acompáñate de quien conoce tu universidad.
+
+Para cada etapa del cronograma tienes una guía: [marco teórico con fuentes reales](/blog/marco-teorico-con-ia-pasos) para las semanas 2 a 4, [qué prueba estadística elegir](/blog/analisis-estadistico-tesis-que-prueba-elegir) para las semanas 6 y 7, y los [prompts por capítulo](/blog/prompts-tesis-que-si-funcionan) para todo el proceso. Las herramientas y el acompañamiento están en el [Pack IAs Investigador Pro](/#pack), con [planes desde $20/mes](/#planes).

@@ -1,57 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 
-const planes = [
-  {
-    name: "IMPULSO",
-    subtitle: "Recién empieza su tesis",
-    price: "20",
-    badge: null,
-    features: [
-      { label: "Acceso a IAs", value: "Pack IAs Investigador Pro" },
-      { label: "Plantillas y manuales", value: "Kit básico (Prompts, manuales, videos, plantillas)" },
-      { label: "Asesoría grupal", value: "1 sesión grupal / mes" },
-      { label: "Asesoría individual", value: "—", muted: true },
-      { label: "Revisión de capítulos", value: "—", muted: true },
-      { label: "Soporte", value: "Comunidad WhatsApp" },
-    ],
-    cta: "Empezar con Impulso",
-  },
-  {
-    name: "AVANCE",
-    subtitle: "Tiene avance, quiere terminar más rápido",
-    price: "35",
-    badge: "Más vendido",
-    features: [
-      { label: "Acceso a IAs", value: "Pack IAs Investigador Pro" },
-      { label: "Plantillas y manuales", value: "Kit básico (Prompts, manuales, videos, plantillas)" },
-      { label: "Asesoría grupal", value: "1 sesión grupal / semanal" },
-      { label: "Asesoría individual", value: "—", muted: true },
-      { label: "Revisión de capítulos", value: "Revisión integral de 1 capítulo/mes con feedback" },
-      { label: "Soporte", value: "Comunidad + prioridad" },
-    ],
-    cta: "Elegir Avance",
-  },
-  {
-    name: "GRADUACIÓN",
-    subtitle: "Quiere sustentar cuanto antes",
-    price: "49",
-    badge: "Asesoría 1:1",
-    features: [
-      { label: "Acceso a IAs", value: "Pack IAs Investigador Pro" },
-      { label: "Plantillas y manuales", value: "Kit básico (Prompts, manuales, videos, plantillas)" },
-      { label: "Asesoría grupal", value: "1 sesión grupal / semanal" },
-      { label: "Asesoría individual", value: "1 sesión personalizada / mes" },
-      { label: "Revisión de capítulos", value: "Revisión integral de 1 capítulo/mes con feedback" },
-      { label: "Soporte", value: "Línea directa con asesor asignado" },
-    ],
-    cta: "Ir por Graduación",
-  },
-];
-const whatsappBase = "https://api.whatsapp.com/send/?phone=51927580985&text=";
-function wa(plan: string) {
-  return whatsappBase + encodeURIComponent(`Hola, quiero contactarme para recibir información sobre asesoría en tesis universitaria en Perú. Vengo de tesis-ia.com y quiero el plan ${plan} del Pack IAs Investigador Pro. ¿Cómo adquiero mi acceso?`) + "&type=phone_number&app_absent=0";
-}
+import { PLANES as planes, waPlan as wa } from "../../config/planes";
 ---
 
 <section id="planes" class="bg-[#fffbeb] py-16 dark:bg-slate-900 md:py-24">

@@ -9,7 +9,7 @@ export async function GET() {
     .filter((p) => !p.data.draft)
     .map((p) => ({
       loc: `${SITE.url}/blog/${p.id}/`,
-      lastmod: p.data.date.toISOString().split("T")[0],
+      lastmod: (p.data.updated ?? p.data.date).toISOString().split("T")[0],
       changefreq: "monthly" as const,
       priority: "0.7",
     }))

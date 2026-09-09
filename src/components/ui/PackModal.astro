@@ -1,0 +1,243 @@
+---
+import { Icon } from "astro-icon/components";
+import { PLANES, waPlan, waLink } from "../../config/planes";
+
+// Modal de promoción del Pack IAs Investigador Pro.
+// Se abre desde cualquier elemento con [data-pack-modal] y, una vez por sesión,
+// de forma automática (exit-intent en escritorio / temporizador en móvil).
+const herramientas = [
+  "ChatGPT Pro y Plus",
+  "Claude Max",
+  "Gemini Pro y Ultra",
+  "SuperGrok Heavy",
+  "Perplexity Pro",
+  "NotebookLM Pro y Ultra",
+  "Scribd",
+  "Turnitin",
+  "WriteHuman",
+  "QuillBot Premium",
+  "Zotero + APA 7",
+  "Gamma Ultra",
+  "Canva Pro",
+  "Udemy · Domestika · Platzi",
+];
+
+const whatsappGeneral = waLink(
+  "Hola, quiero contactarme para recibir información sobre asesoría en tesis universitaria en Perú. Vengo de tesis-ia.com y vi la promoción del Pack IAs Investigador Pro. ¿Me pueden dar más detalles?"
+);
+---
+
+<div
+  id="pack-modal"
+  class="fixed inset-0 z-[80] hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="pack-modal-title"
+>
+  <!-- Fondo -->
+  <div data-pack-close class="pack-modal-backdrop absolute inset-0 bg-[#0B1D3A]/75 opacity-0 backdrop-blur-sm transition-opacity duration-300"></div>
+
+  <!-- Contenedor scrolleable: hoja inferior en móvil, tarjeta centrada en desktop -->
+  <div class="absolute inset-0 overflow-y-auto overscroll-contain">
+    <div class="flex min-h-full items-end justify-center sm:items-center sm:p-6">
+      <div
+        id="pack-modal-panel"
+        class="relative w-full max-w-4xl translate-y-8 rounded-t-[28px] bg-white opacity-0 shadow-2xl transition duration-300 dark:bg-slate-900 sm:translate-y-0 sm:scale-[0.97] sm:rounded-[28px]"
+      >
+        <!-- Cabecera -->
+        <div class="relative overflow-hidden rounded-t-[28px] bg-gradient-to-br from-[#0B1D3A] via-[#1e3a8a] to-[#274cab] px-6 py-7 sm:px-8">
+          <div class="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-amber-400/20 blur-3xl"></div>
+          <button
+            type="button"
+            data-pack-close
+            aria-label="Cerrar"
+            class="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur transition hover:bg-white/25"
+          >
+            <Icon name="lucide:x" class="h-5 w-5" />
+          </button>
+
+          <div class="relative max-w-[46ch]">
+            <div class="inline-flex items-center gap-2 rounded-full border border-amber-400/40 bg-amber-400/15 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-amber-200">
+              <span class="h-2 w-2 rounded-full bg-amber-400 animate-pulse-soft"></span> Promoción vigente
+            </div>
+            <h2 id="pack-modal-title" class="mt-3 font-display text-[24px] font-bold leading-tight tracking-tight text-white sm:text-[30px]">
+              Pack IAs <span class="text-amber-300">Investigador Pro</span>
+            </h2>
+            <p class="mt-2 text-[14px] leading-relaxed text-blue-100/85">
+              15+ IAs premium, kit metodológico y asesor humano en un solo acceso. Incluido en los tres planes, desde <strong class="text-amber-200">US$20 al mes</strong>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Cuerpo -->
+        <div class="px-6 py-6 sm:px-8">
+          <h3 class="font-display text-[13px] font-bold uppercase tracking-widest text-amber-600 dark:text-amber-400">Todo esto va incluido</h3>
+          <div class="mt-3 flex flex-wrap gap-2">
+            {herramientas.map((h) => (
+              <span class="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-[12px] font-semibold text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
+                <Icon name="lucide:check" class="h-3 w-3 text-amber-600 dark:text-amber-400" /> {h}
+              </span>
+            ))}
+          </div>
+
+          <div class="mt-4 flex flex-wrap gap-x-4 gap-y-1.5 text-[12px] font-medium text-slate-500 dark:text-slate-400">
+            <span class="inline-flex items-center gap-1.5"><Icon name="lucide:headphones" class="h-3.5 w-3.5 text-amber-600" /> Soporte 24/7</span>
+            <span class="inline-flex items-center gap-1.5"><Icon name="lucide:users" class="h-3.5 w-3.5 text-amber-600" /> Comunidad +400 investigadores</span>
+            <span class="inline-flex items-center gap-1.5"><Icon name="lucide:refresh-cw" class="h-3.5 w-3.5 text-amber-600" /> Nuevas IAs sin costo extra</span>
+          </div>
+
+          <h3 class="mt-7 font-display text-[13px] font-bold uppercase tracking-widest text-amber-600 dark:text-amber-400">Elige tu plan</h3>
+          <div class="mt-3 grid gap-3 sm:grid-cols-3">
+            {PLANES.map((p, i) => (
+              <div
+                class={`relative flex flex-col rounded-2xl border p-4 ${
+                  i === 1
+                    ? "border-amber-400 bg-amber-50 shadow-md dark:border-amber-600 dark:bg-amber-950/20"
+                    : "border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800"
+                }`}
+              >
+                {i === 1 && (
+                  <span class="absolute -top-2.5 left-4 rounded-full bg-amber-500 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-white">
+                    Más vendido
+                  </span>
+                )}
+                <div class="font-display text-sm font-bold uppercase tracking-wide text-slate-900 dark:text-white">{p.name}</div>
+                <div class="mt-1 flex items-baseline gap-1">
+                  <span class="text-xs font-bold text-slate-500">US$</span>
+                  <span class="font-display text-[30px] font-bold leading-none text-slate-900 dark:text-white">{p.price}</span>
+                  <span class="text-xs font-semibold text-slate-500">/mes</span>
+                </div>
+                <p class="mt-2 flex-1 text-[12px] leading-snug text-slate-600 dark:text-slate-300">{p.resumen}</p>
+                <a
+                  href={waPlan(p.name)}
+                  target="_blank"
+                  rel="noopener"
+                  class={`mt-3 inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2.5 font-display text-[12px] font-bold uppercase tracking-wide transition ${
+                    i === 1
+                      ? "bg-amber-400 text-[#0B1D3A] hover:bg-amber-300"
+                      : "bg-[#0B1D3A] text-white hover:bg-black dark:bg-white dark:text-slate-900"
+                  }`}
+                >
+                  Lo quiero <Icon name="lucide:arrow-right" class="h-3.5 w-3.5" />
+                </a>
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-6 flex flex-col gap-3 border-t border-slate-200 pt-5 dark:border-slate-700 sm:flex-row sm:items-center sm:justify-between">
+            <p class="text-[12px] leading-relaxed text-slate-500 dark:text-slate-400">
+              Acceso inmediato · Cancela cuando quieras · Pago en USD.<br class="hidden sm:block" />
+              ¿Dudas sobre qué plan te conviene? Te responde un asesor, no un bot.
+            </p>
+            <div class="flex shrink-0 flex-col gap-2 sm:flex-row">
+              <a
+                href={whatsappGeneral}
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-2.5 font-display text-[12px] font-bold uppercase tracking-wide text-white transition hover:brightness-95"
+              >
+                <Icon name="simple-icons:whatsapp" class="h-4 w-4" /> Hablar por WhatsApp
+              </a>
+              <a
+                href="/#planes"
+                data-pack-close
+                class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-slate-300 px-5 py-2.5 font-display text-[12px] font-bold uppercase tracking-wide text-slate-700 transition hover:border-[#1e3a8a] hover:text-[#1e3a8a] dark:border-slate-600 dark:text-slate-200"
+              >
+                Comparar planes
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById("pack-modal");
+  const panel = document.getElementById("pack-modal-panel");
+  const backdrop = modal?.querySelector(".pack-modal-backdrop");
+  const SEEN_KEY = "packModalSeen";
+  let lastFocused: HTMLElement | null = null;
+
+  function isOpen() {
+    return modal ? !modal.classList.contains("hidden") : false;
+  }
+
+  function markSeen() {
+    try {
+      sessionStorage.setItem(SEEN_KEY, "1");
+    } catch (e) {}
+  }
+
+  function alreadySeen() {
+    try {
+      return sessionStorage.getItem(SEEN_KEY) === "1";
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function openModal() {
+    if (!modal || !panel || isOpen()) return;
+    lastFocused = document.activeElement as HTMLElement;
+    markSeen();
+    modal.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+    // Doble rAF para que la transición de entrada se aplique.
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() => {
+        backdrop?.classList.remove("opacity-0");
+        panel.classList.remove("opacity-0", "translate-y-8", "sm:scale-[0.97]");
+      })
+    );
+    modal.querySelector<HTMLElement>("button[data-pack-close]")?.focus();
+  }
+
+  function closeModal() {
+    if (!modal || !panel || !isOpen()) return;
+    backdrop?.classList.add("opacity-0");
+    panel.classList.add("opacity-0", "translate-y-8", "sm:scale-[0.97]");
+    document.body.style.overflow = "";
+    window.setTimeout(() => modal.classList.add("hidden"), 250);
+    lastFocused?.focus?.();
+  }
+
+  document.querySelectorAll("[data-pack-modal]").forEach((el) =>
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      openModal();
+    })
+  );
+
+  modal?.querySelectorAll("[data-pack-close]").forEach((el) =>
+    el.addEventListener("click", () => closeModal())
+  );
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && isOpen()) closeModal();
+  });
+
+  // Apertura automática una vez por sesión: exit-intent en escritorio,
+  // temporizador en móvil. Nunca vuelve a molestar si ya se mostró.
+  if (!alreadySeen()) {
+    const touch = window.matchMedia("(hover: none)").matches;
+    if (touch) {
+      window.setTimeout(() => {
+        if (!alreadySeen()) openModal();
+      }, 25000);
+    } else {
+      const onExit = (e: MouseEvent) => {
+        if (e.clientY <= 0 && !alreadySeen()) {
+          openModal();
+          document.removeEventListener("mouseout", onExit);
+        }
+      };
+      document.addEventListener("mouseout", onExit);
+      // Respaldo por tiempo si no hay intención de salida.
+      window.setTimeout(() => {
+        if (!alreadySeen()) openModal();
+      }, 45000);
+    }
+  }
+</script>

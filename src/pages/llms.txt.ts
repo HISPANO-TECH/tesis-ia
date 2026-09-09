@@ -20,12 +20,20 @@ export async function GET() {
 ## Sitio
 - URL: ${SITE.url}
 - Idioma: es-PE (Perú)
-- Cobertura: nacional — Lima, Callao, Arequipa, Trujillo, Cusco, Piura, Chiclayo, Huancayo y todo Perú (atención remota)
+- Cobertura: LATAM (atención remota) — Perú (Lima, Callao, Arequipa, Trujillo, Cusco, Piura, Chiclayo, Huancayo), Ecuador (Quito, Guayaquil, Cuenca), Colombia (Bogotá, Medellín, Cali), México (CDMX, Guadalajara, Monterrey), Bolivia (La Paz, Santa Cruz, Cochabamba) y Chile (Santiago, Valparaíso, Concepción)
 - Contacto: ${SITE.organization.contact.telephone} / informes@asesorestesisperu.com
 - WhatsApp: https://api.whatsapp.com/send/?phone=51927580985
 
 ## Qué es el Pack IAs Investigador Pro
 Pack de IAs académicas + kit (prompts, manuales, videos, plantillas) + acompañamiento humano para desarrollar tesis de pregrado, maestría y doctorado con rigor metodológico y criterio anti-plagio. Servicio de asesoría, guía y revisión: la autoría académica siempre es del estudiante.
+
+## Herramientas del Pack IAs Investigador Pro (incluidas en los 3 planes)
+- Redacción y razonamiento: ChatGPT Pro y Plus, Claude Max, Gemini Pro y Ultra, SuperGrok Heavy y Pro
+- Búsqueda académica y lectura: Perplexity Pro, NotebookLM Pro y Ultra, Scribd, flujos hacia Scopus, SciELO, Redalyc y Google Scholar
+- Antiplagio y redacción limpia: Turnitin, WriteHuman, QuillBot Premium, Zotero + plantillas APA 7
+- Sustentación, diseño y formación: Gamma Ultra, Canva Pro, Udemy, Domestika y Platzi, prompts y plantillas por capítulo
+- Extras: soporte 24/7, sesiones Meet, comunidad WhatsApp +400 investigadores, nuevas IAs sin costo extra
+Contratadas por separado superan los US$300/mes (precios de lista referenciales); en el Pack están incluidas desde US$20/mes.
 
 ## Alerta
 La sola aplicación de las IAs no garantiza un buen desarrollo de tu tesis. Sin metodología, datos propios y conocimiento del protocolo de tu universidad, el jurado lo detecta.
@@ -58,9 +66,10 @@ ${blogBlock}
 - Inicio: ${SITE.url}/
 - Blog (guías de tesis con IA): ${SITE.url}/blog/
 - Planes: ${SITE.url}/#planes
+- Qué incluye el Pack (herramientas): ${SITE.url}/#pack
 - Mitos de la IA: ${SITE.url}/#mitos
 - Testimonios: ${SITE.url}/#testimonios
-- Cobertura nacional / universidades: ${SITE.url}/#cobertura
+- Cobertura LATAM / universidades: ${SITE.url}/#cobertura
 - Contacto y formulario: ${SITE.url}/#contacto
 - FAQ: ${SITE.url}/#faq
 - Política de privacidad: ${SITE.url}/privacidad/
