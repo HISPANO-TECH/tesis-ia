@@ -69,28 +69,58 @@ const mitos = [
       </p>
     </div>
 
-    <div class="mt-10 grid gap-5 md:grid-cols-2 lg:gap-6">
-      {mitos.map((m, i) => (
-        <article class="reveal group relative overflow-hidden rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-lg hover:border-amber-200 dark:bg-slate-900 dark:border-slate-800 dark:hover:border-amber-800/50" style={`--reveal-delay:${i*60}ms`}>
-          <div class="absolute right-0 top-0 h-20 w-20 translate-x-6 -translate-y-6 rounded-full bg-amber-50 opacity-60 group-hover:bg-amber-100 dark:bg-amber-950/20"></div>
-          <div class="relative">
-            <div class="flex items-start gap-3">
-              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#0B1D3A] text-amber-300">
-                <Icon name={m.icon} class="h-5 w-5" />
-              </span>
-              <h3 class="font-display text-[16px] font-bold leading-snug text-slate-900 dark:text-white">
-                Mito: <span class="font-semibold text-slate-700 dark:text-slate-200">{m.mito}</span>
-              </h3>
-            </div>
-            <div class="mt-3 flex gap-3 rounded-xl bg-amber-50 px-4 py-3 dark:bg-amber-950/20 border border-amber-100 dark:border-amber-900/50">
-              <Icon name="lucide:check" class="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
-              <p class="text-[14px] leading-relaxed text-slate-700 dark:text-slate-300">
-                <strong class="text-amber-700 dark:text-amber-400">Realidad:</strong> {m.realidad}
-              </p>
-            </div>
-          </div>
-        </article>
-      ))}
+    <div class="reveal relative mt-10" data-mitos-carousel aria-roledescription="carrusel" aria-label="Mitos sobre la IA en tu tesis">
+      <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-white to-transparent dark:from-slate-950 sm:w-20"></div>
+      <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-white to-transparent dark:from-slate-950 sm:w-20"></div>
+
+      <div class="cursor-grab select-none overflow-hidden active:cursor-grabbing" data-mitos-viewport>
+        <div class="flex w-max gap-5 will-change-transform" data-mitos-track>
+          {[...mitos, ...mitos].map((m, i) => (
+            <article
+              class="group relative w-[280px] shrink-0 overflow-hidden rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm transition hover:border-amber-200 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-amber-800/50 sm:w-[360px] lg:w-[420px]"
+              aria-hidden={i >= mitos.length ? "true" : undefined}
+            >
+              <div class="absolute right-0 top-0 h-20 w-20 -translate-y-6 translate-x-6 rounded-full bg-amber-50 opacity-60 group-hover:bg-amber-100 dark:bg-amber-950/20"></div>
+              <div class="relative">
+                <div class="flex items-start gap-3">
+                  <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#0B1D3A] text-amber-300">
+                    <Icon name={m.icon} class="h-5 w-5" />
+                  </span>
+                  <h3 class="font-display text-[16px] font-bold leading-snug text-slate-900 dark:text-white">
+                    Mito: <span class="font-semibold text-slate-700 dark:text-slate-200">{m.mito}</span>
+                  </h3>
+                </div>
+                <div class="mt-3 flex gap-3 rounded-xl border border-amber-100 bg-amber-50 px-4 py-3 dark:border-amber-900/50 dark:bg-amber-950/20">
+                  <Icon name="lucide:check" class="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
+                  <p class="text-[14px] leading-relaxed text-slate-700 dark:text-slate-300">
+                    <strong class="text-amber-700 dark:text-amber-400">Realidad:</strong> {m.realidad}
+                  </p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div class="mt-6 flex items-center justify-center gap-3">
+        <button
+          type="button"
+          data-mitos-prev
+          aria-label="Mito anterior"
+          class="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:border-amber-300 hover:bg-amber-50 hover:text-amber-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-amber-800 dark:hover:bg-amber-950/30"
+        >
+          <Icon name="lucide:chevron-left" class="h-4 w-4" />
+        </button>
+        <span class="text-xs font-semibold uppercase tracking-widest text-slate-400 dark:text-slate-500">Arrastra o desliza</span>
+        <button
+          type="button"
+          data-mitos-next
+          aria-label="Mito siguiente"
+          class="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:border-amber-300 hover:bg-amber-50 hover:text-amber-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-amber-800 dark:hover:bg-amber-950/30"
+        >
+          <Icon name="lucide:chevron-right" class="h-4 w-4" />
+        </button>
+      </div>
     </div>
 
     <div class="reveal mt-12 rounded-[20px] bg-gradient-to-r from-[#0B1D3A] to-[#1e3a8a] p-[1px]">
@@ -104,3 +134,107 @@ const mitos = [
     </div>
   </div>
 </section>
+
+<script>
+  const root = document.querySelector("[data-mitos-carousel]");
+  if (root) {
+    const viewport = root.querySelector("[data-mitos-viewport]");
+    const track = root.querySelector("[data-mitos-track]");
+    const cards = Array.from(track.children);
+    const total = cards.length / 2; // el set original, la otra mitad es el clon
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const VELOCIDAD = 40; // px por segundo del avance automático
+
+    let offset = 0;
+    let setW = 0;
+    let paso = 0;
+    let objetivo = null; // destino al usar las flechas
+    let pausado = reduced;
+    let arrastrando = false;
+    let inicioX = 0;
+    let inicioOffset = 0;
+    let ultimo = 0;
+
+    function medir() {
+      setW = cards[total].offsetLeft - cards[0].offsetLeft;
+      paso = cards[1].offsetLeft - cards[0].offsetLeft;
+    }
+
+    function normalizar(v) {
+      if (!setW) return v;
+      return ((v % setW) + setW) % setW;
+    }
+
+    function pintar() {
+      track.style.transform = `translate3d(${-offset}px,0,0)`;
+    }
+
+    function frame(t) {
+      const dt = ultimo ? Math.min((t - ultimo) / 1000, 0.05) : 0;
+      ultimo = t;
+
+      if (objetivo !== null) {
+        const resto = objetivo - offset;
+        if (Math.abs(resto) < 0.5) {
+          offset = normalizar(objetivo);
+          objetivo = null;
+        } else {
+          offset += resto * 0.12;
+        }
+        pintar();
+      } else if (!pausado && !arrastrando) {
+        offset = normalizar(offset + VELOCIDAD * dt);
+        pintar();
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    function mover(dir) {
+      const base = objetivo === null ? offset : objetivo;
+      objetivo = base + dir * (paso || 300);
+    }
+
+    viewport.addEventListener("pointerdown", (e) => {
+      arrastrando = true;
+      objetivo = null;
+      inicioX = e.clientX;
+      inicioOffset = offset;
+      viewport.setPointerCapture(e.pointerId);
+    });
+    viewport.addEventListener("pointermove", (e) => {
+      if (!arrastrando) return;
+      offset = normalizar(inicioOffset - (e.clientX - inicioX));
+      pintar();
+    });
+    const soltar = (e) => {
+      if (!arrastrando) return;
+      arrastrando = false;
+      if (e.pointerId !== undefined && viewport.hasPointerCapture(e.pointerId)) {
+        viewport.releasePointerCapture(e.pointerId);
+      }
+    };
+    viewport.addEventListener("pointerup", soltar);
+    viewport.addEventListener("pointercancel", soltar);
+    viewport.addEventListener("dragstart", (e) => e.preventDefault());
+
+    root.querySelector("[data-mitos-prev]").addEventListener("click", () => mover(-1));
+    root.querySelector("[data-mitos-next]").addEventListener("click", () => mover(1));
+
+    // Pausamos el avance automático mientras el usuario mira o interactúa
+    root.addEventListener("pointerenter", () => { if (!reduced) pausado = true; });
+    root.addEventListener("pointerleave", () => { if (!reduced) pausado = false; });
+    root.addEventListener("focusin", () => { pausado = true; });
+    root.addEventListener("focusout", () => { if (!reduced) pausado = false; });
+
+    window.addEventListener("resize", () => {
+      medir();
+      offset = normalizar(offset);
+      pintar();
+    });
+
+    medir();
+    pintar();
+    requestAnimationFrame(frame);
+  }
+</script>
