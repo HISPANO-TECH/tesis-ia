@@ -64,4 +64,4 @@ netlify deploy --build --prod
 - En tu DNS agrega `CNAME @` → `apex-loadbalancer.netlify.com` o `A` según Netlify, y `CNAME www` → `tu-sitio.netlify.app`. Netlify provee HTTPS automático.
 
 ## Contacto CTA
-Todos los CTA apuntan a WhatsApp `+51 927 580 985` via `https://api.whatsapp.com/send/?phone=51927580985...&type=phone_number&app_absent=0` con mensaje `Vengo de tesis-ia.com` + email `informes@asesorestesisperu.com`.
+Todos los CTA apuntan a WhatsApp `+51 992 005 096` via `https://api.whatsapp.com/send/?phone=51992005096...&type=phone_number&app_absent=0` con mensaje `Vengo de tesis-ia.com` + email `informes@asesorestesisperu.com`.

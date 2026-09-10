@@ -51,6 +51,18 @@ const bloques = [
   },
 ];
 
+// Videos de presentación del Pack: se muestran encima del encabezado.
+// Cargamos solo la miniatura y el iframe de YouTube se inserta al hacer clic,
+// para no arrastrar el peso del reproductor en cada visita.
+// Para sumar más videos basta con añadir otro objeto a este arreglo.
+const videos = [
+  {
+    id: "vaVu_0vXXHk",
+    titulo: "Pack IAs Investigador Pro en acción",
+    desc: "Cómo trabajan las IAs académicas y el asesor humano en tu tesis",
+  },
+];
+
 const extras = [
   { label: "Soporte 24/7", icon: "lucide:headphones" },
   { label: "Sesiones Meet y asesorías", icon: "lucide:users" },
@@ -73,7 +85,7 @@ const ahorroMes = totalSuelto - precioPack;
 const ahorroAnual = (ahorroMes * 12).toLocaleString("en-US");
 ---
 
-<section id="pack" class="relative overflow-hidden bg-gradient-to-b from-white via-[#f6f8fc] to-[#fffbeb] py-16 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900 md:py-24">
+<section id="pack" class="relative overflow-hidden bg-gradient-to-b from-white via-[#f6f8fc] to-[#fffbeb] py-10 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900 md:py-16">
   <!-- decorativos suaves: dorado + azul sobre fondo claro -->
   <div class="pointer-events-none absolute inset-0">
     <div class="absolute -left-24 top-10 h-[420px] w-[420px] rounded-full bg-amber-200/40 blur-[110px] dark:bg-amber-500/10"></div>
@@ -82,6 +94,56 @@ const ahorroAnual = (ahorroMes * 12).toLocaleString("en-US");
   </div>
 
   <div class="relative mx-auto max-w-7xl px-6">
+    <!-- Video(s) de presentación del Pack -->
+    <div class="reveal mb-10 md:mb-12">
+      <div class="text-center">
+        <span class="inline-flex items-center gap-2 rounded-full border border-amber-200 bg-white px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-amber-700 shadow-sm dark:border-amber-800/60 dark:bg-slate-900 dark:text-amber-300">
+          <Icon name="lucide:play" class="h-3.5 w-3.5" /> Míralo en video
+        </span>
+      </div>
+
+      <div class={`mt-4 grid gap-4 ${videos.length > 1 ? "md:grid-cols-2" : "mx-auto max-w-4xl"}`}>
+        {videos.map((v) => (
+          <figure class="overflow-hidden rounded-[24px] border border-slate-200 bg-white shadow-lg dark:border-slate-800 dark:bg-slate-900">
+            <div class="relative aspect-video w-full bg-[#0B1D3A]" data-video={v.id} data-video-title={v.titulo}>
+              <button type="button" data-video-play class="group absolute inset-0 h-full w-full cursor-pointer" aria-label={`Reproducir video: ${v.titulo}`}>
+                <img
+                  src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`}
+                  alt=""
+                  width="480"
+                  height="360"
+                  loading="lazy"
+                  class="h-full w-full object-cover opacity-90 transition duration-300 group-hover:scale-[1.02] group-hover:opacity-100"
+                />
+                <span class="absolute inset-0 bg-gradient-to-t from-[#0B1D3A]/70 via-[#0B1D3A]/10 to-transparent"></span>
+                <span class="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-amber-400 text-[#0B1D3A] shadow-xl transition group-hover:scale-110">
+                  <Icon name="lucide:play" class="ml-1 h-7 w-7" />
+                </span>
+              </button>
+              <noscript>
+                <a href={`https://youtu.be/${v.id}`} target="_blank" rel="noopener" class="absolute inset-x-0 bottom-0 block bg-[#0B1D3A]/90 px-4 py-2 text-center text-xs font-bold text-amber-300">
+                  Ver el video en YouTube
+                </a>
+              </noscript>
+            </div>
+            <figcaption class="flex flex-wrap items-center justify-between gap-3 px-4 py-3">
+              <div class="min-w-0">
+                <div class="font-display text-[15px] font-bold leading-snug text-slate-900 dark:text-white">{v.titulo}</div>
+                <p class="mt-0.5 text-[12px] leading-snug text-slate-500 dark:text-slate-400">{v.desc}</p>
+              </div>
+              <button
+                type="button"
+                data-pack-modal
+                class="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-amber-400 px-4 py-2 font-display text-[11px] font-bold uppercase tracking-wide text-[#0B1D3A] transition hover:bg-amber-300"
+              >
+                Quiero el Pack <Icon name="lucide:arrow-right" class="h-3.5 w-3.5" />
+              </button>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+
     <!-- Encabezado -->
     <div class="mx-auto max-w-3xl text-center">
       <h2 class="split-letters font-display text-[30px] font-bold leading-none tracking-tight text-slate-900 dark:text-white md:text-[42px]">
@@ -106,7 +168,7 @@ const ahorroAnual = (ahorroMes * 12).toLocaleString("en-US");
     </div>
 
     <!-- Métricas -->
-    <div class="reveal mx-auto mt-10 grid max-w-4xl grid-cols-2 gap-3 md:grid-cols-4">
+    <div class="reveal mx-auto mt-8 grid max-w-4xl grid-cols-2 gap-3 md:grid-cols-4">
       {[
         { n: "15+", t: "IAs premium" },
         { n: "1", t: "solo acceso" },
@@ -164,7 +226,7 @@ const ahorroAnual = (ahorroMes * 12).toLocaleString("en-US");
     </div>
 
     <!-- Comparativa de ahorro -->
-    <div class="reveal mt-12 grid gap-5 lg:grid-cols-[1.1fr_1fr] lg:gap-6">
+    <div class="reveal mt-8 grid gap-5 lg:grid-cols-[1.1fr_1fr] lg:gap-6">
       <div class="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-7">
         <div class="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-slate-500 dark:bg-slate-800 dark:text-slate-400">
           <Icon name="lucide:calculator" class="h-3.5 w-3.5" /> Si lo armas por tu cuenta
@@ -226,3 +288,21 @@ const ahorroAnual = (ahorroMes * 12).toLocaleString("en-US");
 </section>
 
 <PackModal />
+
+<script>
+  // Fachada de YouTube: hasta que el visitante no pulsa play solo hay una
+  // miniatura, así la portada no carga el reproductor (ni sus cookies).
+  document.querySelectorAll("[data-video-play]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const caja = btn.closest("[data-video]");
+      if (!caja) return;
+      const iframe = document.createElement("iframe");
+      iframe.src = `https://www.youtube-nocookie.com/embed/${caja.dataset.video}?autoplay=1&rel=0&modestbranding=1`;
+      iframe.title = caja.dataset.videoTitle || "Video";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.allowFullscreen = true;
+      iframe.className = "absolute inset-0 h-full w-full border-0";
+      caja.replaceChildren(iframe);
+    });
+  });
+</script>

@@ -1,6 +1,6 @@
 // Centraliza el link de WhatsApp para mantenimiento escalable
-// Usa api.whatsapp.com con phone 51927580985 y mensaje que alude a tesis-ia.com
-export const WHATSAPP_PHONE = "51927580985";
+// Usa api.whatsapp.com con phone 51992005096 y mensaje que alude a tesis-ia.com
+export const WHATSAPP_PHONE = "51992005096";
 export const WHATSAPP_BASE = `https://api.whatsapp.com/send/?phone=${WHATSAPP_PHONE}`;
 
 const suffix = "&type=phone_number&app_absent=0";

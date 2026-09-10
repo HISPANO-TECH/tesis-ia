@@ -2,7 +2,7 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<section id="contacto" class="bg-[#fffbeb] py-16 dark:bg-slate-900 md:py-20">
+<section id="contacto" class="bg-[#fffbeb] py-10 dark:bg-slate-900 md:py-14">
   <div class="mx-auto max-w-7xl px-6">
     <div class="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
       <!-- Info -->
@@ -22,7 +22,7 @@ import { Icon } from "astro-icon/components";
             <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-400 text-[#0B1D3A]"><Icon name="lucide:phone" class="h-5 w-5" /></span>
             <div>
               <div class="text-xs font-bold uppercase tracking-widest text-slate-500">WhatsApp</div>
-              <a href="https://api.whatsapp.com/send/?phone=51927580985&text=Hola%2C%20quiero%20contactarme%20para%20recibir%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20en%20tesis%20universitaria%20en%20Per%C3%BA.%20Vengo%20de%20tesis-ia.com&type=phone_number&app_absent=0" target="_blank" class="text-sm font-bold text-[#0B1D3A] dark:text-white hover:text-amber-600">+51 927 580 985</a>
+              <a href="https://api.whatsapp.com/send/?phone=51992005096&text=Hola%2C%20quiero%20contactarme%20para%20recibir%20informaci%C3%B3n%20sobre%20asesor%C3%ADa%20en%20tesis%20universitaria%20en%20Per%C3%BA.%20Vengo%20de%20tesis-ia.com&type=phone_number&app_absent=0" target="_blank" class="text-sm font-bold text-[#0B1D3A] dark:text-white hover:text-amber-600">+51 992 005 096</a>
             </div>
             <span class="ml-auto h-2 w-2 rounded-full bg-emerald-500 animate-pulse-soft"></span>
           </div>
@@ -62,7 +62,7 @@ import { Icon } from "astro-icon/components";
             </label>
             <label class="grid gap-1.5">
               <span class="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-300">WhatsApp *</span>
-              <input name="whatsapp" required inputmode="numeric" placeholder="Ej. 927580985" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 dark:bg-slate-900 dark:border-slate-700 dark:text-white" />
+              <input name="whatsapp" required inputmode="numeric" placeholder="Ej. 992005096" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 dark:bg-slate-900 dark:border-slate-700 dark:text-white" />
               <span class="hidden text-xs text-red-600" data-error="whatsapp">Número válido (9 dígitos)</span>
             </label>
           </div>
@@ -163,7 +163,7 @@ import { Icon } from "astro-icon/components";
   // API PHP (cPanel) — public/api/*.php se copia a dist/api/ en cada build.
   // Ruta relativa: funciona cuando el dominio sirve los .php (como academic-navigator-astro).
   const API_URL = "/api/contact.php";
-  const WHATSAPP_PHONE = "51927580985";
+  const WHATSAPP_PHONE = "51992005096";
 
   function showError(name, show) {
     const el = form.querySelector(`[data-error="${name}"]`);

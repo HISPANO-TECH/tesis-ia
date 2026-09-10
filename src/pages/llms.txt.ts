@@ -22,7 +22,7 @@ export async function GET() {
 - Idioma: es-PE (Perú)
 - Cobertura: LATAM (atención remota) — Perú (Lima, Callao, Arequipa, Trujillo, Cusco, Piura, Chiclayo, Huancayo), Ecuador (Quito, Guayaquil, Cuenca), Colombia (Bogotá, Medellín, Cali), México (CDMX, Guadalajara, Monterrey), Bolivia (La Paz, Santa Cruz, Cochabamba) y Chile (Santiago, Valparaíso, Concepción)
 - Contacto: ${SITE.organization.contact.telephone} / informes@asesorestesisperu.com
-- WhatsApp: https://api.whatsapp.com/send/?phone=51927580985
+- WhatsApp: https://api.whatsapp.com/send/?phone=51992005096
 
 ## Qué es el Pack IAs Investigador Pro
 Pack de IAs académicas + kit (prompts, manuales, videos, plantillas) + acompañamiento humano para desarrollar tesis de pregrado, maestría y doctorado con rigor metodológico y criterio anti-plagio. Servicio de asesoría, guía y revisión: la autoría académica siempre es del estudiante.

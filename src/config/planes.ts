@@ -1,7 +1,7 @@
 // Fuente única de los planes: la usan PlanesSection y el modal de promoción
 // del Pack, para que los precios y beneficios no se dupliquen ni se desincronicen.
 
-export const WHATSAPP_PHONE = "51927580985";
+export const WHATSAPP_PHONE = "51992005096";
 
 const WA_BASE = `https://api.whatsapp.com/send/?phone=${WHATSAPP_PHONE}&text=`;
 const WA_SUFFIX = "&type=phone_number&app_absent=0";

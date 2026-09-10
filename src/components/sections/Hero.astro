@@ -6,75 +6,34 @@ const whatsappHref = waLink(
   "Hola, quiero contactarme para recibir información sobre asesoría en tesis universitaria. Vengo de tesis-ia.com - Pack IAs Investigador Pro"
 );
 
-// En la tarjeta no listamos herramientas ni marcas: mostramos el resultado que
-// el tesista consigue con cada plan, que es lo que realmente compra.
+// El hero muestra un único mensaje: el plan más vendido (AVANCE). La comparación
+// de los tres planes vive en la sección #planes, así que aquí no hay carrusel.
+const plan = PLANES[1];
 
-// Beneficios que ya están en todos los planes: no diferencian, así que no
-// ocupan sitio en la tarjeta del hero.
+// En la tarjeta no repetimos lo que ya está en todos los planes: mostramos la
+// asesoría humana, que es lo que diferencia a AVANCE.
 const COMUNES = ["Acceso a IAs", "Plantillas y manuales"];
-const destacadas = (plan: (typeof PLANES)[number]) =>
-  plan.features.filter((f) => !f.muted && !COMUNES.includes(f.label)).slice(0, 2);
+const destacadas = plan.features.filter((f) => !f.muted && !COMUNES.includes(f.label)).slice(0, 2);
 
-// Un slide por plan (mismo diseño, copy adaptado al momento del tesista).
-// El orden es por precio; el slider arranca en AVANCE (el más vendido).
-const slides = [
-  {
-    plan: PLANES[0],
-    eyebrow: "Plan Impulso · Recién empiezas",
-    titulo: { antes: "Arranca tu tesis ", destacado: "con método", despues: ", no a prueba y error" },
-    parrafo:
-      "Si recién empiezas, el problema no son las IAs: es <strong class='text-amber-200'>no saber qué pedirles</strong> ni cómo sustentarlo. Te damos el Pack de IAs académicas, prompts por capítulo, plantillas, manuales y videos, más una asesoría grupal al mes para que tu proyecto arranque bien desde el título.",
-    chips: ["Título y problema con criterio", "Prompts y plantillas listas", "Comunidad de tesistas"],
-    cardBadge: { label: "Para empezar", icon: "lucide:rocket" },
-    nota: "Todo el Pack incluido",
-    mejoras: [
-      "Defines tu título y tu problema sin dar vueltas meses",
-      "Aprendes a pedirle a la IA lo que tu asesor sí va a aceptar",
-      "Trabajas con fuentes reales y verificables, no inventadas",
-      "Entregas tu proyecto con el formato de tu universidad",
-    ],
-  },
-  {
-    plan: PLANES[1],
-    eyebrow: "Pack IAs Investigador Pro · Más vendido",
-    titulo: { antes: "Tu tesis ", destacado: "sin mitos", despues: ", con IA bien usada + asesor humano" },
-    parrafo:
-      "La sola aplicación de las IAs <strong class='text-amber-200'>no garantiza</strong> un buen desarrollo de tu tesis. Te damos las IAs que sí acceden a bases académicas (Scopus y más), prompts, plantillas, videos y el criterio metodológico que el jurado espera.",
-    chips: ["IAs con fuentes reales", "Protocolo de tu universidad", "Anti-plagio con criterio"],
-    cardBadge: { label: PLANES[1].badge ?? "Más vendido", icon: "lucide:star" },
-    nota: "Ahorras 29%",
-    mejoras: [
-      "Cierras un capítulo al mes en vez de quedarte trabado",
-      "Bajas tu similitud antes de que la vea tu universidad",
-      "Redactas resultados y discusión con respaldo bibliográfico",
-      "Levantas las observaciones con feedback de un asesor real",
-    ],
-  },
-  {
-    plan: PLANES[2],
-    eyebrow: "Plan Graduación · Asesoría 1:1",
-    titulo: { antes: "Sustenta este ciclo con un ", destacado: "asesor a tu lado", despues: "" },
-    parrafo:
-      "Si tu meta es sustentar cuanto antes, no basta con avanzar: hay que <strong class='text-amber-200'>cerrar y defender</strong>. Sesión personalizada al mes, revisión integral de tus capítulos, línea directa con tu asesor y preparación de la defensa ante jurado, con todas las IAs del Pack incluidas.",
-    chips: ["Sesión 1:1 cada mes", "Preparación de sustentación", "Línea directa con tu asesor"],
-    cardBadge: { label: PLANES[2].badge ?? "Asesoría 1:1", icon: "lucide:user-check" },
-    nota: "Incluye 1:1",
-    mejoras: [
-      "Cierras tu tesis completa y la dejas lista para presentar",
-      "Llegas a la sustentación sabiendo qué te va a preguntar el jurado",
-      "Defiendes tu metodología y tus resultados con seguridad",
-      "Corriges las observaciones del jurado acompañado 1:1",
-    ],
-  },
+const chips = ["IAs con fuentes reales", "Protocolo de tu universidad", "Anti-plagio con criterio"];
+
+const mejoras = [
+  "Cierras un capítulo al mes en vez de quedarte trabado",
+  "Bajas tu similitud antes de que la vea tu universidad",
+  "Redactas resultados y discusión con respaldo bibliográfico",
+  "Levantas las observaciones con feedback de un asesor real",
 ];
 
-const initialIndex = 1;
-
-// Clases de las pastillas del selector de plan (compartidas con el script).
-const DOT_IDLE =
-  "rounded-full border border-white/20 bg-white/5 px-3.5 py-1.5 font-display text-[11px] font-bold uppercase tracking-widest text-blue-100/80 backdrop-blur transition hover:bg-white/15 hover:text-white";
-const DOT_ACTIVE =
-  "rounded-full border border-amber-400 bg-amber-400 px-3.5 py-1.5 font-display text-[11px] font-bold uppercase tracking-widest text-[#0B1D3A] shadow-lg shadow-amber-900/20 transition";
+// Contenido del Pack IAs Investigador Pro según el documento comercial
+// (PACK INVESTIGADOR PRO.docx): redacción, investigación, humanización,
+// detección/antiplagio y formación.
+const packIncluye = [
+  { cat: "Redacción", icon: "lucide:pen-line", items: "Claude Max · ChatGPT Pro · ChatGPT Plus · SuperGrok · Gemini" },
+  { cat: "Investiga", icon: "lucide:search-check", items: "Perplexity Pro · NotebookLM Pro · Scribd" },
+  { cat: "Humaniza", icon: "lucide:wand", items: "WriteHuman · QuillBot Premium" },
+  { cat: "Detecta", icon: "lucide:shield-check", items: "Turnitin ilimitado (similitud + IA)" },
+  { cat: "Sustenta", icon: "lucide:graduation-cap", items: "Canva Pro · Cursos Udemy · Cursos Platzi" },
+];
 ---
 
 <section id="inicio" class="relative overflow-hidden bg-gradient-to-br from-[#0B1D3A] via-[#1e3a8a] to-[#2a4b9f] dark:from-[#070f24] dark:via-[#0B1D3A] dark:to-[#1e3a8a]">
@@ -85,290 +44,171 @@ const DOT_ACTIVE =
     <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(245,158,11,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(245,158,11,0.06)_1px,transparent_1px)] bg-[size:44px_44px]"></div>
   </div>
 
-  <div
-    class="relative"
-    data-hero-carousel
-    data-hero-initial={initialIndex}
-    data-dot-idle={DOT_IDLE}
-    data-dot-active={DOT_ACTIVE}
-    role="region"
-    aria-roledescription="carrusel"
-    aria-label="Planes de asesoría con el Pack IAs Investigador Pro"
-  >
-    <div class="overflow-hidden">
-      <div
-        class="flex transition-transform duration-700 ease-out will-change-transform motion-reduce:transition-none"
-        style={`transform: translateX(-${initialIndex * 100}%)`}
-        data-hero-track
-      >
-        {slides.map((s, i) => {
-          const inicial = i === initialIndex;
-          const feats = destacadas(s.plan);
-          return (
-            <div
-              class="w-full shrink-0"
-              data-hero-slide
-              data-plan-name={s.plan.name}
-              role="group"
-              aria-roledescription="diapositiva"
-              aria-label={`Plan ${s.plan.name} — ${i + 1} de ${slides.length}`}
-            >
-              <div class="mx-auto grid max-w-7xl gap-8 px-6 pb-6 pt-14 md:grid-cols-[1.05fr_0.95fr] md:pt-20 lg:gap-12 lg:pt-24">
-                <div class={`flex flex-col justify-center ${inicial ? "reveal" : ""}`} style="--reveal-delay:80ms">
-                  <div class="inline-flex w-fit items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-amber-200 backdrop-blur">
-                    <span class="h-2 w-2 rounded-full bg-amber-400 animate-pulse-soft"></span> {s.eyebrow}
-                  </div>
+  <div class="relative mx-auto grid max-w-7xl gap-8 px-6 pb-10 pt-10 md:grid-cols-[1.05fr_0.95fr] md:pb-12 md:pt-14 lg:gap-10 lg:pt-16">
+    <div class="reveal flex flex-col justify-center" style="--reveal-delay:80ms">
+      <div class="inline-flex w-fit items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-amber-200 backdrop-blur">
+        <span class="h-2 w-2 rounded-full bg-amber-400 animate-pulse-soft"></span> Pack IAs Investigador Pro · {plan.badge ?? "Más vendido"}
+      </div>
 
-                  {inicial ? (
-                    <h1 class="split-letters mt-4 font-display text-[34px] font-bold leading-[0.95] tracking-tight text-white md:text-[46px] lg:text-[52px]">
-                      {s.titulo.antes}<span class="text-amber-300">{s.titulo.destacado}</span>{s.titulo.despues}
-                    </h1>
-                  ) : (
-                    <h2 class="mt-4 font-display text-[34px] font-bold leading-[0.95] tracking-tight text-white md:text-[46px] lg:text-[52px]">
-                      {s.titulo.antes}<span class="text-amber-300">{s.titulo.destacado}</span>{s.titulo.despues}
-                    </h2>
-                  )}
+      <h1 class="split-letters mt-3 font-display text-[34px] font-bold leading-[0.95] tracking-tight text-white md:text-[46px] lg:text-[52px]">
+        Tu tesis <span class="text-amber-300">sin mitos</span>, con IA bien usada + asesor humano
+      </h1>
 
-                  <p class="mt-4 max-w-[60ch] text-[17px] leading-relaxed text-blue-100/90" set:html={s.parrafo} />
+      <p class="mt-3 max-w-[60ch] text-[17px] leading-relaxed text-blue-100/90">
+        La sola aplicación de las IAs <strong class="text-amber-200">no garantiza</strong> un buen desarrollo de tu tesis. Te damos las IAs que sí acceden a bases académicas (Scopus y más), prompts, plantillas, videos y el criterio metodológico que el jurado espera.
+      </p>
 
-                  <div class="mt-6 flex flex-wrap gap-3">
-                    {s.chips.map((c) => (
-                      <div class="flex items-center gap-2 rounded-2xl border border-amber-400/20 bg-white/10 px-4 py-2.5 text-sm font-medium text-white backdrop-blur">
-                        <Icon name="lucide:check" class="h-4 w-4 shrink-0 text-amber-300" /> {c}
-                      </div>
-                    ))}
-                  </div>
+      <div class="mt-4 flex flex-wrap gap-2.5">
+        {chips.map((c) => (
+          <div class="flex items-center gap-2 rounded-2xl border border-amber-400/20 bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur">
+            <Icon name="lucide:check" class="h-4 w-4 shrink-0 text-amber-300" /> {c}
+          </div>
+        ))}
+      </div>
 
-                  {/* Anclaje de valor: el detalle de las IAs va en la tarjeta del plan */}
-                  <a href="/#pack" class="group mt-6 flex w-fit items-center gap-3 rounded-2xl border border-amber-400/30 bg-white/[0.07] px-4 py-3 backdrop-blur transition hover:border-amber-400/60 hover:bg-white/[0.12]">
-                    <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-amber-400 text-[#0B1D3A]">
-                      <Icon name="lucide:sparkles" class="h-4 w-4" />
-                    </span>
-                    <span class="text-[13px] leading-snug text-blue-100">
-                      <strong class="text-white">15+ IAs premium</strong> que por separado superan los <strong class="text-amber-300">US$300/mes</strong>
-                    </span>
-                    <span class="inline-flex shrink-0 items-center gap-1 text-[11px] font-bold uppercase tracking-widest text-amber-300 group-hover:text-white">
-                      Ver <Icon name="lucide:arrow-right" class="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
-                    </span>
-                  </a>
+      {/* Anclaje de valor: el detalle de las IAs va en la tarjeta del plan */}
+      <a href="/#pack" class="group mt-4 flex w-fit items-center gap-3 rounded-2xl border border-amber-400/30 bg-white/[0.07] px-4 py-2.5 backdrop-blur transition hover:border-amber-400/60 hover:bg-white/[0.12]">
+        <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-amber-400 text-[#0B1D3A]">
+          <Icon name="lucide:sparkles" class="h-4 w-4" />
+        </span>
+        <span class="text-[13px] leading-snug text-blue-100">
+          <strong class="text-white">15+ IAs premium</strong> que por separado superan los <strong class="text-amber-300">US$300/mes</strong>
+        </span>
+        <span class="inline-flex shrink-0 items-center gap-1 text-[11px] font-bold uppercase tracking-widest text-amber-300 group-hover:text-white">
+          Ver <Icon name="lucide:arrow-right" class="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
+        </span>
+      </a>
 
-                  <div class="mt-8 flex flex-wrap items-center gap-4">
-                    <a href="/#planes" class="rounded-full bg-amber-400 px-8 py-3.5 font-display text-sm font-bold uppercase tracking-wide text-[#0B1D3A] shadow-lg shadow-amber-900/20 transition hover:bg-amber-300">
-                      Ver planes desde $20/mes
-                    </a>
-                    <a href={whatsappHref} target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full border-2 border-amber-400/60 bg-white/5 px-6 py-3 font-display text-sm font-bold uppercase tracking-wide text-white backdrop-blur transition hover:border-amber-400 hover:bg-amber-400 hover:text-[#0B1D3A]">
-                      Hablar con asesor
-                      <Icon name="lucide:arrow-right" class="h-4 w-4" />
-                    </a>
-                  </div>
+      <div class="mt-6 flex flex-wrap items-center gap-3">
+        <a href="/#planes" class="rounded-full bg-amber-400 px-8 py-3.5 font-display text-sm font-bold uppercase tracking-wide text-[#0B1D3A] shadow-lg shadow-amber-900/20 transition hover:bg-amber-300">
+          Ver planes desde $20/mes
+        </a>
+        <a href={whatsappHref} target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full border-2 border-amber-400/60 bg-white/5 px-6 py-3 font-display text-sm font-bold uppercase tracking-wide text-white backdrop-blur transition hover:border-amber-400 hover:bg-amber-400 hover:text-[#0B1D3A]">
+          Hablar con asesor
+          <Icon name="lucide:arrow-right" class="h-4 w-4" />
+        </a>
+      </div>
 
-                  <div class="mt-6 flex items-center gap-4 text-xs text-blue-200/70">
-                    <div class="flex -space-x-2">
-                      <span class="flex h-7 w-7 items-center justify-center rounded-full border-2 border-[#0B1D3A] bg-amber-300 text-[10px] font-bold text-[#0B1D3A]">T</span>
-                      <span class="flex h-7 w-7 items-center justify-center rounded-full border-2 border-[#0B1D3A] bg-blue-200 text-[10px] font-bold text-blue-900">I</span>
-                      <span class="flex h-7 w-7 items-center justify-center rounded-full border-2 border-[#0B1D3A] bg-white text-[10px] font-bold text-[#0B1D3A]">A</span>
-                    </div>
-                    <span>+1,200 tesistas usando el Pack · <strong class="text-amber-200">4.9/5</strong> satisfacción</span>
-                  </div>
-                </div>
-
-                {/* Tarjeta del plan */}
-                <div class={`relative flex items-center justify-center ${inicial ? "reveal reveal-zoom" : ""}`} style="--reveal-delay:180ms">
-                  <div class="relative w-full max-w-[520px]">
-                    <div class="absolute -inset-4 -z-10 rounded-[32px] bg-amber-400/10 blur-2xl"></div>
-                    <div class="rounded-[28px] border border-amber-400/20 bg-white p-4 shadow-2xl dark:border-slate-700 dark:bg-slate-900">
-                      {/* header mock */}
-                      <div class="flex items-center justify-between rounded-2xl bg-[#0B1D3A] px-4 py-3 text-white">
-                        <div class="flex items-center gap-2">
-                          <span class="h-3 w-3 rounded-full bg-red-400"></span><span class="h-3 w-3 rounded-full bg-amber-400"></span><span class="h-3 w-3 rounded-full bg-emerald-400"></span>
-                        </div>
-                        <span class="font-display text-[11px] font-bold uppercase tracking-widest text-amber-300">tesis-ia.com · plan investigador</span>
-                        <span class="flex h-6 w-6 items-center justify-center rounded-full bg-amber-400 text-[10px] font-bold text-[#0B1D3A]">IA</span>
-                      </div>
-
-                      {/* Plan + precio */}
-                      <div class="mt-4 rounded-2xl border border-amber-200 bg-amber-50/70 p-4 dark:border-amber-800/60 dark:bg-slate-800">
-                        <div class="flex flex-wrap items-start justify-between gap-3">
-                          <div class="min-w-0">
-                            <span class="inline-flex items-center gap-1 rounded-full bg-amber-400 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#0B1D3A]">
-                              <Icon name={s.cardBadge.icon} class="h-3 w-3" /> {s.cardBadge.label}
-                            </span>
-                            <div class="mt-1.5 font-display text-lg font-bold uppercase leading-none tracking-wide text-slate-900 dark:text-white">Plan {s.plan.name}</div>
-                            <p class="mt-1 text-[12px] leading-snug text-slate-500 dark:text-slate-400">{s.plan.subtitle}</p>
-                          </div>
-                          <div class="text-right">
-                            <div class="flex items-baseline justify-end gap-0.5">
-                              <span class="text-[11px] font-bold text-slate-500">US$</span>
-                              <span class="font-display text-[34px] font-bold leading-none tracking-tight text-slate-900 dark:text-white">{s.plan.price}</span>
-                              <span class="text-[11px] font-semibold text-slate-500">/mes</span>
-                            </div>
-                            <div class="mt-1 text-[11px] font-bold text-amber-600 dark:text-amber-400">{s.nota}</div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Lo que el tesista consigue con este plan */}
-                      <div class="mt-3 rounded-2xl border border-slate-200 bg-white p-3.5 dark:border-slate-700 dark:bg-slate-800/60">
-                        <div class="flex items-center justify-between gap-2">
-                          <div class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#1e3a8a] dark:text-amber-300">
-                            <Icon name="lucide:trending-up" class="h-3.5 w-3.5" /> Lo que vas a mejorar
-                          </div>
-                          <span class="shrink-0 rounded-full bg-[#0B1D3A] px-2 py-0.5 text-[10px] font-bold text-amber-300">Plan {s.plan.name}</span>
-                        </div>
-
-                        <ul class="mt-2.5 grid gap-1.5">
-                          {s.mejoras.map((m) => (
-                            <li class="flex items-start gap-2 rounded-lg border border-slate-100 bg-slate-50 px-2.5 py-1.5 dark:border-slate-800 dark:bg-slate-900/60">
-                              <Icon name="lucide:check" class="mt-[3px] h-3.5 w-3.5 shrink-0 text-amber-500" />
-                              <span class="text-[11.5px] font-semibold leading-snug text-slate-700 dark:text-slate-200">{m}</span>
-                            </li>
-                          ))}
-                        </ul>
-
-                        <p class="mt-2 text-[11px] leading-snug text-slate-500 dark:text-slate-400">
-                          Con método propio, <strong class="text-slate-600 dark:text-slate-300">IAs académicas</strong> y acompañamiento de un asesor humano.
-                        </p>
-                      </div>
-
-                      {/* Asesoría humana del plan */}
-                      <div class="mt-3 grid gap-2 sm:grid-cols-2">
-                        {feats.map((f) => (
-                          <div class="rounded-2xl border border-slate-200 bg-white px-3.5 py-3 dark:border-slate-700 dark:bg-slate-800">
-                            <div class="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">{f.label}</div>
-                            <div class="mt-0.5 text-[12.5px] font-semibold leading-snug text-slate-800 dark:text-white">{f.value}</div>
-                          </div>
-                        ))}
-                      </div>
-
-                      <a
-                        href={waPlan(s.plan.name)}
-                        target="_blank"
-                        rel="noopener"
-                        class="mt-3 flex items-center justify-center gap-2 rounded-full bg-[#0B1D3A] px-6 py-3.5 font-display text-sm font-bold uppercase tracking-wide text-white shadow-lg transition hover:bg-black dark:bg-amber-400 dark:text-[#0B1D3A] dark:hover:bg-amber-300"
-                      >
-                        {s.plan.cta} <Icon name="lucide:arrow-right" class="h-4 w-4" />
-                      </a>
-                      <p class="mt-2 text-center text-[11px] text-slate-400">
-                        Acceso inmediato · Cancela cuando quieras · <a href="/#planes" class="font-semibold text-[#1e3a8a] hover:underline dark:text-amber-300">Ver los 3 planes</a>
-                      </p>
-                    </div>
-
-                    {/* floating badge */}
-                    <div class="animate-float absolute -right-2 -top-4 hidden items-center gap-2 rounded-2xl bg-amber-400 px-4 py-2 text-xs font-bold uppercase tracking-wide text-[#0B1D3A] shadow-lg sm:flex">
-                      <span class="h-2 w-2 rounded-full bg-[#0B1D3A] animate-pulse-soft"></span> Asesoría humana incluida
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+      <div class="mt-4 flex items-center gap-4 text-xs text-blue-200/70">
+        <div class="flex -space-x-2">
+          <span class="flex h-7 w-7 items-center justify-center rounded-full border-2 border-[#0B1D3A] bg-amber-300 text-[10px] font-bold text-[#0B1D3A]">T</span>
+          <span class="flex h-7 w-7 items-center justify-center rounded-full border-2 border-[#0B1D3A] bg-blue-200 text-[10px] font-bold text-blue-900">I</span>
+          <span class="flex h-7 w-7 items-center justify-center rounded-full border-2 border-[#0B1D3A] bg-white text-[10px] font-bold text-[#0B1D3A]">A</span>
+        </div>
+        <span>+1,200 tesistas usando el Pack · <strong class="text-amber-200">4.9/5</strong> satisfacción</span>
       </div>
     </div>
 
-    <!-- Controles: flechas + selector de plan -->
-    <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-2 px-6 pb-12 md:pb-16">
-      <button
-        type="button"
-        data-hero-prev
-        aria-label="Plan anterior"
-        class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white backdrop-blur transition hover:bg-amber-400 hover:text-[#0B1D3A]"
-      >
-        <Icon name="lucide:chevron-left" class="h-4 w-4" />
-      </button>
+    {/* Tarjeta del plan más vendido */}
+    <div class="reveal reveal-zoom relative flex items-center justify-center" style="--reveal-delay:180ms">
+      <div class="relative w-full max-w-[520px]">
+        <div class="absolute -inset-4 -z-10 rounded-[32px] bg-amber-400/10 blur-2xl"></div>
+        <div class="rounded-[28px] border border-amber-400/20 bg-white p-4 shadow-2xl dark:border-slate-700 dark:bg-slate-900">
+          {/* header mock */}
+          <div class="flex items-center justify-between rounded-2xl bg-[#0B1D3A] px-4 py-3 text-white">
+            <div class="flex items-center gap-2">
+              <span class="h-3 w-3 rounded-full bg-red-400"></span><span class="h-3 w-3 rounded-full bg-amber-400"></span><span class="h-3 w-3 rounded-full bg-emerald-400"></span>
+            </div>
+            <span class="font-display text-[11px] font-bold uppercase tracking-widest text-amber-300">tesis-ia.com · plan investigador</span>
+            <span class="flex h-6 w-6 items-center justify-center rounded-full bg-amber-400 text-[10px] font-bold text-[#0B1D3A]">IA</span>
+          </div>
 
-      {slides.map((s, i) => (
-        <button type="button" data-hero-dot data-index={i} aria-label={`Ver el plan ${s.plan.name}`} aria-current={i === initialIndex ? "true" : "false"} class={i === initialIndex ? DOT_ACTIVE : DOT_IDLE}>
-          {s.plan.name} ${s.plan.price}
-        </button>
-      ))}
+          {/* Plan + precio */}
+          <div class="mt-3 rounded-2xl border border-amber-200 bg-amber-50/70 p-4 dark:border-amber-800/60 dark:bg-slate-800">
+            <div class="flex flex-wrap items-start justify-between gap-3">
+              <div class="min-w-0">
+                <span class="inline-flex items-center gap-1 rounded-full bg-amber-400 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#0B1D3A]">
+                  <Icon name="lucide:star" class="h-3 w-3" /> {plan.badge ?? "Más vendido"}
+                </span>
+                <div class="mt-1.5 font-display text-lg font-bold uppercase leading-none tracking-wide text-slate-900 dark:text-white">Plan {plan.name}</div>
+                <p class="mt-1 text-[12px] leading-snug text-slate-500 dark:text-slate-400">{plan.subtitle}</p>
+              </div>
+              <div class="text-right">
+                <div class="flex items-baseline justify-end gap-0.5">
+                  <span class="text-[11px] font-bold text-slate-500">US$</span>
+                  <span class="font-display text-[34px] font-bold leading-none tracking-tight text-slate-900 dark:text-white">{plan.price}</span>
+                  <span class="text-[11px] font-semibold text-slate-500">/mes</span>
+                </div>
+                <div class="mt-1 text-[11px] font-bold text-amber-600 dark:text-amber-400">Ahorras 29%</div>
+              </div>
+            </div>
+          </div>
 
-      <button
-        type="button"
-        data-hero-next
-        aria-label="Plan siguiente"
-        class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white backdrop-blur transition hover:bg-amber-400 hover:text-[#0B1D3A]"
-      >
-        <Icon name="lucide:chevron-right" class="h-4 w-4" />
-      </button>
+          {/* Qué trae el Pack: detalle del documento comercial */}
+          <div class="mt-3 rounded-2xl border border-slate-200 bg-white p-3.5 dark:border-slate-700 dark:bg-slate-800/60">
+            <div class="flex items-center justify-between gap-2">
+              <div class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#1e3a8a] dark:text-amber-300">
+                <Icon name="lucide:package-check" class="h-3.5 w-3.5" /> Qué incluye el Pack
+              </div>
+              <span class="shrink-0 rounded-full bg-amber-400 px-2 py-0.5 text-[10px] font-bold text-[#0B1D3A]">15+ IAs premium</span>
+            </div>
 
-      <p class="sr-only" aria-live="polite" data-hero-live></p>
+            <ul class="mt-2.5 grid gap-1.5">
+              {packIncluye.map((b) => (
+                <li class="flex items-start gap-2">
+                  <span class="mt-[1px] flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-slate-200 bg-slate-50 text-[#1e3a8a] dark:border-slate-700 dark:bg-slate-900 dark:text-amber-300">
+                    <Icon name={b.icon} class="h-3 w-3" />
+                  </span>
+                  <span class="min-w-0 text-[11.5px] leading-snug">
+                    <strong class="font-display font-bold uppercase tracking-wide text-slate-800 dark:text-white">{b.cat}:</strong>
+                    <span class="text-slate-500 dark:text-slate-400"> {b.items}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Lo que el tesista consigue con este plan */}
+          <div class="mt-3 rounded-2xl border border-slate-200 bg-white p-3.5 dark:border-slate-700 dark:bg-slate-800/60">
+            <div class="flex items-center justify-between gap-2">
+              <div class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#1e3a8a] dark:text-amber-300">
+                <Icon name="lucide:trending-up" class="h-3.5 w-3.5" /> Lo que vas a mejorar
+              </div>
+              <span class="shrink-0 rounded-full bg-[#0B1D3A] px-2 py-0.5 text-[10px] font-bold text-amber-300">Plan {plan.name}</span>
+            </div>
+
+            <ul class="mt-2.5 grid gap-1.5">
+              {mejoras.map((m) => (
+                <li class="flex items-start gap-2 rounded-lg border border-slate-100 bg-slate-50 px-2.5 py-1.5 dark:border-slate-800 dark:bg-slate-900/60">
+                  <Icon name="lucide:check" class="mt-[3px] h-3.5 w-3.5 shrink-0 text-amber-500" />
+                  <span class="text-[11.5px] font-semibold leading-snug text-slate-700 dark:text-slate-200">{m}</span>
+                </li>
+              ))}
+            </ul>
+
+            <p class="mt-2 text-[11px] leading-snug text-slate-500 dark:text-slate-400">
+              Con método propio, <strong class="text-slate-600 dark:text-slate-300">IAs académicas</strong> y acompañamiento de un asesor humano.
+            </p>
+          </div>
+
+          {/* Asesoría humana del plan */}
+          <div class="mt-3 grid gap-2 sm:grid-cols-2">
+            {destacadas.map((f) => (
+              <div class="rounded-2xl border border-slate-200 bg-white px-3.5 py-3 dark:border-slate-700 dark:bg-slate-800">
+                <div class="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">{f.label}</div>
+                <div class="mt-0.5 text-[12.5px] font-semibold leading-snug text-slate-800 dark:text-white">{f.value}</div>
+              </div>
+            ))}
+          </div>
+
+          <a
+            href={waPlan(plan.name)}
+            target="_blank"
+            rel="noopener"
+            class="mt-3 flex items-center justify-center gap-2 rounded-full bg-[#0B1D3A] px-6 py-3.5 font-display text-sm font-bold uppercase tracking-wide text-white shadow-lg transition hover:bg-black dark:bg-amber-400 dark:text-[#0B1D3A] dark:hover:bg-amber-300"
+          >
+            {plan.cta} <Icon name="lucide:arrow-right" class="h-4 w-4" />
+          </a>
+          <p class="mt-2 text-center text-[11px] text-slate-400">
+            Acceso inmediato · Cancela cuando quieras · <a href="/#planes" class="font-semibold text-[#1e3a8a] hover:underline dark:text-amber-300">Ver los 3 planes</a>
+          </p>
+        </div>
+
+        {/* floating badge */}
+        <div class="animate-float absolute -right-2 -top-4 hidden items-center gap-2 rounded-2xl bg-amber-400 px-4 py-2 text-xs font-bold uppercase tracking-wide text-[#0B1D3A] shadow-lg sm:flex">
+          <span class="h-2 w-2 rounded-full bg-[#0B1D3A] animate-pulse-soft"></span> Asesoría humana incluida
+        </div>
+      </div>
     </div>
   </div>
 </section>
-
-<script>
-  // Script empaquetado (no inline): así lo permite la CSP de producción,
-  // que solo acepta scripts servidos desde el propio dominio.
-  const root = document.querySelector("[data-hero-carousel]");
-  if (root) {
-    const DOT_IDLE = root.dataset.dotIdle;
-    const DOT_ACTIVE = root.dataset.dotActive;
-    const track = root.querySelector("[data-hero-track]");
-    const slides = Array.from(root.querySelectorAll("[data-hero-slide]"));
-    const dots = Array.from(root.querySelectorAll("[data-hero-dot]"));
-    const live = root.querySelector("[data-hero-live]");
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const DELAY = 8000;
-
-    let index = Number(root.dataset.heroInitial || 0);
-    let timer = null;
-    // Si el usuario ya eligió un plan, no volvemos a rotar solos
-    let detenido = false;
-
-    function render() {
-      track.style.transform = `translateX(-${index * 100}%)`;
-      slides.forEach((slide, i) => {
-        const activo = i === index;
-        slide.setAttribute("aria-hidden", activo ? "false" : "true");
-        // Evita que el tabulador entre a los slides ocultos
-        slide.inert = !activo;
-      });
-      dots.forEach((dot, i) => {
-        const activo = i === index;
-        dot.className = activo ? DOT_ACTIVE : DOT_IDLE;
-        dot.setAttribute("aria-current", activo ? "true" : "false");
-      });
-      if (live) live.textContent = `Plan ${slides[index].dataset.planName}, ${index + 1} de ${slides.length}`;
-    }
-
-    function stop() {
-      if (timer) { clearInterval(timer); timer = null; }
-    }
-    function start() {
-      if (reduced || detenido || timer || document.hidden) return;
-      timer = setInterval(() => go(index + 1), DELAY);
-    }
-    function go(next, manual) {
-      index = (next + slides.length) % slides.length;
-      render();
-      if (manual) { detenido = true; stop(); }
-    }
-
-    dots.forEach((dot) => dot.addEventListener("click", () => go(Number(dot.dataset.index), true)));
-    root.querySelector("[data-hero-prev]").addEventListener("click", () => go(index - 1, true));
-    root.querySelector("[data-hero-next]").addEventListener("click", () => go(index + 1, true));
-
-    root.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft") { go(index - 1, true); }
-      if (e.key === "ArrowRight") { go(index + 1, true); }
-    });
-
-    root.addEventListener("mouseenter", stop);
-    root.addEventListener("mouseleave", start);
-    root.addEventListener("focusin", stop);
-    document.addEventListener("visibilitychange", () => (document.hidden ? stop() : start()));
-
-    let x0 = null;
-    track.addEventListener("touchstart", (e) => { x0 = e.changedTouches[0].clientX; }, { passive: true });
-    track.addEventListener("touchend", (e) => {
-      if (x0 === null) return;
-      const dx = e.changedTouches[0].clientX - x0;
-      if (Math.abs(dx) > 45) go(index + (dx < 0 ? 1 : -1), true);
-      x0 = null;
-    }, { passive: true });
-
-    render();
-    start();
-  }
-</script>

@@ -117,7 +117,7 @@ ${blogIndex}
 Para el contenido íntegro de cada artículo, visita las URLs listadas en /llms.txt.
 
 ## 11. Contacto y adquisición
-- WhatsApp: +51 927 580 985 — https://api.whatsapp.com/send/?phone=51927580985
+- WhatsApp: +51 992 005 096 — https://api.whatsapp.com/send/?phone=51992005096
 - Email: informes@asesorestesisperu.com
 - Formulario: ${SITE.url}/#contacto
 - CTA: Adquiere tu plan en ${SITE.url}/#planes

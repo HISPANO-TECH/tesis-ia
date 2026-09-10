@@ -27,7 +27,7 @@ export const SITE = {
     alternateName: "Pack IAs Investigador Pro",
     url: "https://tesis-ia.com",
     logo: "https://tesis-ia.com/favicon.svg",
-    sameAs: ["https://api.whatsapp.com/send/?phone=51927580985"],
+    sameAs: ["https://api.whatsapp.com/send/?phone=51992005096"],
     address: {
       streetAddress: "Lima, Perú",
       addressLocality: "Lima",
@@ -35,7 +35,7 @@ export const SITE = {
       addressCountry: "PE",
     },
     contact: {
-      telephone: "+51927580985",
+      telephone: "+51992005096",
       contactType: "customer service",
       email: "informes@asesorestesisperu.com",
     },
