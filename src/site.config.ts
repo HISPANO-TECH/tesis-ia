@@ -1,12 +1,12 @@
 export const SITE = {
   url: "https://tesis-ia.com",
-  name: "Tesis IA - Pack IAs Investigador Pro",
+  name: "Tesis IA - Plan IAs Investigador Pro",
   legalName: "Tesis IA",
   description:
-    "Pack IAs Investigador Pro: acelera tu tesis sin mitos ni atajos vacíos. IAs con acceso académico, plantillas, prompts, manuales, asesorías grupales y personalizadas para sustentar con confianza.",
+    "Plan IAs Investigador Pro: acelera tu tesis sin mitos ni atajos vacíos. IAs con acceso académico, plantillas, prompts, manuales, asesorías grupales y personalizadas para sustentar con confianza.",
   keywords: [
     "tesis con ia",
-    "pack ias investigador pro",
+    "plan ias investigador pro",
     "tesis ia",
     "asesoria tesis",
     "herramientas ia tesis",
@@ -19,12 +19,12 @@ export const SITE = {
     "claude max tesis",
     "perplexity pro academico",
     "notebooklm tesis",
-    "pack de ias para investigadores",
+    "plan de ias para investigadores",
   ],
   locale: "es",
   organization: {
     name: "Tesis IA",
-    alternateName: "Pack IAs Investigador Pro",
+    alternateName: "Plan IAs Investigador Pro",
     url: "https://tesis-ia.com",
     logo: "https://tesis-ia.com/favicon.svg",
     sameAs: ["https://api.whatsapp.com/send/?phone=51992005096"],

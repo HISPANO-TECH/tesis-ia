@@ -36,7 +36,7 @@ Esto se llama alucinación y es el riesgo número uno al usar IA en una tesis.
 
 ### Búsqueda de fuentes
 - **IA gratuita:** genera títulos y autores "probables". No diferencia una revista indexada de un blog. Fecha de corte de conocimiento desactualizada.
-- **IA con Scopus (tipo Pack Investigador Pro):** consulta índices académicos reales. Devuelve artículos que existen, con autor, año, revista y DOI verificables.
+- **IA con Scopus (tipo Plan Investigador Pro):** consulta índices académicos reales. Devuelve artículos que existen, con autor, año, revista y DOI verificables.
 
 ### Referencias y DOIs
 - **IA gratuita:** inventa DOIs; el formato parece correcto pero el enlace no abre.
@@ -94,7 +94,7 @@ Lo que **no** deberías hacer con ellas: pedirles la bibliografía de tu marco t
 
 ## Qué incluye una IA académica bien configurada
 
-En el Pack IAs Investigador Pro, las IAs del workspace están orientadas a investigación académica:
+En el Plan IAs Investigador Pro, las IAs del workspace están orientadas a investigación académica:
 
 - Búsqueda en bases indexadas (Scopus y otras) con resultados reales.
 - Control de alucinaciones mediante verificación de fuentes.
@@ -107,4 +107,4 @@ Eso no elimina tu responsabilidad de leer, entender y citar bien: la herramienta
 
 No es "gratis vs. pago" por esnobismo: es **referencias reales vs. referencias inventadas**, y eso es exactamente lo que tu jurado evalúa. Si tu presupuesto no alcanza una herramienta académica, al menos verifica manualmente cada fuente de la IA gratuita.
 
-El siguiente paso natural es armar el capítulo II con ese material: sigue el proceso de [marco teórico con IA sin fuentes inventadas](/blog/marco-teorico-con-ia-pasos) y cuida la similitud con la guía de [cómo usar IA sin plagio](/blog/como-usar-ia-tesis-sin-plagio). Si quieres el acceso completo —Perplexity Pro, Claude Max, NotebookLM y las demás IAs de búsqueda académica— está todo en el [Pack IAs Investigador Pro](/#pack) desde $20/mes.
+El siguiente paso natural es armar el capítulo II con ese material: sigue el proceso de [marco teórico con IA sin fuentes inventadas](/blog/marco-teorico-con-ia-pasos) y cuida la similitud con la guía de [cómo usar IA sin plagio](/blog/como-usar-ia-tesis-sin-plagio). Si quieres el acceso completo —Perplexity Pro, Claude Max, NotebookLM y las demás IAs de búsqueda académica— está todo en el [Plan IAs Investigador Pro](/#pack) desde $20/mes.

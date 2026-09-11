@@ -11,10 +11,10 @@ export function waLink(message: string) {
 
 // Mensajes base - wording seguro (asesoría, no suplantación)
 export const WA_MESSAGES = {
-  general: "Hola, quiero contactarme para recibir información sobre asesoría en tesis universitaria en Perú. Vengo de tesis-ia.com - Pack IAs Investigador Pro",
+  general: "Hola, quiero contactarme para recibir información sobre asesoría en tesis universitaria en Perú. Vengo de tesis-ia.com - Plan IAs Investigador Pro",
   generalCorto: "Hola, quiero contactarme para recibir información sobre asesoría en tesis universitaria en Perú. Vengo de tesis-ia.com",
-  plan: (plan: string) => `Hola, quiero contactarme para recibir información sobre asesoría en tesis universitaria en Perú. Vengo de tesis-ia.com y quiero el plan ${plan} del Pack IAs Investigador Pro. ¿Cómo adquiero mi acceso?`,
-  integral: "Hola, quiero contactarme para recibir información sobre asesoría en tesis universitaria en Perú. Vengo de tesis-ia.com - Pack IAs Investigador Pro y quiero avanzar mi tesis de forma integral",
+  plan: (plan: string) => `Hola, quiero contactarme para recibir información sobre asesoría en tesis universitaria en Perú. Vengo de tesis-ia.com y quiero el Plan IAs Investigador Pro en la modalidad ${plan}. ¿Cómo adquiero mi acceso?`,
+  integral: "Hola, quiero contactarme para recibir información sobre asesoría en tesis universitaria en Perú. Vengo de tesis-ia.com - Plan IAs Investigador Pro y quiero avanzar mi tesis de forma integral",
 } as const;
 
 // Links listos

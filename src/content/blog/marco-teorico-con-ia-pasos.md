@@ -49,7 +49,7 @@ En lugar de preguntar "dame autores", pide a la IA con acceso a bases académica
 
 > "Busca en Scopus y SciELO artículos sobre [dimensión] en los últimos 10 años, en español e inglés, y devuélveme DOI, autores, año y resumen de cada uno."
 
-Cada resultado lo debes abrir y confirmar. Si el DOI no resuelve, descarta la referencia. En el Pack IAs Investigador Pro incluimos IAs configuradas para búsqueda académica, pero el criterio de validación es tuyo y de tu asesor.
+Cada resultado lo debes abrir y confirmar. Si el DOI no resuelve, descarta la referencia. En el Plan IAs Investigador Pro incluimos IAs configuradas para búsqueda académica, pero el criterio de validación es tuyo y de tu asesor.
 
 ## Paso 3: Ficha de fuente para cada referencia
 
@@ -116,4 +116,4 @@ Pregunta siempre a tu asesor por el formato exacto de tu facultad: no existe un 
 
 Un buen marco teórico con IA es 20% herramienta y 80% método: estructura previa, fuentes verificadas y redacción propia.
 
-Para continuar: usa los [prompts por capítulo](/blog/prompts-tesis-que-si-funcionan) al redactar cada dimensión, controla la similitud con la guía de [uso de IA sin plagio](/blog/como-usar-ia-tesis-sin-plagio) y ubica esta etapa dentro del [cronograma realista de 8 semanas](/blog/tesis-en-un-mes-mito-realidad). Las IAs de búsqueda académica, las plantillas de matriz y la revisión de tu capítulo II con feedback están en el [Pack IAs Investigador Pro](/#pack).
+Para continuar: usa los [prompts por capítulo](/blog/prompts-tesis-que-si-funcionan) al redactar cada dimensión, controla la similitud con la guía de [uso de IA sin plagio](/blog/como-usar-ia-tesis-sin-plagio) y ubica esta etapa dentro del [cronograma realista de 8 semanas](/blog/tesis-en-un-mes-mito-realidad). Las IAs de búsqueda académica, las plantillas de matriz y la revisión de tu capítulo II con feedback están en el [Plan IAs Investigador Pro](/#pack).

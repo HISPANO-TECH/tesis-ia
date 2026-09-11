@@ -97,7 +97,7 @@ Son, casualmente, las cuatro cosas que evalúa la sustentación. Cuánto se pued
 
 Contratadas por separado, estas herramientas superan holgadamente los **US$300 al mes** según sus precios de lista: solo los planes superiores de los modelos de lenguaje se llevan la mayor parte, y a eso se suman el detector, el parafraseador y las herramientas de presentación. Para un tesista que necesita el stack tres o cuatro meses, es una barrera real.
 
-Esa es exactamente la razón por la que armamos el [Pack IAs Investigador Pro](/#pack): un solo acceso con ChatGPT Pro, Claude Max, Gemini Ultra, Perplexity Pro, NotebookLM Pro, Turnitin, QuillBot Premium, WriteHuman, Gamma Ultra y Canva Pro, más el kit metodológico (prompts, plantillas, manuales) y asesoría humana que conoce los protocolos de las universidades peruanas, desde [US$20 al mes](/#planes).
+Esa es exactamente la razón por la que armamos el [Plan IAs Investigador Pro](/#pack): un solo acceso con ChatGPT Pro, Claude Max, Gemini Ultra, Perplexity Pro, NotebookLM Pro, Turnitin, QuillBot Premium, WriteHuman, Gamma Ultra y Canva Pro, más el kit metodológico (prompts, plantillas, manuales) y asesoría humana que conoce los protocolos de las universidades peruanas, desde [US$20 al mes](/#planes).
 
 ## Conclusión
 

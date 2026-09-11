@@ -114,4 +114,4 @@ Pero es un error delegarle la elección de la prueba. El jurado evalúa que **en
 
 Elegir bien la prueba estadística es una decisión metodológica que te corresponde. Domina normalidad, diseño y tipo de variable, y la sustentación será un trámite.
 
-Para interpretar tus tablas sin inventar conclusiones, apóyate en el [prompt de interpretación estadística](/blog/prompts-tesis-que-si-funcionan) y ubica esta etapa en tu [cronograma de trabajo](/blog/tesis-en-un-mes-mito-realidad). Si quieres resolver tus dudas de SPSS en sesiones 1:1 y que revisemos tu capítulo de resultados, mira los planes [Avance y Graduación](/#planes) del [Pack IAs Investigador Pro](/#pack).
+Para interpretar tus tablas sin inventar conclusiones, apóyate en el [prompt de interpretación estadística](/blog/prompts-tesis-que-si-funcionan) y ubica esta etapa en tu [cronograma de trabajo](/blog/tesis-en-un-mes-mito-realidad). Si quieres resolver tus dudas de SPSS en sesiones 1:1 y que revisemos tu capítulo de resultados, mira los planes [Avance y Graduación](/#planes) del [Plan IAs Investigador Pro](/#pack).

@@ -1,5 +1,5 @@
 // Fuente única de los planes: la usan PlanesSection y el modal de promoción
-// del Pack, para que los precios y beneficios no se dupliquen ni se desincronicen.
+// del Plan, para que los precios y beneficios no se dupliquen ni se desincronicen.
 
 export const WHATSAPP_PHONE = "51992005096";
 
@@ -12,7 +12,7 @@ export function waLink(text: string) {
 
 export function waPlan(plan: string) {
   return waLink(
-    `Hola, quiero contactarme para recibir información sobre asesoría en tesis universitaria en Perú. Vengo de tesis-ia.com y quiero el plan ${plan} del Pack IAs Investigador Pro. ¿Cómo adquiero mi acceso?`
+    `Hola, quiero contactarme para recibir información sobre asesoría en tesis universitaria en Perú. Vengo de tesis-ia.com y quiero el Plan IAs Investigador Pro en la modalidad ${plan}. ¿Cómo adquiero mi acceso?`
   );
 }
 
@@ -39,9 +39,9 @@ export const PLANES: Plan[] = [
     price: "20",
     badge: null,
     // Resumen corto para el modal (una línea por plan)
-    resumen: "Pack de IAs + kit metodológico + 1 asesoría grupal al mes.",
+    resumen: "Plan de IAs + kit metodológico + 1 asesoría grupal al mes.",
     features: [
-      { label: "Acceso a IAs", value: "Pack IAs Investigador Pro" },
+      { label: "Acceso a IAs", value: "Plan IAs Investigador Pro" },
       { label: "Plantillas y manuales", value: "Kit básico (Prompts, manuales, videos, plantillas)" },
       { label: "Asesoría grupal", value: "1 sesión grupal / mes" },
       { label: "Asesoría individual", value: "—", muted: true },
@@ -57,7 +57,7 @@ export const PLANES: Plan[] = [
     badge: "Más vendido",
     resumen: "Todo lo anterior + grupales semanales y revisión de 1 capítulo al mes.",
     features: [
-      { label: "Acceso a IAs", value: "Pack IAs Investigador Pro" },
+      { label: "Acceso a IAs", value: "Plan IAs Investigador Pro" },
       { label: "Plantillas y manuales", value: "Kit básico (Prompts, manuales, videos, plantillas)" },
       { label: "Asesoría grupal", value: "1 sesión grupal / semanal" },
       { label: "Asesoría individual", value: "—", muted: true },
@@ -73,7 +73,7 @@ export const PLANES: Plan[] = [
     badge: "Asesoría 1:1",
     resumen: "Todo lo anterior + 1 sesión personalizada al mes y línea directa con tu asesor.",
     features: [
-      { label: "Acceso a IAs", value: "Pack IAs Investigador Pro" },
+      { label: "Acceso a IAs", value: "Plan IAs Investigador Pro" },
       { label: "Plantillas y manuales", value: "Kit básico (Prompts, manuales, videos, plantillas)" },
       { label: "Asesoría grupal", value: "1 sesión grupal / semanal" },
       { label: "Asesoría individual", value: "1 sesión personalizada / mes" },

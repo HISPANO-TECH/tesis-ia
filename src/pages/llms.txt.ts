@@ -24,24 +24,24 @@ export async function GET() {
 - Contacto: ${SITE.organization.contact.telephone} / informes@asesorestesisperu.com
 - WhatsApp: https://api.whatsapp.com/send/?phone=51992005096
 
-## Qué es el Pack IAs Investigador Pro
-Pack de IAs académicas + kit (prompts, manuales, videos, plantillas) + acompañamiento humano para desarrollar tesis de pregrado, maestría y doctorado con rigor metodológico y criterio anti-plagio. Servicio de asesoría, guía y revisión: la autoría académica siempre es del estudiante.
+## Qué es el Plan IAs Investigador Pro
+Plan de IAs académicas + kit (prompts, manuales, videos, plantillas) + acompañamiento humano para desarrollar tesis de pregrado, maestría y doctorado con rigor metodológico y criterio anti-plagio. Servicio de asesoría, guía y revisión: la autoría académica siempre es del estudiante.
 
-## Herramientas del Pack IAs Investigador Pro (incluidas en los 3 planes)
+## Herramientas del Plan IAs Investigador Pro (incluidas en los 3 planes)
 - Redacción y razonamiento: ChatGPT Pro y Plus, Claude Max, Gemini Pro y Ultra, SuperGrok Heavy y Pro
 - Búsqueda académica y lectura: Perplexity Pro, NotebookLM Pro y Ultra, Scribd, flujos hacia Scopus, SciELO, Redalyc y Google Scholar
 - Antiplagio y redacción limpia: Turnitin, WriteHuman, QuillBot Premium, Zotero + plantillas APA 7
 - Sustentación, diseño y formación: Gamma Ultra, Canva Pro, Udemy, Domestika y Platzi, prompts y plantillas por capítulo
 - Extras: soporte 24/7, sesiones Meet, comunidad WhatsApp +400 investigadores, nuevas IAs sin costo extra
-Contratadas por separado superan los US$300/mes (precios de lista referenciales); en el Pack están incluidas desde US$20/mes.
+Contratadas por separado superan los US$300/mes (precios de lista referenciales); en el Plan están incluidas desde US$20/mes.
 
 ## Alerta
 La sola aplicación de las IAs no garantiza un buen desarrollo de tu tesis. Sin metodología, datos propios y conocimiento del protocolo de tu universidad, el jurado lo detecta.
 
 ## Planes (USD/mes, acceso inmediato)
-- Impulso $20 — Pack IAs Investigador Pro + Kit básico + 1 asesoría grupal/mes + comunidad WhatsApp
-- Avance $35 (más vendido) — Pack IAs + Kit + 1 grupal/semana + revisión integral de 1 capítulo/mes + soporte prioritario
-- Graduación $49 — Pack IAs + Kit + 1 grupal/semana + 1 sesión personalizada/mes + revisión de 1 capítulo/mes + línea directa con asesor asignado
+- Impulso $20 — Plan IAs Investigador Pro + Kit básico + 1 asesoría grupal/mes + comunidad WhatsApp
+- Avance $35 (más vendido) — Plan IAs + Kit + 1 grupal/semana + revisión integral de 1 capítulo/mes + soporte prioritario
+- Graduación $49 — Plan IAs + Kit + 1 grupal/semana + 1 sesión personalizada/mes + revisión de 1 capítulo/mes + línea directa con asesor asignado
 
 ## Servicios y temas que resolvemos
 - Uso de IA en tesis sin plagio y con baja similitud en Turnitin
@@ -66,7 +66,7 @@ ${blogBlock}
 - Inicio: ${SITE.url}/
 - Blog (guías de tesis con IA): ${SITE.url}/blog/
 - Planes: ${SITE.url}/#planes
-- Qué incluye el Pack (herramientas): ${SITE.url}/#pack
+- Qué incluye el Plan (herramientas): ${SITE.url}/#pack
 - Mitos de la IA: ${SITE.url}/#mitos
 - Testimonios: ${SITE.url}/#testimonios
 - Cobertura LATAM / universidades: ${SITE.url}/#cobertura

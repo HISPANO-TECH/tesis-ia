@@ -75,7 +75,7 @@ Las IAs gratuitas "alucinan": inventan autores, títulos y hasta DOIs que no exi
 
 Aquí la herramienta que uses marca una diferencia real: lo comparamos a fondo en [Scopus vs. IA gratis: por qué tu jurado nota la diferencia](/blog/scopus-vs-ia-gratis-diferencias). Y si todavía no tienes claro qué modelo conviene para cada tarea, revisa [qué IAs sirven realmente para hacer una tesis](/blog/que-ias-sirven-para-hacer-tesis).
 
-En el Pack IAs Investigador Pro usamos IAs con acceso a bases académicas reales para minimizar este riesgo, pero la verificación final siempre la haces tú.
+En el Plan IAs Investigador Pro usamos IAs con acceso a bases académicas reales para minimizar este riesgo, pero la verificación final siempre la haces tú.
 
 ### 4. Cita en APA 7 con un gestor de referencias
 
@@ -118,4 +118,4 @@ Lo que **no** debe aparecer nunca es una idea, un dato o una cita generada por I
 
 La IA bien usada reduce tu similitud, no la aumenta: te ayuda a estructurar, parafrasear mejor y organizar citas reales. El problema nunca ha sido la herramienta, sino entregar sin pensar.
 
-Para aplicarlo desde hoy: arma el capítulo II con el método de [marco teórico con IA sin fuentes inventadas](/blog/marco-teorico-con-ia-pasos), pídele a la IA con los [prompts validados por capítulo](/blog/prompts-tesis-que-si-funcionan) y trabaja con las herramientas del [Pack IAs Investigador Pro](/#pack) —Turnitin, WriteHuman, QuillBot Premium y las IAs con acceso académico— más revisión humana de tus capítulos desde $20/mes.
+Para aplicarlo desde hoy: arma el capítulo II con el método de [marco teórico con IA sin fuentes inventadas](/blog/marco-teorico-con-ia-pasos), pídele a la IA con los [prompts validados por capítulo](/blog/prompts-tesis-que-si-funcionan) y trabaja con las herramientas del [Plan IAs Investigador Pro](/#pack) —Turnitin, WriteHuman, QuillBot Premium y las IAs con acceso académico— más revisión humana de tus capítulos desde $20/mes.

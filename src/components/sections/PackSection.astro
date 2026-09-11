@@ -1,14 +1,22 @@
 ---
 import { Icon } from "astro-icon/components";
 import PackModal from "../ui/PackModal.astro";
+import { PACK_CATEGORIAS, PACK_BENEFICIOS, IAS_LABEL } from "../../config/pack";
+import { PLANES } from "../../config/planes";
 
-// Pack IAs Investigador Pro: hablamos de lo que resuelve el Pack, no de marcas
-// de terceros. Todo el peso promocional queda en nuestro propio producto.
+// Las IAs concretas salen de src/config/pack.ts (misma fuente que el Hero).
+// Cada bloque de abajo agrupa una o más categorías del Plan.
+const iasDe = (...cats: string[]) =>
+  cats.flatMap((c) => PACK_CATEGORIAS.find((x) => x.cat === c)?.ias ?? []);
+
+// Plan IAs Investigador Pro: qué resuelve cada familia de herramientas y con
+// qué IAs se resuelve, para que el tesista vea exactamente lo que recibe.
 const bloques = [
   {
     titulo: "Redacción y razonamiento",
     resumen: "Para escribir capítulos que sí avanzan.",
     icon: "lucide:brain",
+    ias: iasDe("Redacción"),
     tools: [
       { name: "Borradores por capítulo", desc: "Esquemas, redacción y corrección de estilo en minutos", icon: "lucide:file-text" },
       { name: "Lectura de documentos largos", desc: "Sube capítulos completos y recibe análisis, no resúmenes vacíos", icon: "lucide:book-open" },
@@ -20,6 +28,7 @@ const bloques = [
     titulo: "Búsqueda académica y lectura",
     resumen: "Para conseguir fuentes que existen, con DOI verificable.",
     icon: "lucide:search-check",
+    ias: iasDe("Investiga"),
     tools: [
       { name: "Fuentes con cita rastreable", desc: "Cada referencia con su enlace y DOI comprobable", icon: "lucide:link" },
       { name: "Tu biblioteca de PDFs", desc: "Pregunta a tus propios documentos y recibe respuestas citadas", icon: "lucide:notebook-pen" },
@@ -31,6 +40,7 @@ const bloques = [
     titulo: "Antiplagio y redacción limpia",
     resumen: "Para llegar a la entrega sin sustos de similitud.",
     icon: "lucide:shield-check",
+    ias: iasDe("Detecta", "Humaniza"),
     tools: [
       { name: "Reporte de similitud", desc: "Revisión antiplagio y detección de IA antes de entregar", icon: "lucide:scan-line" },
       { name: "Humanización de texto", desc: "Uso ilimitado para que tu redacción no suene a robot", icon: "lucide:wand" },
@@ -42,6 +52,7 @@ const bloques = [
     titulo: "Sustentación, diseño y formación",
     resumen: "Para cerrar: diapositivas, gráficos y cursos.",
     icon: "lucide:presentation",
+    ias: iasDe("Sustenta"),
     tools: [
       { name: "Diapositivas de sustentación", desc: "Presentaciones listas con créditos renovables", icon: "lucide:layers" },
       { name: "Figuras, tablas y diseño", desc: "Gráficos y piezas visuales para tu documento", icon: "lucide:image" },
@@ -51,14 +62,14 @@ const bloques = [
   },
 ];
 
-// Videos de presentación del Pack: se muestran encima del encabezado.
+// Videos de presentación del Plan: se muestran encima del encabezado.
 // Cargamos solo la miniatura y el iframe de YouTube se inserta al hacer clic,
 // para no arrastrar el peso del reproductor en cada visita.
 // Para sumar más videos basta con añadir otro objeto a este arreglo.
 const videos = [
   {
     id: "vaVu_0vXXHk",
-    titulo: "Pack IAs Investigador Pro en acción",
+    titulo: "Plan IAs Investigador Pro en acción",
     desc: "Cómo trabajan las IAs académicas y el asesor humano en tu tesis",
   },
 ];
@@ -70,19 +81,11 @@ const extras = [
   { label: "Nuevas IAs incluidas sin costo extra", icon: "lucide:refresh-cw" },
 ];
 
-// Comparativa de ahorro: cuánto costaría armar por tu cuenta lo que el Pack ya
-// entrega en un solo acceso (precios de lista públicos, referenciales).
-const ahorro = [
-  { label: "Suscripciones de redacción y razonamiento", precio: 180 },
-  { label: "Búsqueda académica y lectura de PDFs", precio: 45 },
-  { label: "Antiplagio, humanización y parafraseo", precio: 50 },
-  { label: "Diseño y diapositivas de sustentación", precio: 30 },
-  { label: "Cursos y formación continua", precio: 25 },
-];
-const totalSuelto = ahorro.reduce((s, a) => s + a.precio, 0);
-const precioPack = 20;
-const ahorroMes = totalSuelto - precioPack;
-const ahorroAnual = (ahorroMes * 12).toLocaleString("en-US");
+// Ahorro mensual para la fila de métricas: cuánto costaría armar por tu cuenta
+// lo que el Plan entrega en un solo acceso (precios de lista, referenciales).
+const costoSuelto = [180, 45, 50, 30, 25].reduce((s, p) => s + p, 0);
+const precioPack = Number(PLANES[0].price);
+const ahorroMes = costoSuelto - precioPack;
 ---
 
 <section id="pack" class="relative overflow-hidden bg-gradient-to-b from-white via-[#f6f8fc] to-[#fffbeb] py-10 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900 md:py-16">
@@ -94,7 +97,7 @@ const ahorroAnual = (ahorroMes * 12).toLocaleString("en-US");
   </div>
 
   <div class="relative mx-auto max-w-7xl px-6">
-    <!-- Video(s) de presentación del Pack -->
+    <!-- Video(s) de presentación del Plan -->
     <div class="reveal mb-10 md:mb-12">
       <div class="text-center">
         <span class="inline-flex items-center gap-2 rounded-full border border-amber-200 bg-white px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-amber-700 shadow-sm dark:border-amber-800/60 dark:bg-slate-900 dark:text-amber-300">
@@ -136,7 +139,7 @@ const ahorroAnual = (ahorroMes * 12).toLocaleString("en-US");
                 data-pack-modal
                 class="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-amber-400 px-4 py-2 font-display text-[11px] font-bold uppercase tracking-wide text-[#0B1D3A] transition hover:bg-amber-300"
               >
-                Quiero el Pack <Icon name="lucide:arrow-right" class="h-3.5 w-3.5" />
+                Quiero el Plan <Icon name="lucide:arrow-right" class="h-3.5 w-3.5" />
               </button>
             </figcaption>
           </figure>
@@ -147,7 +150,7 @@ const ahorroAnual = (ahorroMes * 12).toLocaleString("en-US");
     <!-- Encabezado -->
     <div class="mx-auto max-w-3xl text-center">
       <h2 class="split-letters font-display text-[30px] font-bold leading-none tracking-tight text-slate-900 dark:text-white md:text-[42px]">
-        QUÉ ES EL <span class="text-[#1e3a8a] dark:text-amber-400">PACK IAS INVESTIGADOR PRO</span>
+        QUÉ ES EL <span class="text-[#1e3a8a] dark:text-amber-400">PLAN IAS INVESTIGADOR PRO</span>
       </h2>
       <p class="mt-4 text-[17px] leading-relaxed text-slate-600 dark:text-slate-300">
         Un solo acceso con <strong class="text-[#0B1D3A] dark:text-amber-200">todas las IAs premium que un tesista realmente necesita</strong>: redacción, búsqueda académica, antiplagio y sustentación. Más kit metodológico y asesor humano. Sin pagar 15 suscripciones por separado.
@@ -159,7 +162,7 @@ const ahorroAnual = (ahorroMes * 12).toLocaleString("en-US");
           data-pack-modal
           class="inline-flex items-center gap-2 rounded-full bg-[#0B1D3A] px-6 py-3 font-display text-sm font-bold uppercase tracking-wide text-white shadow-lg shadow-blue-950/20 transition hover:scale-[1.02] hover:bg-black dark:bg-amber-400 dark:text-[#0B1D3A] dark:hover:bg-amber-300"
         >
-          <Icon name="lucide:sparkles" class="h-4 w-4" /> Ver promoción del Pack
+          <Icon name="lucide:sparkles" class="h-4 w-4" /> Ver promoción del Plan
         </button>
         <a href="/#planes" class="inline-flex items-center gap-2 rounded-full border-2 border-[#1e3a8a] px-6 py-3 font-display text-sm font-bold uppercase tracking-wide text-[#1e3a8a] transition hover:bg-[#1e3a8a] hover:text-white dark:border-amber-400/60 dark:text-amber-300 dark:hover:bg-amber-400 dark:hover:text-[#0B1D3A]">
           Ver planes
@@ -170,7 +173,7 @@ const ahorroAnual = (ahorroMes * 12).toLocaleString("en-US");
     <!-- Métricas -->
     <div class="reveal mx-auto mt-8 grid max-w-4xl grid-cols-2 gap-3 md:grid-cols-4">
       {[
-        { n: "15+", t: "IAs premium" },
+        { n: IAS_LABEL, t: "IAs premium" },
         { n: "1", t: "solo acceso" },
         { n: `US$${ahorroMes}`, t: "de ahorro al mes" },
         { n: "+400", t: "investigadores" },
@@ -199,7 +202,19 @@ const ahorroAnual = (ahorroMes * 12).toLocaleString("en-US");
             </div>
           </div>
 
-          <ul class="mt-5 grid gap-2.5">
+          {/* Las IAs concretas de este bloque, con el nombre resaltado */}
+          <div class="mt-4 rounded-2xl border border-amber-200 bg-amber-50/70 px-3.5 py-3 dark:border-amber-500/30 dark:bg-amber-400/[0.07]">
+            <div class="font-display text-[10px] font-bold uppercase tracking-widest text-amber-700 dark:text-amber-400">IAs incluidas</div>
+            <div class="mt-2 flex flex-wrap gap-2">
+              {b.ias.map((ia) => (
+                <span class="inline-flex items-center gap-1.5 rounded-lg border border-amber-300 bg-white px-2.5 py-1 font-display text-[14px] font-bold leading-tight text-[#0B1D3A] shadow-sm dark:border-amber-500/50 dark:bg-slate-900 dark:text-amber-200">
+                  <Icon name="lucide:sparkles" class="h-3 w-3 shrink-0 text-amber-500" /> {ia}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <ul class="mt-4 grid gap-2.5">
             {b.tools.map((t) => (
               <li class="flex items-center gap-3 rounded-xl border border-slate-100 bg-slate-50 px-3 py-2.5 dark:border-slate-800 dark:bg-slate-950/50">
                 <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white text-[#1e3a8a] dark:border-slate-700 dark:bg-slate-800 dark:text-amber-300">
@@ -216,6 +231,32 @@ const ahorroAnual = (ahorroMes * 12).toLocaleString("en-US");
       ))}
     </div>
 
+    <!-- Beneficios principales del Plan -->
+    <div class="reveal mt-8">
+      <div class="text-center">
+        <span class="inline-flex items-center gap-2 rounded-full border border-amber-200 bg-white px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-amber-700 shadow-sm dark:border-amber-800/60 dark:bg-slate-900 dark:text-amber-300">
+          <Icon name="lucide:award" class="h-3.5 w-3.5" /> Beneficios principales
+        </span>
+        <h3 class="mt-3 font-display text-[22px] font-bold leading-tight tracking-tight text-slate-900 dark:text-white md:text-[28px]">
+          Lo que te llevas con el <span class="text-[#1e3a8a] dark:text-amber-400">Plan Investigador Pro</span>
+        </h3>
+      </div>
+
+      <div class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {PACK_BENEFICIOS.map((b) => (
+          <div class="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-amber-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-amber-800/60">
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-amber-400 text-[#0B1D3A]">
+              <Icon name={b.icon} class="h-4 w-4" />
+            </span>
+            <div class="min-w-0">
+              <div class="font-display text-[15px] font-bold leading-snug text-slate-900 dark:text-white">{b.titulo}</div>
+              <p class="mt-1 text-[12.5px] leading-snug text-slate-500 dark:text-slate-400">{b.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
     <!-- Extras -->
     <div class="reveal mt-6 flex flex-wrap justify-center gap-2.5">
       {extras.map((e) => (
@@ -224,66 +265,6 @@ const ahorroAnual = (ahorroMes * 12).toLocaleString("en-US");
         </span>
       ))}
     </div>
-
-    <!-- Comparativa de ahorro -->
-    <div class="reveal mt-8 grid gap-5 lg:grid-cols-[1.1fr_1fr] lg:gap-6">
-      <div class="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-7">
-        <div class="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-slate-500 dark:bg-slate-800 dark:text-slate-400">
-          <Icon name="lucide:calculator" class="h-3.5 w-3.5" /> Si lo armas por tu cuenta
-        </div>
-        <ul class="mt-4 divide-y divide-slate-100 dark:divide-slate-800">
-          {ahorro.map((a) => (
-            <li class="flex items-center justify-between gap-4 py-2.5">
-              <span class="text-[13px] leading-snug text-slate-600 dark:text-slate-300">{a.label}</span>
-              <span class="shrink-0 font-display text-[14px] font-bold text-slate-400 line-through dark:text-slate-500">US${a.precio}/mes</span>
-            </li>
-          ))}
-        </ul>
-        <div class="mt-4 flex items-center justify-between gap-4 rounded-2xl bg-slate-50 px-4 py-3 dark:bg-slate-950/60">
-          <span class="font-display text-[13px] font-bold uppercase tracking-wide text-slate-700 dark:text-slate-200">Total por separado</span>
-          <span class="font-display text-xl font-bold text-slate-500 line-through dark:text-slate-400">US${totalSuelto}/mes</span>
-        </div>
-        <p class="mt-3 text-[11px] leading-relaxed text-slate-400 dark:text-slate-500">
-          Estimado referencial en base a precios de lista públicos de suscripciones equivalentes. Puede variar según proveedor y tipo de cambio.
-        </p>
-      </div>
-
-      <div class="overflow-hidden rounded-[24px] bg-gradient-to-r from-amber-400 to-[#facc15] p-[1.5px] shadow-lg shadow-amber-900/10">
-        <div class="flex h-full flex-col justify-center rounded-[22px] bg-[#0B1D3A] px-6 py-7 text-center sm:px-8">
-          <div class="mx-auto inline-flex items-center gap-2 rounded-full border border-amber-400/40 bg-amber-400/15 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-amber-200">
-            <span class="h-2 w-2 rounded-full bg-amber-400 animate-pulse-soft"></span> Con el Pack Investigador Pro
-          </div>
-          <div class="mt-4 flex items-baseline justify-center gap-1.5">
-            <span class="font-display text-sm font-bold text-blue-100/70">desde US$</span>
-            <span class="font-display text-[56px] font-bold leading-none text-amber-300">{precioPack}</span>
-            <span class="font-display text-sm font-bold text-blue-100/70">/mes</span>
-          </div>
-          <p class="mt-4 font-display text-lg font-bold leading-snug text-white">
-            Te ahorras <span class="text-amber-300">US${ahorroMes} al mes</span><br />
-            más de <span class="text-amber-300">US${ahorroAnual} al año</span>
-          </p>
-          <p class="mt-2 text-sm leading-relaxed text-blue-100/80">
-            Y no solo son accesos: sumas kit metodológico, plantillas por capítulo, asesor humano y soporte 24/7 en el mismo precio.
-          </p>
-          <div class="mt-6 flex flex-col gap-2 sm:flex-row sm:justify-center">
-            <button
-              type="button"
-              data-pack-modal
-              class="inline-flex items-center justify-center gap-2 rounded-full bg-amber-400 px-6 py-3 font-display text-sm font-bold uppercase tracking-wide text-[#0B1D3A] shadow-lg shadow-amber-900/20 transition hover:bg-amber-300"
-            >
-              Quiero el Pack <Icon name="lucide:arrow-right" class="h-4 w-4" />
-            </button>
-            <a href="/#planes" class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-amber-400/50 px-6 py-3 font-display text-sm font-bold uppercase tracking-wide text-white transition hover:bg-amber-400 hover:text-[#0B1D3A]">
-              Ver planes
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <p class="mx-auto mt-5 max-w-3xl text-center text-[11px] leading-relaxed text-slate-400 dark:text-slate-500">
-      El Pack IAs Investigador Pro entrega acceso a un workspace de herramientas y acompañamiento metodológico: es un servicio de asesoría y guía, no de suplantación académica.
-    </p>
   </div>
 </section>
 

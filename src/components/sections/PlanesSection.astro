@@ -13,7 +13,7 @@ import { PLANES as planes, waPlan as wa } from "../../config/planes";
       <h2 class="split-letters mt-4 font-display text-[30px] font-bold leading-none tracking-tight text-slate-900 dark:text-white md:text-[40px]">
         PLANES DE TESIS <span class="text-[#1e3a8a] dark:text-amber-400">CON IA</span>
       </h2>
-      <p class="mt-3 text-slate-500 dark:text-slate-400">Elige según tu momento. Todos incluyen el Pack IAs Investigador Pro.</p>
+      <p class="mt-3 text-slate-500 dark:text-slate-400">Elige según tu momento. Todos incluyen el Plan IAs Investigador Pro.</p>
     </div>
 
     <!-- Comparison responsive -->
@@ -40,17 +40,22 @@ import { PLANES as planes, waPlan as wa } from "../../config/planes";
           </div>
 
           <ul class="mt-6 flex-1 space-y-3">
-            {p.features.map((f) => (
-              <li class="flex gap-3 rounded-xl bg-slate-50 px-3 py-2.5 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-700/60">
+            {p.features.map((f) => {
+              // El acceso al Plan IAs Investigador Pro es el diferencial de los
+              // tres planes: se resalta en dorado para que no pase inadvertido.
+              const esPack = f.label === "Acceso a IAs";
+              return (
+              <li class={`flex gap-3 rounded-xl px-3 py-2.5 border ${esPack ? "border-amber-400 bg-amber-50 shadow-sm shadow-amber-900/5 dark:border-amber-500/60 dark:bg-amber-400/10" : "bg-slate-50 dark:bg-slate-900/60 border-slate-100 dark:border-slate-700/60"}`}>
                 <span class={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${f.muted ? "bg-slate-200 text-slate-500 dark:bg-slate-700" : "bg-amber-400 text-[#0B1D3A]"}`}>
                   {f.muted ? <Icon name="lucide:minus" class="h-3 w-3" /> : <Icon name="lucide:check" class="h-3 w-3" />}
                 </span>
                 <div class="min-w-0">
-                  <div class="text-[11px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">{f.label}</div>
-                  <div class={`text-sm leading-snug ${f.muted ? "text-slate-400 dark:text-slate-500" : "text-slate-800 dark:text-slate-100 font-medium"}`}>{f.value}</div>
+                  <div class={`text-[11px] font-bold uppercase tracking-widest ${esPack ? "text-amber-700 dark:text-amber-400" : "text-slate-500 dark:text-slate-400"}`}>{f.label}</div>
+                  <div class={`leading-snug ${esPack ? "font-display text-[15px] font-bold text-[#0B1D3A] dark:text-amber-200" : f.muted ? "text-sm text-slate-400 dark:text-slate-500" : "text-sm text-slate-800 dark:text-slate-100 font-medium"}`}>{f.value}</div>
                 </div>
               </li>
-            ))}
+              );
+            })}
           </ul>
 
           <a
@@ -92,6 +97,6 @@ import { PLANES as planes, waPlan as wa } from "../../config/planes";
       </div>
     </div>
 
-    <p class="mt-6 text-center text-xs text-slate-400">Precios referenciales en USD. El acceso al Pack IAs Investigador Pro está incluido en los tres planes. Soporte por WhatsApp en horario de oficina Lima (GMT-5).</p>
+    <p class="mt-6 text-center text-xs text-slate-400">Precios referenciales en USD. El acceso al Plan IAs Investigador Pro está incluido en los tres planes. Soporte por WhatsApp en horario de oficina Lima (GMT-5).</p>
   </div>
 </section>

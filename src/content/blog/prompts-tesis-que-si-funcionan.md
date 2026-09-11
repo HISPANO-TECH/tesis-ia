@@ -106,4 +106,4 @@ Un truco muy útil: termina tus prompts con **"antes de responder, pregúntame t
 
 Los prompts no son fórmulas mágicas: son una forma de **estructurar tu trabajo con la IA como asistente**. Úsalos sobre tu información real, verifica cada fuente y reescribe con tu voz.
 
-Combínalos con el método de [marco teórico sin fuentes inventadas](/blog/marco-teorico-con-ia-pasos), con la guía de [análisis estadístico](/blog/analisis-estadistico-tesis-que-prueba-elegir) para el capítulo IV y con las [reglas para no disparar Turnitin](/blog/como-usar-ia-tesis-sin-plagio). La biblioteca completa de prompts validados por capítulo, más manuales, plantillas y revisión de tu avance, está en el [Pack IAs Investigador Pro](/#pack).
+Combínalos con el método de [marco teórico sin fuentes inventadas](/blog/marco-teorico-con-ia-pasos), con la guía de [análisis estadístico](/blog/analisis-estadistico-tesis-que-prueba-elegir) para el capítulo IV y con las [reglas para no disparar Turnitin](/blog/como-usar-ia-tesis-sin-plagio). La biblioteca completa de prompts validados por capítulo, más manuales, plantillas y revisión de tu avance, está en el [Plan IAs Investigador Pro](/#pack).

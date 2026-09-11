@@ -17,7 +17,7 @@ interface Props {
   noIndex?: boolean;
 }
 const { title, description, keywords, image, imageAlt, type, publishedTime, jsonLd, noIndex } = Astro.props;
-const pageTitle = title ? `${title} | ${SITE.name}` : `${SITE.name} — Pack IAs Investigador Pro para tu tesis`;
+const pageTitle = title ? `${title} | ${SITE.name}` : `${SITE.name} — Plan IAs Investigador Pro para tu tesis`;
 const pageDescription = description ?? SITE.description;
 const pageKeywords = keywords ?? [...SITE.keywords];
 const canonical = `${SITE.url}${Astro.url.pathname}`;

@@ -116,10 +116,10 @@ La forma más eficiente de trabajar es un circuito entre tú, la IA y tu asesor:
 3. Tu asesor valida método, protocolo y coherencia.
 4. Tú corriges con tu criterio y defiendes en la sustentación.
 
-Este es exactamente el modelo del Pack IAs Investigador Pro: herramientas de IA con acceso académico + acompañamiento humano que conoce los protocolos de universidades peruanas.
+Este es exactamente el modelo del Plan IAs Investigador Pro: herramientas de IA con acceso académico + acompañamiento humano que conoce los protocolos de universidades peruanas.
 
 ## Conclusión
 
 ¿Tesis en un mes con IA? Con método y mucho trabajo, un **avance importante** sí es posible; una tesis completa de cero, con campo y sustentación sólida, difícilmente. No te dejes engañar por promesas de "tesis en un fin de semana". Planifica con honestidad, usa la IA como herramienta y acompáñate de quien conoce tu universidad.
 
-Para cada etapa del cronograma tienes una guía: [marco teórico con fuentes reales](/blog/marco-teorico-con-ia-pasos) para las semanas 2 a 4, [qué prueba estadística elegir](/blog/analisis-estadistico-tesis-que-prueba-elegir) para las semanas 6 y 7, y los [prompts por capítulo](/blog/prompts-tesis-que-si-funcionan) para todo el proceso. Las herramientas y el acompañamiento están en el [Pack IAs Investigador Pro](/#pack), con [planes desde $20/mes](/#planes).
+Para cada etapa del cronograma tienes una guía: [marco teórico con fuentes reales](/blog/marco-teorico-con-ia-pasos) para las semanas 2 a 4, [qué prueba estadística elegir](/blog/analisis-estadistico-tesis-que-prueba-elegir) para las semanas 6 y 7, y los [prompts por capítulo](/blog/prompts-tesis-que-si-funcionan) para todo el proceso. Las herramientas y el acompañamiento están en el [Plan IAs Investigador Pro](/#pack), con [planes desde $20/mes](/#planes).

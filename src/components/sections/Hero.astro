@@ -1,19 +1,19 @@
 ---
 import { Icon } from "astro-icon/components";
-import { PLANES, waPlan, waLink } from "../../config/planes";
+import { PLANES, waLink } from "../../config/planes";
+import { PACK_CATEGORIAS, IAS_LABEL } from "../../config/pack";
 
 const whatsappHref = waLink(
-  "Hola, quiero contactarme para recibir información sobre asesoría en tesis universitaria. Vengo de tesis-ia.com - Pack IAs Investigador Pro"
+  "Hola, quiero contactarme para recibir información sobre asesoría en tesis universitaria. Vengo de tesis-ia.com - Plan IAs Investigador Pro"
 );
 
-// El hero muestra un único mensaje: el plan más vendido (AVANCE). La comparación
-// de los tres planes vive en la sección #planes, así que aquí no hay carrusel.
-const plan = PLANES[1];
+const whatsappPack = waLink(
+  "Hola, quiero contactarme para recibir información sobre el Plan IAs Investigador Pro. Vengo de tesis-ia.com y quiero saber cómo adquiero mi acceso."
+);
 
-// En la tarjeta no repetimos lo que ya está en todos los planes: mostramos la
-// asesoría humana, que es lo que diferencia a AVANCE.
-const COMUNES = ["Acceso a IAs", "Plantillas y manuales"];
-const destacadas = plan.features.filter((f) => !f.muted && !COMUNES.includes(f.label)).slice(0, 2);
+// La tarjeta del hero promociona un único producto: el Plan IAs Investigador Pro.
+// Los precios y la comparación de los tres planes viven en la sección #planes.
+const plan = PLANES[1];
 
 const chips = ["IAs con fuentes reales", "Protocolo de tu universidad", "Anti-plagio con criterio"];
 
@@ -24,16 +24,8 @@ const mejoras = [
   "Levantas las observaciones con feedback de un asesor real",
 ];
 
-// Contenido del Pack IAs Investigador Pro según el documento comercial
-// (PACK INVESTIGADOR PRO.docx): redacción, investigación, humanización,
-// detección/antiplagio y formación.
-const packIncluye = [
-  { cat: "Redacción", icon: "lucide:pen-line", items: "Claude Max · ChatGPT Pro · ChatGPT Plus · SuperGrok · Gemini" },
-  { cat: "Investiga", icon: "lucide:search-check", items: "Perplexity Pro · NotebookLM Pro · Scribd" },
-  { cat: "Humaniza", icon: "lucide:wand", items: "WriteHuman · QuillBot Premium" },
-  { cat: "Detecta", icon: "lucide:shield-check", items: "Turnitin ilimitado (similitud + IA)" },
-  { cat: "Sustenta", icon: "lucide:graduation-cap", items: "Canva Pro · Cursos Udemy · Cursos Platzi" },
-];
+// Las IAs del Plan salen de src/config/pack.ts (misma fuente que la sección #pack).
+const packIncluye = PACK_CATEGORIAS;
 ---
 
 <section id="inicio" class="relative overflow-hidden bg-gradient-to-br from-[#0B1D3A] via-[#1e3a8a] to-[#2a4b9f] dark:from-[#070f24] dark:via-[#0B1D3A] dark:to-[#1e3a8a]">
@@ -47,7 +39,7 @@ const packIncluye = [
   <div class="relative mx-auto grid max-w-7xl gap-8 px-6 pb-10 pt-10 md:grid-cols-[1.05fr_0.95fr] md:pb-12 md:pt-14 lg:gap-10 lg:pt-16">
     <div class="reveal flex flex-col justify-center" style="--reveal-delay:80ms">
       <div class="inline-flex w-fit items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-amber-200 backdrop-blur">
-        <span class="h-2 w-2 rounded-full bg-amber-400 animate-pulse-soft"></span> Pack IAs Investigador Pro · {plan.badge ?? "Más vendido"}
+        <span class="h-2 w-2 rounded-full bg-amber-400 animate-pulse-soft"></span> Plan IAs Investigador Pro · {plan.badge ?? "Más vendido"}
       </div>
 
       <h1 class="split-letters mt-3 font-display text-[34px] font-bold leading-[0.95] tracking-tight text-white md:text-[46px] lg:text-[52px]">
@@ -72,7 +64,7 @@ const packIncluye = [
           <Icon name="lucide:sparkles" class="h-4 w-4" />
         </span>
         <span class="text-[13px] leading-snug text-blue-100">
-          <strong class="text-white">15+ IAs premium</strong> que por separado superan los <strong class="text-amber-300">US$300/mes</strong>
+          <strong class="text-white">{IAS_LABEL} IAs premium</strong> que por separado superan los <strong class="text-amber-300">US$300/mes</strong>
         </span>
         <span class="inline-flex shrink-0 items-center gap-1 text-[11px] font-bold uppercase tracking-widest text-amber-300 group-hover:text-white">
           Ver <Icon name="lucide:arrow-right" class="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
@@ -95,7 +87,7 @@ const packIncluye = [
           <span class="flex h-7 w-7 items-center justify-center rounded-full border-2 border-[#0B1D3A] bg-blue-200 text-[10px] font-bold text-blue-900">I</span>
           <span class="flex h-7 w-7 items-center justify-center rounded-full border-2 border-[#0B1D3A] bg-white text-[10px] font-bold text-[#0B1D3A]">A</span>
         </div>
-        <span>+1,200 tesistas usando el Pack · <strong class="text-amber-200">4.9/5</strong> satisfacción</span>
+        <span>+1,200 tesistas usando el Plan · <strong class="text-amber-200">4.9/5</strong> satisfacción</span>
       </div>
     </div>
 
@@ -109,50 +101,49 @@ const packIncluye = [
             <div class="flex items-center gap-2">
               <span class="h-3 w-3 rounded-full bg-red-400"></span><span class="h-3 w-3 rounded-full bg-amber-400"></span><span class="h-3 w-3 rounded-full bg-emerald-400"></span>
             </div>
-            <span class="font-display text-[11px] font-bold uppercase tracking-widest text-amber-300">tesis-ia.com · plan investigador</span>
+            <span class="font-display text-[11px] font-bold uppercase tracking-widest text-amber-300">tesis-ia.com · plan investigador pro</span>
             <span class="flex h-6 w-6 items-center justify-center rounded-full bg-amber-400 text-[10px] font-bold text-[#0B1D3A]">IA</span>
           </div>
 
-          {/* Plan + precio */}
+          {/* Producto único de la tarjeta: el Plan, sin precios de planes */}
           <div class="mt-3 rounded-2xl border border-amber-200 bg-amber-50/70 p-4 dark:border-amber-800/60 dark:bg-slate-800">
-            <div class="flex flex-wrap items-start justify-between gap-3">
-              <div class="min-w-0">
-                <span class="inline-flex items-center gap-1 rounded-full bg-amber-400 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#0B1D3A]">
-                  <Icon name="lucide:star" class="h-3 w-3" /> {plan.badge ?? "Más vendido"}
-                </span>
-                <div class="mt-1.5 font-display text-lg font-bold uppercase leading-none tracking-wide text-slate-900 dark:text-white">Plan {plan.name}</div>
-                <p class="mt-1 text-[12px] leading-snug text-slate-500 dark:text-slate-400">{plan.subtitle}</p>
-              </div>
-              <div class="text-right">
-                <div class="flex items-baseline justify-end gap-0.5">
-                  <span class="text-[11px] font-bold text-slate-500">US$</span>
-                  <span class="font-display text-[34px] font-bold leading-none tracking-tight text-slate-900 dark:text-white">{plan.price}</span>
-                  <span class="text-[11px] font-semibold text-slate-500">/mes</span>
-                </div>
-                <div class="mt-1 text-[11px] font-bold text-amber-600 dark:text-amber-400">Ahorras 29%</div>
-              </div>
+            <span class="inline-flex items-center gap-1 rounded-full bg-amber-400 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#0B1D3A]">
+              <Icon name="lucide:star" class="h-3 w-3" /> {plan.badge ?? "Más vendido"}
+            </span>
+            <div class="mt-1.5 font-display text-[22px] font-bold uppercase leading-none tracking-wide text-slate-900 dark:text-white">
+              Plan IAs <span class="text-amber-600 dark:text-amber-400">Investigador Pro</span>
             </div>
+            <p class="mt-1.5 text-[12px] leading-snug text-slate-500 dark:text-slate-400">
+              {IAS_LABEL} IAs premium, kit metodológico y asesor humano en un solo acceso.
+            </p>
           </div>
 
-          {/* Qué trae el Pack: detalle del documento comercial */}
+          {/* Qué trae el Plan: detalle del documento comercial */}
           <div class="mt-3 rounded-2xl border border-slate-200 bg-white p-3.5 dark:border-slate-700 dark:bg-slate-800/60">
             <div class="flex items-center justify-between gap-2">
               <div class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#1e3a8a] dark:text-amber-300">
-                <Icon name="lucide:package-check" class="h-3.5 w-3.5" /> Qué incluye el Pack
+                <Icon name="lucide:package-check" class="h-3.5 w-3.5" /> Qué incluye el Plan
               </div>
-              <span class="shrink-0 rounded-full bg-amber-400 px-2 py-0.5 text-[10px] font-bold text-[#0B1D3A]">15+ IAs premium</span>
+              <span class="shrink-0 rounded-full bg-amber-400 px-2 py-0.5 text-[10px] font-bold text-[#0B1D3A]">{IAS_LABEL} IAs premium</span>
             </div>
 
-            <ul class="mt-2.5 grid gap-1.5">
+            {/* Cada IA va como chip propio para que el nombre salte a la vista */}
+            <ul class="mt-2.5 grid gap-2">
               {packIncluye.map((b) => (
                 <li class="flex items-start gap-2">
                   <span class="mt-[1px] flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-slate-200 bg-slate-50 text-[#1e3a8a] dark:border-slate-700 dark:bg-slate-900 dark:text-amber-300">
                     <Icon name={b.icon} class="h-3 w-3" />
                   </span>
-                  <span class="min-w-0 text-[11.5px] leading-snug">
-                    <strong class="font-display font-bold uppercase tracking-wide text-slate-800 dark:text-white">{b.cat}:</strong>
-                    <span class="text-slate-500 dark:text-slate-400"> {b.items}</span>
-                  </span>
+                  <div class="min-w-0">
+                    <div class="font-display text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">{b.cat}</div>
+                    <div class="mt-1 flex flex-wrap gap-1.5">
+                      {b.ias.map((ia) => (
+                        <span class="inline-flex items-center rounded-lg border border-amber-300/70 bg-amber-50 px-2 py-[3px] font-display text-[12.5px] font-bold leading-tight text-[#0B1D3A] dark:border-amber-500/40 dark:bg-amber-400/10 dark:text-amber-200">
+                          {ia}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -164,7 +155,7 @@ const packIncluye = [
               <div class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#1e3a8a] dark:text-amber-300">
                 <Icon name="lucide:trending-up" class="h-3.5 w-3.5" /> Lo que vas a mejorar
               </div>
-              <span class="shrink-0 rounded-full bg-[#0B1D3A] px-2 py-0.5 text-[10px] font-bold text-amber-300">Plan {plan.name}</span>
+              <span class="shrink-0 rounded-full bg-[#0B1D3A] px-2 py-0.5 text-[10px] font-bold text-amber-300">Con el Plan</span>
             </div>
 
             <ul class="mt-2.5 grid gap-1.5">
@@ -181,23 +172,13 @@ const packIncluye = [
             </p>
           </div>
 
-          {/* Asesoría humana del plan */}
-          <div class="mt-3 grid gap-2 sm:grid-cols-2">
-            {destacadas.map((f) => (
-              <div class="rounded-2xl border border-slate-200 bg-white px-3.5 py-3 dark:border-slate-700 dark:bg-slate-800">
-                <div class="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">{f.label}</div>
-                <div class="mt-0.5 text-[12.5px] font-semibold leading-snug text-slate-800 dark:text-white">{f.value}</div>
-              </div>
-            ))}
-          </div>
-
           <a
-            href={waPlan(plan.name)}
+            href={whatsappPack}
             target="_blank"
             rel="noopener"
             class="mt-3 flex items-center justify-center gap-2 rounded-full bg-[#0B1D3A] px-6 py-3.5 font-display text-sm font-bold uppercase tracking-wide text-white shadow-lg transition hover:bg-black dark:bg-amber-400 dark:text-[#0B1D3A] dark:hover:bg-amber-300"
           >
-            {plan.cta} <Icon name="lucide:arrow-right" class="h-4 w-4" />
+            Quiero el Plan <Icon name="lucide:arrow-right" class="h-4 w-4" />
           </a>
           <p class="mt-2 text-center text-[11px] text-slate-400">
             Acceso inmediato · Cancela cuando quieras · <a href="/#planes" class="font-semibold text-[#1e3a8a] hover:underline dark:text-amber-300">Ver los 3 planes</a>
