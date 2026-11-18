@@ -19,6 +19,7 @@ export async function GET() {
   const pages = [
     { loc: `${SITE.url}/`, lastmod: today, changefreq: "weekly" as const, priority: "1.0" },
     { loc: `${SITE.url}/blog/`, lastmod: today, changefreq: "weekly" as const, priority: "0.9" },
+    { loc: `${SITE.url}/navidad/`, lastmod: today, changefreq: "weekly" as const, priority: "0.9" },
     { loc: `${SITE.url}/privacidad/`, lastmod: today, changefreq: "yearly" as const, priority: "0.3" },
     { loc: `${SITE.url}/terminos/`, lastmod: today, changefreq: "yearly" as const, priority: "0.3" },
   ];

@@ -1,0 +1,86 @@
+---
+import { Icon } from "astro-icon/components";
+import { NAVIDAD, NAVIDAD_PASOS, NAVIDAD_MEDIA } from "../../config/navidad";
+---
+
+<section id="como-participar" class="relative overflow-hidden bg-[#0B1D3A] py-20 text-white md:py-28">
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(30,58,138,0.75),transparent_60%)]"></div>
+
+  <div class="relative mx-auto grid max-w-7xl items-center gap-14 px-6 lg:grid-cols-[1.15fr_0.85fr]">
+    <!-- Pasos -->
+    <div>
+      <span class="reveal inline-flex items-center gap-2 rounded-full bg-amber-400 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0B1D3A]">
+        <Icon name="lucide:list-checks" class="h-3.5 w-3.5" /> Cómo participar
+      </span>
+      <h2 class="reveal mt-4 font-display text-4xl font-bold leading-tight tracking-tight md:text-5xl" style="--reveal-delay:80ms">
+        4 pasos y ya estás <span class="text-amber-300">participando</span>
+      </h2>
+      <p class="reveal mt-4 text-lg text-slate-300" style="--reveal-delay:140ms">
+        Inscripciones abiertas hasta el <strong class="text-white">{NAVIDAD.cierreTexto}</strong>
+      </p>
+
+      <ol class="relative mt-10 space-y-4">
+        <li aria-hidden="true" class="absolute bottom-8 left-[45px] top-8 w-0.5 list-none bg-gradient-to-b from-amber-300/70 via-amber-300/30 to-amber-300/0"></li>
+        {NAVIDAD_PASOS.map((p, i) => (
+          <li class="reveal relative flex gap-5 rounded-3xl border border-white/10 bg-white/[0.05] p-5 backdrop-blur-md transition hover:border-amber-300/50 hover:bg-white/[0.08]" style={`--reveal-delay:${i * 100}ms`}>
+            <span class="relative flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-300 to-amber-500 text-[#0B1D3A] shadow-lg shadow-amber-500/30">
+              <Icon name={p.icon} class="h-6 w-6" />
+              <span class="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-red-600 text-[11px] font-bold text-white ring-2 ring-[#0B1D3A]">{i + 1}</span>
+            </span>
+            <div>
+              <h3 class="font-display text-lg font-bold">{p.titulo}</h3>
+              <p class="mt-1 text-sm leading-relaxed text-slate-300">{p.texto}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <div class="reveal mt-8 flex flex-wrap items-center gap-3">
+        <a href="#formulario" class="inline-flex items-center gap-2 rounded-full bg-amber-400 px-6 py-3 font-display text-sm font-bold uppercase tracking-wide text-[#0B1D3A] transition hover:bg-amber-300">
+          <Icon name="lucide:clipboard-list" class="h-4 w-4" /> Ir al formulario
+        </a>
+        <a href={NAVIDAD.grupoWhatsApp} target="_blank" rel="noopener" data-wa-grupo class="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-6 py-3 font-display text-sm font-bold uppercase tracking-wide text-white transition hover:bg-[#1ebe5b]">
+          <Icon name="simple-icons:whatsapp" class="h-4 w-4" /> Unirme al grupo
+        </a>
+      </div>
+    </div>
+
+    <!-- Video vertical (lo entrega marketing; ver NAVIDAD_MEDIA) -->
+    <div class="reveal reveal-right relative mx-auto w-full max-w-[340px]">
+      <div aria-hidden="true" class="absolute -inset-8 rounded-full bg-amber-400/20 blur-3xl"></div>
+      <div class="tilt-3d relative rounded-[44px] border border-white/15 bg-gradient-to-b from-slate-700 to-slate-900 p-3 shadow-2xl shadow-black/60">
+        <div class="relative overflow-hidden rounded-[34px] bg-black">
+          <video
+            id="video-como-participar"
+            class="aspect-[9/16] w-full object-cover"
+            playsinline
+            preload="none"
+            poster={NAVIDAD_MEDIA.comoParticiparPoster}
+          >
+            <source src={NAVIDAD_MEDIA.comoParticiparVideo} type="video/mp4" />
+          </video>
+          <button
+            type="button"
+            data-play
+            aria-label="Reproducir video: cómo participar"
+            class="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-t from-black/75 via-black/10 to-transparent"
+          >
+            <span class="flex h-20 w-20 items-center justify-center rounded-full bg-white/90 text-red-600 shadow-xl transition hover:scale-110">
+              <Icon name="lucide:play" class="ml-1 h-9 w-9" />
+            </span>
+            <span class="absolute bottom-6 left-0 right-0 px-6 text-center font-display text-lg font-bold">Así participas en 1 minuto</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const video = document.getElementById("video-como-participar") as HTMLVideoElement | null;
+  const play = document.querySelector<HTMLButtonElement>("#como-participar [data-play]");
+  play?.addEventListener("click", () => {
+    play.remove();
+    if (video) { video.controls = true; video.play(); }
+  });
+</script>

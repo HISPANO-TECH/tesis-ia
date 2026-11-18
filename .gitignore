@@ -4,3 +4,9 @@ node_modules/
 .env
 # Local Pi runtime state
 .atl/
+
+# Inscripciones del sorteo navideño (datos personales: solo en el servidor)
+public/api/data/*.csv
+
+# Archivos temporales de Office (documento abierto)
+~$*

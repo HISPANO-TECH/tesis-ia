@@ -1,0 +1,379 @@
+---
+import { Icon } from "astro-icon/components";
+import { NAVIDAD, FORM_TITULO, ETAPAS, CARRERAS_EJEMPLO, SITUACION_TESIS, APOYOS } from "../../config/navidad";
+
+const input =
+  "mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-[15px] text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-amber-400 focus:ring-4 focus:ring-amber-300/30 dark:border-slate-600 dark:bg-slate-900 dark:text-white";
+const label = "text-sm font-semibold text-slate-800 dark:text-slate-100";
+const err = "mt-1 hidden text-xs font-medium text-red-600 dark:text-red-400";
+const opcion =
+  "flex cursor-pointer items-start gap-3 rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm leading-snug text-slate-700 transition hover:border-amber-300 hover:bg-amber-50/60 has-[:checked]:border-amber-400 has-[:checked]:bg-amber-50 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-700/50 dark:has-[:checked]:bg-amber-400/10";
+const ultimo = APOYOS.length - 1; // "Por ahora, solamente deseo participar en el sorteo" (excluyente)
+
+const PASOS = [
+  { letra: "A", nombre: "Datos", titulo: "Datos personales", icon: "lucide:user-round" },
+  { letra: "B", nombre: "Académico", titulo: "Situación académica", icon: "lucide:graduation-cap" },
+  { letra: "C", nombre: "Tesis", titulo: "Estado de tu tesis", icon: "lucide:book-open-text" },
+  { letra: "D", nombre: "Intereses", titulo: "Tus intereses", icon: "lucide:sparkles" },
+];
+---
+
+<section id="formulario" class="relative overflow-hidden bg-gradient-to-b from-[#0B1D3A] via-[#102a63] to-[#0B1D3A] py-20 md:py-28">
+  <img src="/navidad/esferas-3d.webp" alt="" aria-hidden="true" width="800" height="800" loading="lazy" decoding="async"
+    class="animate-float pointer-events-none absolute -left-20 top-24 hidden w-64 opacity-90 xl:block" />
+  <img src="/navidad/regalos-3d.webp" alt="" aria-hidden="true" width="1000" height="1000" loading="lazy" decoding="async"
+    class="animate-float pointer-events-none absolute -right-16 bottom-16 hidden w-72 opacity-90 xl:block" style="animation-delay:-2s" />
+
+  <div class="relative mx-auto max-w-3xl px-6">
+    <div class="text-center text-white">
+      <span class="reveal inline-flex items-center gap-2 rounded-full bg-red-600 px-3 py-1 text-xs font-bold uppercase tracking-widest">
+        <Icon name="lucide:clipboard-list" class="h-3.5 w-3.5" /> Inscripción gratuita · 4 pasos
+      </span>
+      <h2 class="reveal mt-4 font-display text-3xl font-bold leading-tight tracking-tight md:text-[42px]" style="--reveal-delay:80ms">
+        {FORM_TITULO}
+      </h2>
+      <p class="reveal mx-auto mt-3 max-w-xl text-slate-300" style="--reveal-delay:140ms">
+        Solo 2 minutos. Al terminar recibirás tu <strong class="text-amber-300">código de participación</strong> y el acceso al grupo de WhatsApp.
+      </p>
+    </div>
+
+    <form id="navidad-form" novalidate class="reveal mt-10 scroll-mt-32 rounded-[28px] border border-white/10 bg-white p-6 shadow-2xl shadow-black/40 dark:bg-slate-800 md:p-9" style="--reveal-delay:200ms">
+      <!-- Indicador de pasos -->
+      <ol class="mb-3 grid grid-cols-4 gap-2" aria-label="Pasos del formulario">
+        {PASOS.map((p, i) => (
+          <li>
+            <button type="button" data-goto={i} disabled={i > 0} class="group flex w-full flex-col items-center gap-1.5 text-center disabled:cursor-default">
+              <span data-dot class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-slate-200 bg-white font-display text-sm font-bold text-slate-400 transition dark:border-slate-600 dark:bg-slate-800">
+                <span data-num>{p.letra}</span>
+                <Icon name="lucide:check" class="hidden h-5 w-5" data-ok />
+              </span>
+              <span class="text-[11px] font-bold uppercase tracking-widest text-slate-400">{p.nombre}</span>
+            </button>
+          </li>
+        ))}
+      </ol>
+      <div class="mb-8 h-1.5 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-700">
+        <div data-progress class="h-full w-1/4 rounded-full bg-gradient-to-r from-amber-400 to-red-600 transition-all duration-500"></div>
+      </div>
+
+      <!-- Honeypot anti-spam -->
+      <div class="absolute -left-[9999px]" aria-hidden="true">
+        <label>No llenar <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+      </div>
+
+      <!-- Paso A -->
+      <fieldset data-step="0" class="space-y-5">
+        <legend class="mb-5 flex items-center gap-2 font-display text-xl font-bold text-[#0B1D3A] dark:text-white">
+          <Icon name={PASOS[0].icon} class="h-5 w-5 text-amber-500" /> A. {PASOS[0].titulo}
+        </legend>
+        <div>
+          <label for="nv-nombre" class={label}>1. Nombres y apellidos *</label>
+          <input id="nv-nombre" name="nombre" type="text" autocomplete="name" maxlength="120" required placeholder="Ej.: María Fernanda Quispe Rojas" class={input} />
+          <p data-error="nombre" class={err}>Escribe tus nombres y apellidos.</p>
+        </div>
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div>
+            <label for="nv-whatsapp" class={label}>2. Número de WhatsApp *</label>
+            <div class="relative">
+              <span class="pointer-events-none absolute left-4 top-1/2 mt-[3px] -translate-y-1/2 text-[15px] font-semibold text-slate-500">+51</span>
+              <input id="nv-whatsapp" name="whatsapp" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="11" required placeholder="9XX XXX XXX" class={`${input} pl-14`} />
+            </div>
+            <p data-error="whatsapp" class={err}>Celular peruano válido (9 dígitos, empieza con 9).</p>
+          </div>
+          <div>
+            <label for="nv-email" class={label}>3. Correo electrónico *</label>
+            <input id="nv-email" name="email" type="email" autocomplete="email" maxlength="160" required placeholder="tucorreo@gmail.com" class={input} />
+            <p data-error="email" class={err}>Ingresa un correo válido.</p>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Paso B -->
+      <fieldset data-step="1" class="space-y-5">
+        <legend class="mb-5 flex items-center gap-2 font-display text-xl font-bold text-[#0B1D3A] dark:text-white">
+          <Icon name={PASOS[1].icon} class="h-5 w-5 text-amber-500" /> B. {PASOS[1].titulo}
+        </legend>
+        <div>
+          <label for="nv-etapa" class={label}>4. ¿En qué etapa de tu formación académica te encuentras? *</label>
+          <select id="nv-etapa" name="etapa" required class={input}>
+            <option value="">Selecciona una opción</option>
+            {ETAPAS.map((e) => <option value={e}>{e}</option>)}
+          </select>
+          <p data-error="etapa" class={err}>Selecciona tu etapa académica.</p>
+        </div>
+        <div>
+          <label for="nv-carrera" class={label}>5. ¿A qué carrera o especialidad perteneces? *</label>
+          <input id="nv-carrera" name="carrera" type="text" list="nv-carreras" maxlength="120" required placeholder="Ej.: Ingeniería Civil, Derecho, Psicología…" class={input} />
+          <datalist id="nv-carreras">{CARRERAS_EJEMPLO.map((c) => <option value={c} />)}</datalist>
+          <p data-error="carrera" class={err}>Indica tu carrera o especialidad.</p>
+        </div>
+      </fieldset>
+
+      <!-- Paso C -->
+      <fieldset data-step="2">
+        <legend class="mb-5 flex items-center gap-2 font-display text-xl font-bold text-[#0B1D3A] dark:text-white">
+          <Icon name={PASOS[2].icon} class="h-5 w-5 text-amber-500" /> C. {PASOS[2].titulo}
+        </legend>
+        <p class={label}>6. ¿En qué situación se encuentra actualmente tu proyecto de tesis o investigación? *</p>
+        <div class="mt-3 grid gap-2 md:grid-cols-2">
+          {SITUACION_TESIS.map((s) => (
+            <label class={opcion}>
+              <input type="radio" name="situacion" value={s} required class="mt-0.5 h-4 w-4 shrink-0 accent-amber-500" />
+              <span>{s}</span>
+            </label>
+          ))}
+        </div>
+        <p data-error="situacion" class={err}>Elige la opción que mejor describe tu situación.</p>
+      </fieldset>
+
+      <!-- Paso D -->
+      <fieldset data-step="3">
+        <legend class="mb-5 flex items-center gap-2 font-display text-xl font-bold text-[#0B1D3A] dark:text-white">
+          <Icon name={PASOS[3].icon} class="h-5 w-5 text-amber-500" /> D. {PASOS[3].titulo}
+        </legend>
+        <p class={label}>7. ¿Qué tipo de apoyo te interesaría recibir de HispanoTech? * <span class="font-normal text-slate-500">(puedes marcar varias)</span></p>
+        <div class="mt-3 grid gap-2 md:grid-cols-2">
+          {APOYOS.map((a, i) => (
+            <label class:list={[opcion, i === ultimo && "md:col-span-2"]}>
+              <input type="checkbox" name="apoyo" value={a} data-solo={i === ultimo ? "1" : undefined} class="mt-0.5 h-4 w-4 shrink-0 accent-amber-500" />
+              <span>{a}</span>
+            </label>
+          ))}
+        </div>
+        <p data-error="apoyo" class={err}>Marca al menos una opción.</p>
+
+        <!-- Consentimientos (separados, Ley N.º 29733) -->
+        <div class="mt-6 space-y-3 rounded-2xl bg-slate-50 p-5 dark:bg-slate-900/60">
+          <label class="flex cursor-pointer items-start gap-3 text-sm text-slate-700 dark:text-slate-200">
+            <input type="checkbox" name="acepta_bases" value="si" required class="mt-0.5 h-4 w-4 shrink-0 accent-amber-500" />
+            <span>* Acepto las <a href="#bases" class="font-semibold text-[#1e3a8a] underline dark:text-amber-300">bases del sorteo</a> y la <a href="/privacidad" class="font-semibold text-[#1e3a8a] underline dark:text-amber-300">política de privacidad</a>, y autorizo el uso de mis datos para gestionar mi participación.</span>
+          </label>
+          <p data-error="acepta_bases" class={err}>Debes aceptar las bases para participar.</p>
+          <label class="flex cursor-pointer items-start gap-3 text-sm text-slate-700 dark:text-slate-200">
+            <input type="checkbox" name="acepta_promos" value="si" class="mt-0.5 h-4 w-4 shrink-0 accent-amber-500" />
+            <span>(Opcional) Acepto recibir promociones y comunicaciones de HispanoTech sobre cursos, herramientas de IA y servicios académicos, conforme a la normativa peruana de protección de datos personales.</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- Navegación -->
+      <div class="mt-8 flex items-center gap-3">
+        <button type="button" data-prev class="inline-flex items-center gap-1.5 rounded-full border border-slate-300 px-5 py-3.5 font-display text-sm font-bold uppercase tracking-wide text-slate-600 transition hover:bg-slate-100 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-700">
+          <Icon name="lucide:arrow-left" class="h-4 w-4" /> Anterior
+        </button>
+        <span data-counter class="ml-auto hidden text-xs font-semibold text-slate-400 sm:inline">Paso 1 de 4</span>
+        <button type="button" data-next class="ml-auto inline-flex items-center gap-2 rounded-full bg-[#0B1D3A] px-7 py-3.5 font-display text-sm font-bold uppercase tracking-wide text-white transition hover:bg-[#1e3a8a] sm:ml-0 dark:bg-amber-400 dark:text-[#0B1D3A]">
+          Siguiente <Icon name="lucide:arrow-right" class="h-4 w-4" />
+        </button>
+        <button type="submit" class="ml-auto inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-red-600 to-red-700 px-7 py-3.5 font-display text-sm font-bold uppercase tracking-wide text-white shadow-lg shadow-red-900/30 transition hover:-translate-y-0.5 hover:from-red-500 hover:to-red-600 disabled:cursor-wait disabled:opacity-70 sm:ml-0">
+          <Icon name="lucide:gift" class="h-5 w-5" /> <span class="submit-label">Quiero participar</span>
+        </button>
+      </div>
+      <p id="nv-status" role="status" aria-live="polite" class="mt-4 hidden rounded-xl px-4 py-3 text-sm"></p>
+    </form>
+
+    <!-- Éxito: código + paso final (grupo de WhatsApp) -->
+    <div id="navidad-ok" class="mt-10 hidden scroll-mt-32 rounded-[28px] border border-amber-300/40 bg-white p-8 text-center shadow-2xl dark:bg-slate-800 md:p-10" tabindex="-1">
+      <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+        <Icon name="lucide:party-popper" class="h-8 w-8" />
+      </div>
+      <h3 class="mt-4 font-display text-2xl font-bold text-[#0B1D3A] dark:text-white">¡Ya estás inscrito, <span data-ok-nombre></span>!</h3>
+      <p class="mt-2 text-slate-600 dark:text-slate-300">Tu código de participación es:</p>
+      <p data-ok-codigo class="mx-auto mt-3 inline-block rounded-2xl border-2 border-dashed border-amber-400 bg-amber-50 px-6 py-3 font-display text-3xl font-bold tracking-widest text-[#0B1D3A] dark:bg-amber-400/10 dark:text-amber-300">NAV-0000</p>
+      <p class="mx-auto mt-6 max-w-md font-semibold text-red-600 dark:text-red-400">Último paso obligatorio: únete al grupo de WhatsApp para que tu participación sea válida.</p>
+      <a href={NAVIDAD.grupoWhatsApp} target="_blank" rel="noopener" data-wa-grupo class="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-8 py-4 font-display text-base font-bold uppercase tracking-wide text-white shadow-lg shadow-emerald-700/30 transition hover:-translate-y-0.5 hover:bg-[#1ebe5b]">
+        <Icon name="simple-icons:whatsapp" class="h-5 w-5" /> Unirme al grupo de WhatsApp
+      </a>
+      <p class="mt-4 text-xs text-slate-500">Toma una captura de esta pantalla para guardar tu código.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Con JS se ve un paso a la vez; sin JS se ven todos (el formulario sigue funcionando) */
+  :global(.js) #navidad-form [data-step]:not(.is-active) { display: none; }
+  :global(.js) #navidad-form [data-step].is-active { animation: paso-in 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+  :global(html:not(.js)) #navidad-form [data-prev],
+  :global(html:not(.js)) #navidad-form [data-next] { display: none; }
+  @keyframes paso-in { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { :global(.js) #navidad-form [data-step].is-active { animation: none; } }
+</style>
+
+<script>
+  const form = document.getElementById("navidad-form") as HTMLFormElement | null;
+  const ok = document.getElementById("navidad-ok");
+  const status = document.getElementById("nv-status");
+
+  if (form) {
+    const steps = Array.from(form.querySelectorAll<HTMLElement>("[data-step]"));
+    const gotos = Array.from(form.querySelectorAll<HTMLButtonElement>("[data-goto]"));
+    const prevBtn = form.querySelector<HTMLButtonElement>("[data-prev]")!;
+    const nextBtn = form.querySelector<HTMLButtonElement>("[data-next]")!;
+    const submitBtn = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const btnLabel = form.querySelector(".submit-label");
+    const progress = form.querySelector<HTMLElement>("[data-progress]");
+    const counter = form.querySelector("[data-counter]");
+    const API_URL = "/api/navidad.php";
+    const WHATSAPP_PHONE = "51992005096";
+    // Campos que valida cada paso
+    const CAMPOS = [["nombre", "whatsapp", "email"], ["etapa", "carrera"], ["situacion"], ["apoyo", "acepta_bases"]];
+    let actual = 0;
+    let maxVisto = 0;
+
+    const showError = (name: string, show: boolean) => {
+      form.querySelector(`[data-error="${name}"]`)?.classList.toggle("hidden", !show);
+      form.querySelectorAll<HTMLInputElement>(`[name="${name}"]`).forEach((el) => {
+        if (!["radio", "checkbox"].includes(el.type)) el.classList.toggle("!border-red-400", show);
+      });
+      return show;
+    };
+
+    const setStatus = (text: string, kind: "ok" | "error" | "info" | "") => {
+      if (!status) return;
+      if (!kind) { status.className = "hidden"; return; }
+      status.textContent = text;
+      status.className = "mt-4 rounded-xl px-4 py-3 text-sm " + ({
+        ok: "bg-emerald-50 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300",
+        error: "bg-red-50 text-red-700 dark:bg-red-950/40 dark:text-red-300",
+        info: "bg-amber-50 text-amber-800 dark:bg-amber-950/40 dark:text-amber-300",
+      })[kind];
+    };
+
+    const datos = () => {
+      const fd = new FormData(form);
+      fd.set("whatsapp", String(fd.get("whatsapp") || "").replace(/\D/g, ""));
+      return fd;
+    };
+
+    const REGLAS: Record<string, (fd: FormData) => boolean> = {
+      nombre: (fd) => { const n = String(fd.get("nombre") || "").trim(); return n.length >= 5 && n.includes(" "); },
+      whatsapp: (fd) => /^9\d{8}$/.test(String(fd.get("whatsapp"))),
+      email: (fd) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(fd.get("email") || "").trim()),
+      etapa: (fd) => !!fd.get("etapa"),
+      carrera: (fd) => String(fd.get("carrera") || "").trim().length >= 3,
+      situacion: (fd) => !!fd.get("situacion"),
+      apoyo: (fd) => fd.getAll("apoyo").length > 0,
+      acepta_bases: (fd) => !!fd.get("acepta_bases"),
+    };
+
+    const validarPaso = (i: number) => {
+      const fd = datos();
+      const malos = CAMPOS[i].filter((c) => showError(c, !REGLAS[c](fd)));
+      if (malos.length) {
+        setStatus("Revisa los campos marcados en rojo.", "error");
+        form.querySelector<HTMLElement>(`[name="${malos[0]}"]`)?.focus();
+        return false;
+      }
+      setStatus("", "");
+      return true;
+    };
+
+    const mostrar = (i: number, enfocar = true) => {
+      actual = i;
+      maxVisto = Math.max(maxVisto, i);
+      steps.forEach((s, k) => s.classList.toggle("is-active", k === i));
+      gotos.forEach((g, k) => {
+        g.disabled = k > maxVisto;
+        const dot = g.querySelector<HTMLElement>("[data-dot]")!;
+        const hecho = k < i;
+        dot.className = "flex h-10 w-10 items-center justify-center rounded-full border-2 font-display text-sm font-bold transition " + (
+          k === i ? "border-amber-400 bg-amber-400 text-[#0B1D3A] shadow-lg shadow-amber-400/40"
+          : hecho ? "border-emerald-500 bg-emerald-500 text-white"
+          : "border-slate-200 bg-white text-slate-400 dark:border-slate-600 dark:bg-slate-800");
+        dot.querySelector("[data-num]")?.classList.toggle("hidden", hecho);
+        dot.querySelector("[data-ok]")?.classList.toggle("hidden", !hecho);
+        g.setAttribute("aria-current", k === i ? "step" : "false");
+      });
+      if (progress) progress.style.width = `${((i + 1) / steps.length) * 100}%`;
+      if (counter) counter.textContent = `Paso ${i + 1} de ${steps.length}`;
+      prevBtn.style.visibility = i === 0 ? "hidden" : "visible";
+      nextBtn.style.display = i === steps.length - 1 ? "none" : "";
+      submitBtn.style.display = i === steps.length - 1 ? "" : "none";
+      if (enfocar) {
+        const top = form.getBoundingClientRect().top;
+        if (top < 0 || top > window.innerHeight * 0.5) form.scrollIntoView({ behavior: "smooth", block: "start" });
+        steps[i].querySelector<HTMLElement>("input:not([type=hidden]),select")?.focus({ preventScroll: true });
+      }
+    };
+
+    nextBtn.addEventListener("click", () => { if (validarPaso(actual)) mostrar(actual + 1); });
+    prevBtn.addEventListener("click", () => mostrar(actual - 1));
+    gotos.forEach((g, k) => g.addEventListener("click", () => {
+      if (k < actual || CAMPOS.slice(actual, k).every((_, j) => validarPaso(actual + j))) mostrar(k);
+    }));
+
+    // "Solo deseo participar en el sorteo" es excluyente con el resto de intereses.
+    form.addEventListener("change", (e) => {
+      const t = e.target as HTMLInputElement;
+      if (t.name !== "apoyo" || !t.checked) return;
+      form.querySelectorAll<HTMLInputElement>('input[name="apoyo"]').forEach((b) => {
+        if (b !== t && (t.dataset.solo ? true : b.dataset.solo)) b.checked = false;
+      });
+    });
+
+    const waFallback = (fd: FormData) => {
+      const msg = [
+        "Hola, quiero participar en el sorteo de las 50 canastas navideñas de HispanoTech (vengo de tesis-ia.com/navidad).",
+        "",
+        `Nombre: ${fd.get("nombre")}`,
+        `WhatsApp: ${fd.get("whatsapp")}`,
+        `Correo: ${fd.get("email")}`,
+        `Etapa: ${fd.get("etapa")}`,
+        `Carrera: ${fd.get("carrera")}`,
+        `Tesis: ${fd.get("situacion")}`,
+        `Interés: ${fd.getAll("apoyo").join(" / ")}`,
+      ].join("\n");
+      return `https://api.whatsapp.com/send/?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(msg)}&type=phone_number&app_absent=0`;
+    };
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      // Enter en un paso intermedio = "Siguiente"
+      if (actual < steps.length - 1) { if (validarPaso(actual)) mostrar(actual + 1); return; }
+      const fd = datos();
+      if (fd.get("website")) return;
+      // Revalida todo; si algo falla, vuelve al paso correspondiente
+      for (let i = 0; i < steps.length; i++) {
+        if (!CAMPOS[i].every((c) => REGLAS[c](fd))) { mostrar(i); validarPaso(i); return; }
+      }
+
+      submitBtn.disabled = true;
+      if (btnLabel) btnLabel.textContent = "Registrando…";
+      setStatus("Registrando tu participación…", "info");
+      try {
+        const res = await fetch(API_URL, { method: "POST", body: fd, headers: { Accept: "application/json" } });
+        const json = await res.json().catch(() => null);
+        if (json?.ok) {
+          form.classList.add("hidden");
+          ok?.classList.remove("hidden");
+          const n = ok?.querySelector("[data-ok-nombre]");
+          const c = ok?.querySelector("[data-ok-codigo]");
+          if (n) n.textContent = String(fd.get("nombre")).trim().split(" ")[0];
+          if (c) c.textContent = json.codigo || "—";
+          ok?.focus({ preventScroll: true });
+          ok?.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+        if (json?.duplicado) { setStatus(json.error || "Este número o correo ya está inscrito. ¡Ya estás participando!", "info"); return; }
+        if (json?.fields) {
+          const campos = Object.keys(json.fields);
+          const paso = CAMPOS.findIndex((cs) => cs.some((c) => campos.includes(c)));
+          if (paso >= 0) mostrar(paso);
+          campos.forEach((k) => showError(k, true));
+        }
+        if ([422, 429, 403].includes(res.status)) { setStatus(json?.error || "Revisa los datos e inténtalo de nuevo.", "error"); return; }
+        throw new Error(json?.error || "Respuesta inesperada");
+      } catch (err) {
+        // Si el servidor no responde, no perdemos la inscripción: se envía por WhatsApp.
+        console.warn("Inscripción por API no disponible:", err);
+        setStatus("No pudimos registrar tu inscripción en este momento. Te abrimos WhatsApp con tus datos para registrarte manualmente.", "error");
+        window.open(waFallback(fd), "_blank", "noopener");
+      } finally {
+        submitBtn.disabled = false;
+        if (btnLabel) btnLabel.textContent = "Quiero participar";
+      }
+    });
+
+    mostrar(0, false);
+  }
+</script>

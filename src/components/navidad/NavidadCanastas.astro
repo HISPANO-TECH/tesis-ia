@@ -1,0 +1,119 @@
+---
+// "Mira nuestras canastas": carrusel de cards con fotos de las canastas.
+// Las fotos salen de NAVIDAD_GALERIA (src/config/navidad.ts) — marketing las reemplaza ahí.
+import { Icon } from "astro-icon/components";
+import { NAVIDAD_GALERIA } from "../../config/navidad";
+---
+
+<section id="canastas" class="relative overflow-hidden bg-[#050d22] py-20 text-white md:py-24">
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(185,28,28,0.25),transparent_60%)]"></div>
+
+  <div class="relative mx-auto max-w-7xl px-6">
+    <div class="flex items-end justify-between gap-6">
+      <h2 class="reveal font-display text-4xl font-bold tracking-tight md:text-5xl">
+        Mira nuestras <span class="text-amber-300">canastas</span>
+      </h2>
+      <div class="hidden gap-2 sm:flex">
+        <button type="button" data-car-prev aria-label="Anterior" class="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/5 transition hover:bg-amber-400 hover:text-[#0B1D3A]">
+          <Icon name="lucide:chevron-left" class="h-6 w-6" />
+        </button>
+        <button type="button" data-car-next aria-label="Siguiente" class="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/5 transition hover:bg-amber-400 hover:text-[#0B1D3A]">
+          <Icon name="lucide:chevron-right" class="h-6 w-6" />
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div
+    data-carousel
+    role="region"
+    aria-roledescription="carrusel"
+    aria-label="Fotos de las canastas navideñas"
+    tabindex="0"
+    class="relative mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-6 pb-4 [scrollbar-width:none] md:px-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] [&::-webkit-scrollbar]:hidden"
+  >
+    {NAVIDAD_GALERIA.map((f, i) => (
+      <figure
+        data-slide
+        role="group"
+        aria-roledescription="diapositiva"
+        aria-label={`${i + 1} de ${NAVIDAD_GALERIA.length}`}
+        class="group relative w-[78%] shrink-0 snap-start overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-2xl shadow-black/40 sm:w-[46%] lg:w-[31%] xl:w-[23.5%]"
+      >
+        <div class="aspect-[4/5] overflow-hidden">
+          <img
+            src={f.src}
+            alt={f.alt}
+            width="1080"
+            height="1350"
+            loading={i < 4 ? "eager" : "lazy"}
+            decoding="async"
+            draggable="false"
+            class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+          />
+        </div>
+        <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-5 pt-16">
+          <span class="text-xs font-bold uppercase tracking-widest text-amber-300">0{i + 1}</span>
+          <p class="mt-1 font-display text-lg font-bold leading-tight">{f.titulo}</p>
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+
+  <div class="mt-6 flex justify-center gap-2" data-car-dots>
+    {NAVIDAD_GALERIA.map((_, i) => (
+      <button type="button" aria-label={`Ir a la foto ${i + 1}`} data-dot={i} class="h-2.5 w-2.5 rounded-full bg-white/30 transition-all aria-[current=true]:w-8 aria-[current=true]:bg-amber-400"></button>
+    ))}
+  </div>
+</section>
+
+<script>
+  const track = document.querySelector<HTMLElement>("[data-carousel]");
+  if (track) {
+    const slides = Array.from(track.querySelectorAll<HTMLElement>("[data-slide]"));
+    const dots = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-car-dots] [data-dot]"));
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let index = 0;
+    let timer = 0;
+
+    const go = (i: number) => {
+      index = (i + slides.length) % slides.length;
+      const s = slides[index];
+      track.scrollTo({ left: s.offsetLeft - slides[0].offsetLeft, behavior: reduced ? "auto" : "smooth" });
+    };
+    // El punto activo sigue al scroll (también cuando el usuario desliza con el dedo)
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            index = slides.indexOf(e.target as HTMLElement);
+            dots.forEach((d, k) => d.setAttribute("aria-current", String(k === index)));
+          }
+        });
+      },
+      { root: track, threshold: 0.6 }
+    );
+    slides.forEach((s) => io.observe(s));
+
+    const stop = () => { clearInterval(timer); timer = 0; };
+    const start = () => {
+      if (reduced || timer) return;
+      timer = window.setInterval(() => {
+        const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 8;
+        go(atEnd ? 0 : index + 1);
+      }, 4000);
+    };
+
+    document.querySelector("[data-car-prev]")?.addEventListener("click", () => { stop(); go(index - 1); });
+    document.querySelector("[data-car-next]")?.addEventListener("click", () => { stop(); go(index + 1); });
+    dots.forEach((d, k) => d.addEventListener("click", () => { stop(); go(k); }));
+    track.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") { stop(); go(index + 1); }
+      if (e.key === "ArrowLeft") { stop(); go(index - 1); }
+    });
+    ["pointerenter", "focusin", "touchstart"].forEach((ev) => track.addEventListener(ev, stop, { passive: true }));
+    track.addEventListener("pointerleave", start);
+    // Solo avanza solo cuando el carrusel está en pantalla
+    new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop()), { threshold: 0.3 }).observe(track);
+  }
+</script>
