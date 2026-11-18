@@ -129,14 +129,14 @@ function docTextos() {
   c.push(p([t("Flujo del usuario:", { bold: true })]));
   ["Publicidad en Facebook, Instagram y TikTok → llega a tesis-ia.com/navidad.",
    "Completa el formulario (datos personales + situación académica + estado de tesis + intereses).",
-   "Recibe en pantalla su código de participación (NAV-0001, NAV-0002…).",
+   "Recibe en pantalla su código de participación (NAV-0001, NAV-0002…) y, recién ahí, el botón del grupo de WhatsApp.",
    "Se une al grupo de WhatsApp de la comunidad (paso obligatorio para participar).",
    "Sorteo en vivo y anuncio de los 50 ganadores en el grupo."].forEach((s) => c.push(num("n1", s)));
 
   c.push(h1("2. Datos que el supervisor debe confirmar"));
   c.push(p("La página ya funciona con estos valores provisionales. Están en un único archivo (src/config/navidad.ts), así que cambiarlos toma minutos."));
   c.push(table([2800, 3600, 3238], ["Dato", "Valor provisional en la página", "Qué se necesita"], [
-    ["Link del grupo de WhatsApp", "https://chat.whatsapp.com/HISPANOTECH-NAVIDAD-2026 (no funciona, es de ejemplo)", "El link de invitación real del grupo"],
+    ["Link del grupo de WhatsApp", "https://chat.whatsapp.com/HISPANOTECH-NAVIDAD-2026 (no funciona, es de ejemplo). Se configura en public/api/navidad.php", "El link de invitación real del grupo"],
     ["Cierre de inscripciones", "20 de diciembre de 2026, 11:59 p. m.", "Fecha y hora definitivas"],
     ["Fecha del sorteo", "22 de diciembre de 2026, 8:00 p. m. (hora de Perú)", "Fecha y hora definitivas"],
     ["Canal del sorteo en vivo", "Facebook y TikTok de HispanoTech", "Redes donde se transmitirá"],
@@ -151,13 +151,13 @@ function docTextos() {
 
   c.push(h1("3. Estructura de la página"));
   c.push(table([700, 2800, 6138], ["#", "Sección", "Para qué sirve"], [
-    ["1", "Banner principal (video de marketing)", "Impacto inicial: anuncia las 50 canastas, cuenta regresiva y botones de acción."],
+    ["1", "Banner principal (video de marketing) + formulario", "Anuncia las 50 canastas con cuenta regresiva y, al lado, el formulario de inscripción por pasos."],
     ["2", "El premio", "Muestra la canasta en 3D y qué contiene."],
     ["3", "Mira nuestras canastas", "Carrusel de cards con fotos de las canastas (solo imágenes y un título corto)."],
     ["4", "Cómo participar + video", "Los 4 pasos a la izquierda y un video vertical a la derecha."],
     ["5", "Comunidad HispanoTech", "Posiciona a HispanoTech como plataforma de investigación."],
     ["6", "Formulario por pasos", "Preguntas 1 a 7 divididas en 4 pasos (A, B, C, D), uno a la vez."],
-    ["7", "Mensaje de inscripción exitosa", "Entrega el código y pide unirse al grupo."],
+    ["7", "Mensaje de inscripción exitosa", "Entrega el código y, recién ahí, el botón del grupo de WhatsApp."],
     ["8", "Franja del grupo de WhatsApp", "Botón destacado para entrar al grupo."],
     ["9", "Bases del sorteo", "Reglas, fechas y condiciones."],
     ["10", "Preguntas frecuentes", "Resuelve dudas antes de que escriban."],
@@ -175,8 +175,7 @@ function docTextos() {
     ["Subtítulo", "¡Esta Navidad, HispanoTech premia tu esfuerzo académico!"],
     ["Párrafo", "Participa en el sorteo de 50 canastas navideñas y forma parte de nuestra comunidad de estudiantes, egresados y profesionales que quieren llevar sus investigaciones al siguiente nivel."],
     ["Etiquetas (chips)", "50 ganadores · Inscripción gratuita · Sorteo en vivo"],
-    ["Botón 1", "QUIERO PARTICIPAR (baja al formulario)"],
-    ["Botón 2", "UNIRME AL GRUPO DE WHATSAPP (abre el grupo)"],
+    ["Formulario (a la derecha)", "Encabezado: «Inscríbete gratis» · «4 pasos · 2 minutos · acceso al grupo de WhatsApp». Es el mismo formulario por pasos de la sección 6."],
     ["Cuenta regresiva", "«El sorteo empieza en» · Días · Horas · Min · Seg"],
     ["Fondo", [[t("Video de marketing en bucle, sin sonido. Mientras no llegue, se muestra una imagen 3D fija."), pending("video de marketing")]]],
     ["Línea de fecha", [[t("Sorteo: 22 de diciembre de 2026, 8:00 p. m. (hora de Perú), en vivo por Facebook y TikTok de HispanoTech."), pending("fecha y canal")]]],
@@ -218,7 +217,7 @@ function docTextos() {
     ["Paso 2", "Únete al grupo de WhatsApp — Es parte de la participación: ahí anunciamos el sorteo, los ganadores y contenido académico gratuito."],
     ["Paso 3", "Recibe tu código — Al inscribirte obtienes un código de participación único. Guárdalo: con él se identifica a los ganadores."],
     ["Paso 4", "Mira el sorteo en vivo — Sorteamos las 50 canastas de forma pública y transparente. ¡Mucha suerte!"],
-    ["Botones", "IR AL FORMULARIO · UNIRME AL GRUPO"],
+    ["Botones", "IR AL FORMULARIO · UNIRME AL GRUPO (ambos llevan al formulario)"],
     ["Video (a la derecha)", [[t("Video vertical dentro de un marco de celular, con botón de reproducir y el texto «Así participas en 1 minuto»."), pending("video de marketing")]]],
   ]));
 
@@ -284,7 +283,7 @@ function docTextos() {
   c.push(h3("Mensajes del sistema"));
   c.push(kv([
     ["Campos incompletos", "Revisa los campos marcados en rojo."],
-    ["Ya inscrito", "Este número de WhatsApp o correo ya está inscrito. ¡Ya estás participando! Recuerda unirte al grupo de WhatsApp."],
+    ["Ya inscrito", "Se muestra la misma pantalla de éxito con el título «¡Ya estabas inscrito, [Nombre]!», su código original y el botón del grupo."],
     ["Inscripciones cerradas", "Las inscripciones para el sorteo ya cerraron. ¡Gracias por tu interés!"],
     ["Envíos seguidos", "Espera unos segundos antes de volver a enviar."],
     ["Servidor sin respuesta", "No pudimos registrar tu inscripción en este momento. Te abrimos WhatsApp con tus datos para registrarte manualmente."],
@@ -293,8 +292,8 @@ function docTextos() {
   c.push(h2("Sección 8 · Franja del grupo de WhatsApp"));
   c.push(kv([
     ["Título (H2)", "Únete al grupo de WhatsApp de la comunidad"],
-    ["Párrafo", "Es el paso que completa tu participación. Ahí anunciamos el sorteo en vivo, publicamos la lista de ganadores y compartimos contenido académico gratuito."],
-    ["Botón", [[t("UNIRME AHORA  →  abre el grupo"), pending("link real")]]],
+    ["Párrafo", "Ahí anunciamos el sorteo en vivo, publicamos la lista de ganadores y compartimos contenido académico gratuito. Para entrar, primero completa el formulario: al terminar te mostramos el acceso al grupo."],
+    ["Botón", "INSCRIBIRME Y UNIRME  →  lleva al formulario"],
   ]));
 
   c.push(h2("Sección 9 · Bases del sorteo"));
@@ -327,7 +326,7 @@ function docTextos() {
   c.push(kv([
     ["Título (H2)", "Tu esfuerzo académico merece celebrarse"],
     ["Párrafo", "Inscríbete hoy, únete a la comunidad y participa por una de las 50 canastas navideñas."],
-    ["Botones", "QUIERO PARTICIPAR · UNIRME AL GRUPO DE WHATSAPP"],
+    ["Botones", "QUIERO PARTICIPAR · UNIRME AL GRUPO DE WHATSAPP (ambos llevan al formulario)"],
     ["Despedida", "¡Felices fiestas te desea toda la comunidad HispanoTech! 🎄"],
     ["Fondo", "Video 3D animado de la canasta (se reproduce solo cuando la sección está en pantalla)."],
   ]));
@@ -339,7 +338,13 @@ function docTextos() {
     ["Imagen al compartir", "og-navidad.jpg (1200 × 630 px) — ver Documento 2"],
   ]));
 
-  c.push(h1("5. Qué pasa con cada inscripción (funcionamiento)"));
+  c.push(h1("5. Captación de leads: el grupo solo se entrega tras el formulario"));
+  ["Todos los botones «Unirme al grupo de WhatsApp» de la página llevan al formulario; ninguno abre el grupo directamente.",
+   "El link del grupo no está escrito en la página (no se puede copiar del código fuente): lo entrega el servidor solo cuando la inscripción es válida.",
+   "El formulario aparece dos veces (banner y sección de inscripción); al registrarse en uno, ambos muestran el acceso al grupo.",
+   "Si alguien ya estaba inscrito y vuelve a llenar el formulario, recibe de nuevo su código y el botón del grupo (ya dejó sus datos)."].forEach((x) => c.push(bullet(x)));
+
+  c.push(h1("6. Qué pasa con cada inscripción (funcionamiento)"));
   ["Se valida en el navegador y otra vez en el servidor (no se aceptan opciones inventadas ni números inválidos).",
    "Se guarda en un archivo protegido del servidor (api/data/navidad-inscritos.csv), que se abre en Excel. No es accesible desde la web.",
    "No se permite inscribir dos veces el mismo WhatsApp ni el mismo correo.",

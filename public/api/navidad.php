@@ -10,6 +10,9 @@ require_once __DIR__ . '/config.php';
 date_default_timezone_set('America/Lima');
 
 const NAV_CSV = __DIR__ . '/data/navidad-inscritos.csv';
+// POR CONFIRMAR: link de invitación real del grupo. Solo se entrega tras un registro válido
+// (nunca se escribe en el HTML, así nadie entra al grupo sin dejar sus datos).
+const NAV_GRUPO_WHATSAPP = 'https://chat.whatsapp.com/HISPANOTECH-NAVIDAD-2026';
 // POR CONFIRMAR: misma fecha que src/config/navidad.ts (cierreInscripciones)
 const NAV_CIERRE = '2026-12-20T23:59:00-05:00';
 
@@ -117,16 +120,22 @@ if (!$fh || !flock($fh, LOCK_EX)) {
 }
 $total = 0;
 $duplicado = false;
+$codigoExistente = '';
 rewind($fh);
 while (($row = fgetcsv($fh, 0, ',', '"', '')) !== false) {
     if ($row === [null] || ($row[0] ?? '') === 'codigo') continue;
     $total++;
-    if (($row[3] ?? '') === $whatsapp || ($row[4] ?? '') === $email) $duplicado = true;
+    if (!$duplicado && (($row[3] ?? '') === $whatsapp || ($row[4] ?? '') === $email)) {
+        $duplicado = true;
+        $codigoExistente = $row[0] ?? '';
+    }
 }
 if ($duplicado) {
     flock($fh, LOCK_UN); fclose($fh);
-    json_response(409, ['ok' => false, 'duplicado' => true,
-        'error' => 'Este número de WhatsApp o correo ya está inscrito. ¡Ya estás participando! Recuerda unirte al grupo de WhatsApp.']);
+    // Ya registrado: se le vuelve a mostrar su código y el acceso al grupo (ya dejó sus datos).
+    json_response(409, ['ok' => false, 'duplicado' => true, 'codigo' => ltrim($codigoExistente, "'"),
+        'grupo' => NAV_GRUPO_WHATSAPP,
+        'error' => 'Este número de WhatsApp o correo ya está inscrito. ¡Ya estás participando!']);
 }
 $codigo = sprintf('NAV-%04d', $total + 1);
 $fecha  = date('Y-m-d H:i:s');
@@ -165,5 +174,6 @@ $headers .= "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\n";
 json_response(200, [
     'ok' => true,
     'codigo' => $codigo,
+    'grupo' => NAV_GRUPO_WHATSAPP,
     'message' => "¡Listo, {$e(explode(' ', $nombre)[0])}! Tu código es {$codigo}.",
 ]);

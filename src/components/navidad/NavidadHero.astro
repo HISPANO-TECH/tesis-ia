@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import { NAVIDAD, NAVIDAD_HERO, NAVIDAD_MEDIA } from "../../config/navidad";
+import NavidadFormulario from "./NavidadFormulario.astro";
 const { bannerVideo, bannerVideoMovil, bannerPoster } = NAVIDAD_MEDIA;
 ---
 
@@ -36,13 +37,13 @@ const { bannerVideo, bannerVideoMovil, bannerPoster } = NAVIDAD_MEDIA;
   <div class="absolute inset-0 -z-10 bg-gradient-to-r from-[#050d22] via-[#050d22]/80 to-transparent max-lg:via-[#050d22]/70 max-lg:to-[#050d22]/30"></div>
   <div class="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-[#050d22] to-transparent"></div>
 
-  <div class="mx-auto flex min-h-[calc(100svh-112px)] max-w-7xl flex-col justify-center px-6 py-16 md:py-24">
-    <div class="max-w-2xl">
+  <div class="mx-auto grid min-h-[calc(100svh-112px)] max-w-7xl items-center gap-10 px-6 py-12 md:py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
+    <div>
       <span class="reveal inline-flex items-center gap-2 rounded-full border border-amber-300/40 bg-amber-300/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-amber-300 backdrop-blur">
         <Icon name="lucide:sparkles" class="h-3.5 w-3.5" /> {NAVIDAD_HERO.eyebrow}
       </span>
 
-      <h1 class="mt-5 font-display text-[44px] font-bold uppercase leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
+      <h1 class="mt-5 font-display text-[44px] font-bold uppercase leading-[0.95] tracking-tight sm:text-6xl xl:text-7xl">
         <span class="split-letters block text-amber-300 drop-shadow-[0_4px_24px_rgba(245,158,11,0.35)]">50 Canastas</span>
         <span class="split-letters block">Navideñas</span>
       </h1>
@@ -63,18 +64,8 @@ const { bannerVideo, bannerVideoMovil, bannerPoster } = NAVIDAD_MEDIA;
         ))}
       </ul>
 
-      <div class="reveal mt-7 flex flex-col gap-3 sm:flex-row" style="--reveal-delay:300ms">
-        <a href="#formulario" class="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-amber-300 to-amber-500 px-7 py-4 font-display text-sm font-bold uppercase tracking-wide text-[#0B1D3A] shadow-lg shadow-amber-500/30 transition hover:-translate-y-0.5 hover:shadow-amber-500/50">
-          <Icon name="lucide:gift" class="h-5 w-5" /> {NAVIDAD_HERO.ctaPrincipal}
-          <Icon name="lucide:arrow-down" class="h-4 w-4 transition group-hover:translate-y-0.5" />
-        </a>
-        <a href={NAVIDAD.grupoWhatsApp} target="_blank" rel="noopener" data-wa-grupo class="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-4 font-display text-sm font-bold uppercase tracking-wide text-white backdrop-blur transition hover:bg-[#25D366] hover:border-[#25D366]">
-          <Icon name="simple-icons:whatsapp" class="h-5 w-5" /> {NAVIDAD_HERO.ctaSecundario}
-        </a>
-      </div>
-
       <!-- Cuenta regresiva al sorteo -->
-      <div class="reveal mt-9" style="--reveal-delay:360ms">
+      <div class="reveal mt-8" style="--reveal-delay:300ms">
         <p class="text-xs font-bold uppercase tracking-widest text-amber-200/80">El sorteo empieza en</p>
         <div id="countdown" data-target={NAVIDAD.fechaSorteo} class="mt-2 grid max-w-md grid-cols-4 gap-2 sm:gap-3">
           {[["dias", "Días"], ["horas", "Horas"], ["min", "Min"], ["seg", "Seg"]].map(([k, l]) => (
@@ -89,6 +80,11 @@ const { bannerVideo, bannerVideoMovil, bannerPoster } = NAVIDAD_MEDIA;
           Sorteo: <strong class="text-white">{NAVIDAD.sorteoTexto}</strong>, {NAVIDAD.canalSorteo}.
         </p>
       </div>
+    </div>
+
+    <!-- Formulario en el banner: es la única puerta de entrada al grupo de WhatsApp -->
+    <div id="registro" class="reveal reveal-right scroll-mt-28 w-full lg:max-w-[500px] lg:justify-self-end" style="--reveal-delay:200ms">
+      <NavidadFormulario uid="nvb" compact />
     </div>
   </div>
 

@@ -6,8 +6,8 @@ export const NAVIDAD = {
   marca: "HispanoTech",
   totalCanastas: 50,
 
-  // POR CONFIRMAR: link de invitación real del grupo de WhatsApp de la comunidad.
-  grupoWhatsApp: "https://chat.whatsapp.com/HISPANOTECH-NAVIDAD-2026",
+  // El link del grupo de WhatsApp NO va aquí (sería visible en la página): está en
+  // public/api/navidad.php (NAV_GRUPO_WHATSAPP) y solo se entrega tras un registro válido.
 
   // POR CONFIRMAR: fechas de cierre de inscripciones y del sorteo (hora Perú, UTC-5).
   cierreInscripciones: "2026-12-20T23:59:00-05:00",
@@ -26,7 +26,7 @@ export const NAVIDAD_HERO = {
     "Participa en el sorteo de 50 canastas navideñas y forma parte de nuestra comunidad de estudiantes, egresados y profesionales que quieren llevar sus investigaciones al siguiente nivel.",
   chips: ["50 ganadores", "Inscripción gratuita", "Sorteo en vivo"],
   ctaPrincipal: "Quiero participar",
-  ctaSecundario: "Unirme al grupo de WhatsApp",
+  ctaSecundario: "Unirme al grupo de WhatsApp", // lleva al formulario
 };
 
 // Contenido referencial de cada canasta (POR CONFIRMAR con el proveedor).
