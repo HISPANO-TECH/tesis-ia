@@ -4,7 +4,8 @@
 // 2) Evita duplicados por WhatsApp o correo (1 inscripción por persona).
 // 3) Guarda la inscripción en api/data/navidad-inscritos.csv (carpeta bloqueada por .htaccess)
 //    con un código correlativo NAV-0001, NAV-0002…
-// 4) Notifica por correo a MAIL_TO_REAL. Si el correo falla, la inscripción igual queda guardada.
+// 4) Notifica por correo a MAIL_TO_REAL y envía al participante su confirmación (código,
+//    botón del grupo de WhatsApp y fecha del sorteo). Si un correo falla, la inscripción igual queda guardada.
 
 require_once __DIR__ . '/config.php';
 date_default_timezone_set('America/Lima');
@@ -13,8 +14,11 @@ const NAV_CSV = __DIR__ . '/data/navidad-inscritos.csv';
 // POR CONFIRMAR: link de invitación real del grupo. Solo se entrega tras un registro válido
 // (nunca se escribe en el HTML, así nadie entra al grupo sin dejar sus datos).
 const NAV_GRUPO_WHATSAPP = 'https://chat.whatsapp.com/HISPANOTECH-NAVIDAD-2026';
-// POR CONFIRMAR: misma fecha que src/config/navidad.ts (cierreInscripciones)
+// POR CONFIRMAR: mismas fechas que src/config/navidad.ts
 const NAV_CIERRE = '2026-12-20T23:59:00-05:00';
+const NAV_CIERRE_TEXTO = '20 de diciembre de 2026, 11:59 p. m.';
+const NAV_SORTEO_TEXTO = '22 de diciembre de 2026, 8:00 p. m. (hora de Perú)';
+const NAV_CANAL_SORTEO = 'en vivo por Facebook y TikTok de HispanoTech';
 
 const NAV_ETAPAS = [
     'Octavo ciclo', 'Noveno ciclo', 'Décimo ciclo', 'Egresado', 'Bachiller', 'Titulado',
@@ -83,7 +87,7 @@ $clean = function ($v, int $max = 160): string {
 
 $nombre    = $clean($input['nombre'] ?? '', 120);
 $whatsapp  = preg_replace('/\D/', '', (string)($input['whatsapp'] ?? ''));
-if (strlen($whatsapp) === 11 && str_starts_with($whatsapp, '51')) $whatsapp = substr($whatsapp, 2);
+if (strlen($whatsapp) === 11 && strpos($whatsapp, '51') === 0) $whatsapp = substr($whatsapp, 2);
 $email     = mb_strtolower($clean($input['email'] ?? '', 160));
 $etapa     = $clean($input['etapa'] ?? '', 60);
 $carrera   = $clean($input['carrera'] ?? '', 120);
@@ -97,7 +101,7 @@ $aceptaBases  = !empty($input['acepta_bases']);
 $aceptaPromos = !empty($input['acepta_promos']);
 
 $errores = [];
-if (mb_strlen($nombre) < 5 || !str_contains($nombre, ' ')) $errores['nombre'] = 'Escribe tus nombres y apellidos.';
+if (mb_strlen($nombre) < 5 || strpos($nombre, ' ') === false) $errores['nombre'] = 'Escribe tus nombres y apellidos.';
 if (!preg_match('/^9\d{8}$/', $whatsapp))                   $errores['whatsapp'] = 'Celular peruano inválido.';
 if (!is_valid_email($email))                                 $errores['email'] = 'Correo inválido.';
 if (!in_array($etapa, NAV_ETAPAS, true))                     $errores['etapa'] = 'Selecciona tu etapa académica.';
@@ -171,9 +175,91 @@ $headers .= "Reply-To: " . $email . "\r\n";
 $headers .= "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\n";
 @mail(MAIL_TO_REAL, '=?UTF-8?B?' . base64_encode($subject) . '?=', $html, $headers, '-f ' . MAIL_FROM);
 
+// ---- Confirmación al participante (código + grupo de WhatsApp + fecha del sorteo) ----
+nav_enviar_confirmacion($email, explode(' ', $nombre)[0], $codigo);
+
 json_response(200, [
     'ok' => true,
     'codigo' => $codigo,
     'grupo' => NAV_GRUPO_WHATSAPP,
     'message' => "¡Listo, {$e(explode(' ', $nombre)[0])}! Tu código es {$codigo}.",
 ]);
+
+/**
+ * Correo de confirmación al participante. Multipart (texto + HTML) para mejor entrega.
+ * Si falla, solo se registra en el log: la inscripción ya quedó guardada.
+ */
+function nav_enviar_confirmacion(string $email, string $nombre, string $codigo): void
+{
+    $h = fn(string $v): string => htmlspecialchars($v, ENT_QUOTES, 'UTF-8');
+    $grupo = NAV_GRUPO_WHATSAPP;
+    $img = SITE_URL . '/navidad/og-navidad.jpg';
+    $web = SITE_URL . '/navidad';
+    $subject = "🎄 ¡Ya estás participando! Tu código es {$codigo}";
+
+    $text = "¡Hola, {$nombre}!\n\n"
+        . "Tu inscripción al sorteo de las 50 Canastas Navideñas de HispanoTech quedó registrada.\n\n"
+        . "Tu código de participación: {$codigo}\n"
+        . "Guárdalo: con él identificamos a los ganadores.\n\n"
+        . "ÚLTIMO PASO OBLIGATORIO: únete al grupo de WhatsApp para que tu participación sea válida:\n{$grupo}\n\n"
+        . "Sorteo: " . NAV_SORTEO_TEXTO . ", " . NAV_CANAL_SORTEO . ".\n"
+        . "Los ganadores se anuncian en el grupo y les escribimos al WhatsApp registrado.\n\n"
+        . "Importante: la participación es gratuita. Nunca te pediremos pagos ni datos bancarios para entregarte tu canasta.\n\n"
+        . "¡Felices fiestas!\nComunidad HispanoTech · {$web}\n";
+
+    $html = '<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"></head>
+<body style="margin:0;padding:0;background:#eef2f7">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#eef2f7;padding:24px 12px">
+<tr><td align="center">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#ffffff;border-radius:18px;overflow:hidden;font-family:Arial,Helvetica,sans-serif;color:#0f172a">
+  <tr><td style="background:#0B1D3A;padding:18px 28px;color:#fbbf24;font-size:12px;font-weight:bold;letter-spacing:2px;text-transform:uppercase">Campaña navideña 2026 · HispanoTech</td></tr>
+  <tr><td><img src="' . $h($img) . '" width="600" alt="Canasta navideña HispanoTech" style="display:block;width:100%;max-width:600px;height:auto;border:0"></td></tr>
+  <tr><td style="padding:30px 28px 8px">
+    <h1 style="margin:0;font-size:26px;line-height:1.25;color:#0B1D3A">¡Hola, ' . $h($nombre) . '! Ya estás participando 🎄</h1>
+    <p style="margin:14px 0 0;font-size:16px;line-height:1.6;color:#334155">Tu inscripción al sorteo de las <strong>50 Canastas Navideñas</strong> de HispanoTech quedó registrada.</p>
+  </td></tr>
+  <tr><td align="center" style="padding:22px 28px 6px">
+    <p style="margin:0 0 8px;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:1px">Tu código de participación</p>
+    <div style="display:inline-block;border:2px dashed #f59e0b;background:#fffbeb;border-radius:14px;padding:12px 26px;font-size:30px;font-weight:bold;letter-spacing:4px;color:#0B1D3A">' . $h($codigo) . '</div>
+    <p style="margin:10px 0 0;font-size:13px;color:#64748b">Guárdalo: con él identificamos a los ganadores.</p>
+  </td></tr>
+  <tr><td style="padding:26px 28px 6px">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#fef2f2;border-left:4px solid #dc2626;border-radius:10px">
+      <tr><td style="padding:16px 18px;font-size:15px;line-height:1.5;color:#991b1b"><strong>Último paso obligatorio:</strong> únete al grupo de WhatsApp para que tu participación sea válida.</td></tr>
+    </table>
+  </td></tr>
+  <tr><td align="center" style="padding:18px 28px 8px">
+    <a href="' . $h($grupo) . '" style="display:inline-block;background:#25D366;color:#ffffff;text-decoration:none;font-weight:bold;font-size:16px;padding:15px 30px;border-radius:999px">Unirme al grupo de WhatsApp</a>
+  </td></tr>
+  <tr><td style="padding:24px 28px 4px">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border-radius:12px">
+      <tr><td style="padding:16px 18px;font-size:14px;line-height:1.7;color:#334155">
+        <strong style="color:#0B1D3A">📅 Sorteo:</strong> ' . $h(NAV_SORTEO_TEXTO) . ', ' . $h(NAV_CANAL_SORTEO) . '.<br>
+        <strong style="color:#0B1D3A">🏆 Ganadores:</strong> se anuncian en el grupo y les escribimos al WhatsApp que registraste.<br>
+        <strong style="color:#0B1D3A">🔒 Gratis y seguro:</strong> nunca te pediremos pagos ni datos bancarios para entregarte tu canasta.
+      </td></tr>
+    </table>
+  </td></tr>
+  <tr><td style="padding:22px 28px 30px;font-size:15px;line-height:1.6;color:#334155">¡Mucha suerte y felices fiestas!<br><strong style="color:#0B1D3A">Comunidad HispanoTech</strong></td></tr>
+  <tr><td style="background:#fffbeb;padding:14px 28px;font-size:12px;line-height:1.5;color:#92400e">Recibes este correo porque te inscribiste en <a href="' . $h($web) . '" style="color:#92400e">tesis-ia.com/navidad</a>. Si no fuiste tú, puedes ignorarlo.</td></tr>
+</table>
+</td></tr></table>
+</body></html>';
+
+    $b = 'nav_' . md5(uniqid((string)mt_rand(), true));
+    $headers  = "From: HispanoTech - Tesis IA <" . MAIL_FROM . ">\r\n";
+    $headers .= "Reply-To: " . MAIL_TO_REAL . "\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: multipart/alternative; boundary=\"{$b}\"\r\n";
+    $body  = "--{$b}\r\nContent-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n"
+        . chunk_split(base64_encode($text)) . "\r\n";
+    $body .= "--{$b}\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n"
+        . chunk_split(base64_encode($html)) . "\r\n";
+    $body .= "--{$b}--";
+
+    $ok = @mail($email, '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, $headers, '-f ' . MAIL_FROM);
+    if (!$ok) {
+        @file_put_contents(sys_get_temp_dir() . '/mail_errors.log',
+            '[' . date('c') . "] FAIL navidad.php confirmacion a {$email} ({$codigo})\n", FILE_APPEND);
+    }
+}

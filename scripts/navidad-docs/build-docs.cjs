@@ -289,6 +289,23 @@ function docTextos() {
     ["Servidor sin respuesta", "No pudimos registrar tu inscripción en este momento. Te abrimos WhatsApp con tus datos para registrarte manualmente."],
   ]));
 
+  c.push(h3("Correo de confirmación al participante"));
+  c.push(p("Al inscribirse, la persona recibe este correo en la dirección que registró (además del aviso interno a informes@asesorestesisperu.com)."));
+  c.push(kv([
+    ["Remitente", "HispanoTech - Tesis IA <informes@asesorestesisperu.com> (las respuestas llegan a informes@)"],
+    ["Asunto", "🎄 ¡Ya estás participando! Tu código es NAV-0001"],
+    ["Imagen", "Escena 3D de la canasta navideña (og-navidad.jpg)"],
+    ["Título", "¡Hola, [Nombre]! Ya estás participando 🎄"],
+    ["Párrafo", "Tu inscripción al sorteo de las 50 Canastas Navideñas de HispanoTech quedó registrada."],
+    ["Código", "Tu código de participación: NAV-0001 — Guárdalo: con él identificamos a los ganadores."],
+    ["Aviso en rojo", "Último paso obligatorio: únete al grupo de WhatsApp para que tu participación sea válida."],
+    ["Botón", "Unirme al grupo de WhatsApp"],
+    ["Recuadro de datos", "📅 Sorteo: 22 de diciembre de 2026, 8:00 p. m. (hora de Perú), en vivo por Facebook y TikTok de HispanoTech. · 🏆 Ganadores: se anuncian en el grupo y les escribimos al WhatsApp que registraste. · 🔒 Gratis y seguro: nunca te pediremos pagos ni datos bancarios para entregarte tu canasta."],
+    ["Despedida", "¡Mucha suerte y felices fiestas! — Comunidad HispanoTech"],
+    ["Pie", "Recibes este correo porque te inscribiste en tesis-ia.com/navidad. Si no fuiste tú, puedes ignorarlo."],
+  ]));
+  c.push(note("Si la persona ya estaba inscrita y vuelve a llenar el formulario, no se le reenvía el correo (evita duplicados); en pantalla sí ve su código y el botón del grupo."));
+
   c.push(h2("Sección 8 · Franja del grupo de WhatsApp"));
   c.push(kv([
     ["Título (H2)", "Únete al grupo de WhatsApp de la comunidad"],

@@ -10,3 +10,6 @@ public/api/data/*.csv
 
 # Archivos temporales de Office (documento abierto)
 ~$*
+
+# Paquetes de despliegue para cPanel
+/*.zip
