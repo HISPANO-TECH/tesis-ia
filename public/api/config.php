@@ -7,9 +7,12 @@
 // ====== DESTINATARIOS ======
 define('MAIL_TO_REAL', 'informes@asesorestesisperu.com'); // correo real de produccion
 define('MAIL_TO_TEST', 'marxchip99@gmail.com');           // para testmail.php (te llega a tu Gmail)
-// MAIL_FROM debe EXISTIR como cuenta de correo en cPanel > Email Accounts
-// para que no caiga en SPAM (ej. crea noreply@tesis-ia.com o usa informes@asesorestesisperu.com).
-define('MAIL_FROM', 'informes@asesorestesisperu.com');
+// MAIL_FROM debe ser una cuenta del MISMO dominio del hosting (tesis-ia.com) y existir en
+// cPanel > Email Accounts. El SPF de tesis-ia.com autoriza a este servidor (192.185.129.53);
+// el de asesorestesisperu.com NO (es otro servidor), por eso enviar "como" ese dominio
+// hacía que Gmail/Outlook descartaran o mandaran a SPAM los correos.
+// Las respuestas igual llegan a informes@asesorestesisperu.com gracias a MAIL_REPLY_TO.
+define('MAIL_FROM', 'informes@tesis-ia.com');
 define('MAIL_FROM_NAME', 'Tesis IA Web');
 define('MAIL_REPLY_TO', MAIL_TO_REAL);
 define('SITE_URL', 'https://tesis-ia.com');

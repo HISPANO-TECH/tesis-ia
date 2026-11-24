@@ -1,5 +1,5 @@
 """
-Escena 3D de la campaña "50 Canastas Navideñas" (tesis-ia.com / HispanoTech).
+Escena 3D de la campaña "25 Canastas Navideñas" (tesis-ia.com / HispanoTech).
 
 Genera por código (sin assets externos) los elementos 3D de la página /navidad:
   canasta  -> canasta navideña con panetón, chocolates, bombones, bastón, ramas de pino

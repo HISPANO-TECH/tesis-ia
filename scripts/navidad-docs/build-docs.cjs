@@ -78,9 +78,9 @@ function cover(titulo, subtitulo, extra) {
       children: [t(subtitulo, { size: 28, color: GREY })] }),
     table([2600, W - 2600], ["Dato", "Detalle"], [
       ["Página", "https://tesis-ia.com/navidad"],
-      ["Campaña", "Sorteo de 50 Canastas Navideñas 2026"],
+      ["Campaña", "Sorteo de 25 Canastas Navideñas 2026"],
       ["Estado", [[t("Borrador para revisión del supervisor", { bold: true, color: RED })]]],
-      ["Fecha", "18 de noviembre de 2026"],
+      ["Fecha", "24 de noviembre de 2026"],
       ...extra,
     ]),
     new Paragraph({ children: [new PageBreak()] }),
@@ -124,21 +124,21 @@ function docTextos() {
   ]));
 
   c.push(h1("1. Resumen de la campaña"));
-  c.push(p([t("Objetivo: ", { bold: true }), t("captar estudiantes, egresados y profesionales mediante el sorteo de 50 canastas navideñas, conocer en qué etapa de su tesis está cada persona e incorporarlos al grupo de WhatsApp de la comunidad HispanoTech. Así, quienes ingresen en diciembre pueden convertirse en clientes de cursos, herramientas de IA y servicios académicos en enero, febrero y marzo de 2027.")]));
+  c.push(p([t("Objetivo: ", { bold: true }), t("captar estudiantes, egresados y profesionales mediante el sorteo de 25 canastas navideñas, conocer en qué etapa de su tesis está cada persona e incorporarlos al grupo de WhatsApp de la comunidad HispanoTech. Así, quienes ingresen en diciembre pueden convertirse en clientes de cursos, herramientas de IA y servicios académicos en enero, febrero y marzo de 2027.")]));
   c.push(p([t("Posicionamiento: ", { bold: true }), t("presentar a HispanoTech como una plataforma tecnológica de investigación académica, no solo como una empresa que brinda asesoría de tesis.")]));
   c.push(p([t("Flujo del usuario:", { bold: true })]));
   ["Publicidad en Facebook, Instagram y TikTok → llega a tesis-ia.com/navidad.",
    "Completa el formulario (datos personales + situación académica + estado de tesis + intereses).",
    "Recibe en pantalla su código de participación (NAV-0001, NAV-0002…) y, recién ahí, el botón del grupo de WhatsApp.",
    "Se une al grupo de WhatsApp de la comunidad (paso obligatorio para participar).",
-   "Sorteo en vivo y anuncio de los 50 ganadores en el grupo."].forEach((s) => c.push(num("n1", s)));
+   "Sorteo en vivo y anuncio de los 25 ganadores en el grupo."].forEach((s) => c.push(num("n1", s)));
 
   c.push(h1("2. Datos que el supervisor debe confirmar"));
   c.push(p("La página ya funciona con estos valores provisionales. Están en un único archivo (src/config/navidad.ts), así que cambiarlos toma minutos."));
   c.push(table([2800, 3600, 3238], ["Dato", "Valor provisional en la página", "Qué se necesita"], [
     ["Link del grupo de WhatsApp", "https://chat.whatsapp.com/HISPANOTECH-NAVIDAD-2026 (no funciona, es de ejemplo). Se configura en public/api/navidad.php", "El link de invitación real del grupo"],
-    ["Cierre de inscripciones", "20 de diciembre de 2026, 11:59 p. m.", "Fecha y hora definitivas"],
-    ["Fecha del sorteo", "22 de diciembre de 2026, 8:00 p. m. (hora de Perú)", "Fecha y hora definitivas"],
+    ["Cierre de inscripciones", "14 de diciembre de 2026, 11:59 p. m.", "Fecha y hora definitivas"],
+    ["Fecha del sorteo", "16 de diciembre de 2026, 8:00 p. m. (hora de Perú)", "Fecha y hora definitivas"],
     ["Canal del sorteo en vivo", "Facebook y TikTok de HispanoTech", "Redes donde se transmitirá"],
     ["Contenido de la canasta", "Panetón, chocolate para taza, chocolates/bombones, detalles navideños", "Lista real según el proveedor"],
     ["Ámbito de entrega", "«La entrega se coordinará con cada ganador»", "¿Solo Lima o también provincias? ¿Quién asume el envío?"],
@@ -151,7 +151,7 @@ function docTextos() {
 
   c.push(h1("3. Estructura de la página"));
   c.push(table([700, 2800, 6138], ["#", "Sección", "Para qué sirve"], [
-    ["1", "Banner principal (video de marketing) + formulario", "Anuncia las 50 canastas con cuenta regresiva y, al lado, el formulario de inscripción por pasos."],
+    ["1", "Banner principal (video de marketing) + formulario", "Anuncia las 25 canastas con cuenta regresiva y, al lado, el formulario de inscripción por pasos."],
     ["2", "El premio", "Muestra la canasta en 3D y qué contiene."],
     ["3", "Mira nuestras canastas", "Carrusel de cards con fotos de las canastas (solo imágenes y un título corto)."],
     ["4", "Cómo participar + video", "Los 4 pasos a la izquierda y un video vertical a la derecha."],
@@ -171,29 +171,29 @@ function docTextos() {
   c.push(h2("Sección 1 · Banner principal"));
   c.push(kv([
     ["Etiqueta superior", "Campaña navideña 2026 · HispanoTech"],
-    ["Título (H1)", "50 CANASTAS NAVIDEÑAS"],
+    ["Título (H1)", "25 CANASTAS NAVIDEÑAS"],
     ["Subtítulo", "¡Esta Navidad, HispanoTech premia tu esfuerzo académico!"],
-    ["Párrafo", "Participa en el sorteo de 50 canastas navideñas y forma parte de nuestra comunidad de estudiantes, egresados y profesionales que quieren llevar sus investigaciones al siguiente nivel."],
-    ["Etiquetas (chips)", "50 ganadores · Inscripción gratuita · Sorteo en vivo"],
+    ["Párrafo", "Participa en el sorteo de 25 canastas navideñas y forma parte de nuestra comunidad de estudiantes, egresados y profesionales que quieren llevar sus investigaciones al siguiente nivel."],
+    ["Etiquetas (chips)", "25 ganadores · Inscripción gratuita · Sorteo en vivo"],
     ["Formulario (a la derecha)", "Encabezado: «Inscríbete gratis» · «4 pasos · 2 minutos · acceso al grupo de WhatsApp». Es el mismo formulario por pasos de la sección 6."],
     ["Cuenta regresiva", "«El sorteo empieza en» · Días · Horas · Min · Seg"],
     ["Fondo", [[t("Video de marketing en bucle, sin sonido. Mientras no llegue, se muestra una imagen 3D fija."), pending("video de marketing")]]],
-    ["Línea de fecha", [[t("Sorteo: 22 de diciembre de 2026, 8:00 p. m. (hora de Perú), en vivo por Facebook y TikTok de HispanoTech."), pending("fecha y canal")]]],
+    ["Línea de fecha", [[t("Sorteo: 16 de diciembre de 2026, 8:00 p. m. (hora de Perú), en vivo por Facebook y TikTok de HispanoTech."), pending("fecha y canal")]]],
   ]));
 
   c.push(h2("Sección 2 · El premio"));
   c.push(kv([
     ["Etiqueta", "El premio"],
-    ["Título (H2)", "Una canasta llena de Navidad para 50 investigadores"],
+    ["Título (H2)", "Una canasta llena de Navidad para 25 investigadores"],
     ["Párrafo", "Cada ganador recibe una canasta navideña para compartir en familia. Porque detrás de cada tesis hay meses de esfuerzo, y queremos celebrarlo contigo."],
-    ["Sello sobre la imagen", "50 ganadores"],
+    ["Sello sobre la imagen", "25 ganadores"],
     ["Ítem 1", "Panetón — El clásico infaltable de la mesa navideña peruana."],
     ["Ítem 2", "Chocolate para taza — Para la chocolatada en familia."],
     ["Ítem 3", "Chocolates y bombones — Una selección dulce para compartir."],
     ["Ítem 4", "Detalles navideños — Galletas, golosinas y adornos de temporada."],
     ["Nota al pie", [[t("* Imagen referencial. El contenido puede variar según disponibilidad del proveedor."), pending("contenido real")]]],
   ]));
-  c.push(note("Siguiendo la recomendación de la propuesta, la canasta se presenta con buena imagen sin detallar marcas ni precios. El presupuesto referencial (50 canastas × S/ 35 = S/ 1,750 + transporte, armado y difusión) NO se muestra en la página."));
+  c.push(note("Siguiendo la recomendación de la propuesta, la canasta se presenta con buena imagen sin detallar marcas ni precios. El presupuesto referencial (25 canastas × S/ 35 = S/ 875 + transporte, armado y difusión) NO se muestra en la página."));
 
   c.push(h2("Sección 3 · Mira nuestras canastas"));
   c.push(kv([
@@ -203,7 +203,7 @@ function docTextos() {
     ["Card 3", "Todo lo que trae"],
     ["Card 4", "Panetón navideño"],
     ["Card 5", "Chocolates y dulces"],
-    ["Card 6", "50 canastas por entregar"],
+    ["Card 6", "25 canastas por entregar"],
     ["Funcionamiento", "Carrusel: avanza solo cada 4 segundos, flechas, puntos y deslizamiento con el dedo en celular."],
   ]));
   c.push(note("Las fotos actuales son renders 3D referenciales. Cuando marketing entregue las fotos reales, se reemplazan sin tocar el diseño; se pueden agregar o quitar cards y cambiar el título de cada una."));
@@ -212,11 +212,11 @@ function docTextos() {
   c.push(kv([
     ["Etiqueta", "Cómo participar"],
     ["Título (H2)", "4 pasos y ya estás participando"],
-    ["Párrafo", "Inscripciones abiertas hasta el 20 de diciembre de 2026, 11:59 p. m."],
+    ["Párrafo", "Inscripciones abiertas hasta el 14 de diciembre de 2026, 11:59 p. m."],
     ["Paso 1", "Completa el formulario — Datos personales, tu situación académica y el estado de tu tesis. Te toma 2 minutos."],
     ["Paso 2", "Únete al grupo de WhatsApp — Es parte de la participación: ahí anunciamos el sorteo, los ganadores y contenido académico gratuito."],
     ["Paso 3", "Recibe tu código — Al inscribirte obtienes un código de participación único. Guárdalo: con él se identifica a los ganadores."],
-    ["Paso 4", "Mira el sorteo en vivo — Sorteamos las 50 canastas de forma pública y transparente. ¡Mucha suerte!"],
+    ["Paso 4", "Mira el sorteo en vivo — Sorteamos las 25 canastas de forma pública y transparente. ¡Mucha suerte!"],
     ["Botones", "IR AL FORMULARIO · UNIRME AL GRUPO (ambos llevan al formulario)"],
     ["Video (a la derecha)", [[t("Video vertical dentro de un marco de celular, con botón de reproducir y el texto «Así participas en 1 minuto»."), pending("video de marketing")]]],
   ]));
@@ -237,7 +237,7 @@ function docTextos() {
   c.push(h2("Sección 6 · Formulario de inscripción (por pasos)"));
   c.push(kv([
     ["Etiqueta", "Inscripción gratuita · 4 pasos"],
-    ["Título del formulario", "Participa por una de las 50 canastas navideñas de HispanoTech"],
+    ["Título del formulario", "Participa por una de las 25 canastas navideñas de HispanoTech"],
     ["Párrafo", "Solo 2 minutos. Al terminar recibirás tu código de participación y el acceso al grupo de WhatsApp."],
     ["Indicador de pasos", "A Datos · B Académico · C Tesis · D Intereses (con barra de progreso; los pasos completados se marcan con ✓)"],
     ["Botones", "ANTERIOR · SIGUIENTE (pasos A–C) · QUIERO PARTICIPAR (paso D)"],
@@ -296,11 +296,11 @@ function docTextos() {
     ["Asunto", "🎄 ¡Ya estás participando! Tu código es NAV-0001"],
     ["Imagen", "Escena 3D de la canasta navideña (og-navidad.jpg)"],
     ["Título", "¡Hola, [Nombre]! Ya estás participando 🎄"],
-    ["Párrafo", "Tu inscripción al sorteo de las 50 Canastas Navideñas de HispanoTech quedó registrada."],
+    ["Párrafo", "Tu inscripción al sorteo de las 25 Canastas Navideñas de HispanoTech quedó registrada."],
     ["Código", "Tu código de participación: NAV-0001 — Guárdalo: con él identificamos a los ganadores."],
     ["Aviso en rojo", "Último paso obligatorio: únete al grupo de WhatsApp para que tu participación sea válida."],
     ["Botón", "Unirme al grupo de WhatsApp"],
-    ["Recuadro de datos", "📅 Sorteo: 22 de diciembre de 2026, 8:00 p. m. (hora de Perú), en vivo por Facebook y TikTok de HispanoTech. · 🏆 Ganadores: se anuncian en el grupo y les escribimos al WhatsApp que registraste. · 🔒 Gratis y seguro: nunca te pediremos pagos ni datos bancarios para entregarte tu canasta."],
+    ["Recuadro de datos", "📅 Sorteo: 16 de diciembre de 2026, 8:00 p. m. (hora de Perú), en vivo por Facebook y TikTok de HispanoTech. · 🏆 Ganadores: se anuncian en el grupo y les escribimos al WhatsApp que registraste. · 🔒 Gratis y seguro: nunca te pediremos pagos ni datos bancarios para entregarte tu canasta."],
     ["Despedida", "¡Mucha suerte y felices fiestas! — Comunidad HispanoTech"],
     ["Pie", "Recibes este correo porque te inscribiste en tesis-ia.com/navidad. Si no fuiste tú, puedes ignorarlo."],
   ]));
@@ -317,14 +317,14 @@ function docTextos() {
   c.push(kv([
     ["Etiqueta", "Bases del sorteo"],
     ["Título (H2)", "Reglas claras, sorteo transparente"],
-    ["Recuadros", "Cierre de inscripciones: 20 de diciembre de 2026, 11:59 p. m. · Sorteo: 22 de diciembre de 2026, 8:00 p. m. (hora de Perú)"],
+    ["Recuadros", "Cierre de inscripciones: 14 de diciembre de 2026, 11:59 p. m. · Sorteo: 16 de diciembre de 2026, 8:00 p. m. (hora de Perú)"],
   ]));
   c.push(p([t("Reglas (en orden):", { bold: true }), pending("validación de las bases")]));
   [
     "La participación es gratuita y está dirigida a personas mayores de 18 años residentes en Perú.",
     "Para participar debes completar el formulario y unirte al grupo de WhatsApp de la comunidad antes del cierre de inscripciones.",
     "Solo se admite una inscripción por persona (número de WhatsApp y correo únicos). Los registros duplicados o con datos falsos serán anulados.",
-    "Se sortearán 50 canastas navideñas; cada participante puede ganar como máximo una canasta.",
+    "Se sortearán 25 canastas navideñas; cada participante puede ganar como máximo una canasta.",
     "Los ganadores se anunciarán durante la transmisión en vivo y en el grupo de WhatsApp, y serán contactados al número registrado.",
     "Si un ganador no responde dentro de las 48 horas siguientes al sorteo, se elegirá un ganador suplente.",
     "La entrega se coordinará directamente con cada ganador. El premio no es canjeable por dinero.",
@@ -335,14 +335,14 @@ function docTextos() {
     ["¿Tiene algún costo participar?", "No. La inscripción es 100 % gratuita. Nunca te pediremos pagos ni datos bancarios para entregarte tu canasta."],
     ["¿Quiénes pueden participar?", "Estudiantes de los últimos ciclos, egresados, bachilleres, titulados y estudiantes o egresados de maestría y doctorado. Si estás en otra etapa, también puedes participar marcando «Otro»."],
     ["¿Es obligatorio unirme al grupo de WhatsApp?", "Sí. El ingreso al grupo es parte del proceso de participación: ahí se anuncia el sorteo, se comparten los resultados y se coordina la entrega."],
-    ["¿Cómo sé si gané?", "Los 50 ganadores se anuncian en la transmisión en vivo y en el grupo de WhatsApp. Además te escribiremos al número que registraste, indicando tu código de participación."],
+    ["¿Cómo sé si gané?", "Los 25 ganadores se anuncian en la transmisión en vivo y en el grupo de WhatsApp. Además te escribiremos al número que registraste, indicando tu código de participación."],
     ["¿Qué hacen con mis datos?", "Los usamos para gestionar el sorteo. Solo si lo autorizas expresamente, también te enviaremos información de cursos, herramientas de IA y servicios académicos, conforme a la Ley N.º 29733 de Protección de Datos Personales."],
   ]));
 
   c.push(h2("Sección 11 · Cierre (CTA con fondo animado)"));
   c.push(kv([
     ["Título (H2)", "Tu esfuerzo académico merece celebrarse"],
-    ["Párrafo", "Inscríbete hoy, únete a la comunidad y participa por una de las 50 canastas navideñas."],
+    ["Párrafo", "Inscríbete hoy, únete a la comunidad y participa por una de las 25 canastas navideñas."],
     ["Botones", "QUIERO PARTICIPAR · UNIRME AL GRUPO DE WHATSAPP (ambos llevan al formulario)"],
     ["Despedida", "¡Felices fiestas te desea toda la comunidad HispanoTech! 🎄"],
     ["Fondo", "Video 3D animado de la canasta (se reproduce solo cuando la sección está en pantalla)."],
@@ -350,8 +350,8 @@ function docTextos() {
 
   c.push(h2("Textos para Google y redes (SEO / compartir)"));
   c.push(kv([
-    ["Título de la pestaña", "Sorteo de 50 Canastas Navideñas | Tesis IA - Plan IAs Investigador Pro"],
-    ["Descripción", "¡Esta Navidad, HispanoTech premia tu esfuerzo académico! Inscríbete gratis, únete a la comunidad y participa por una de las 50 canastas navideñas."],
+    ["Título de la pestaña", "Sorteo de 25 Canastas Navideñas | Tesis IA - Plan IAs Investigador Pro"],
+    ["Descripción", "¡Esta Navidad, HispanoTech premia tu esfuerzo académico! Inscríbete gratis, únete a la comunidad y participa por una de las 25 canastas navideñas."],
     ["Imagen al compartir", "og-navidad.jpg (1200 × 630 px) — ver Documento 2"],
   ]));
 

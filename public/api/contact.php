@@ -110,7 +110,7 @@ $text =
 // ---- Envio con mail() nativo de cPanel ----
 $boundary = md5(uniqid((string)time(), true));
 $headers  = "From: " . MAIL_FROM_NAME . " <" . MAIL_FROM . ">\r\n";
-$headers .= "Reply-To: " . MAIL_FROM . "\r\n";
+$headers .= "Reply-To: " . MAIL_REPLY_TO . "\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: multipart/alternative; boundary=\"$boundary\"\r\n";
 $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";

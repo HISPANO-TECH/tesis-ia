@@ -16,8 +16,8 @@ import { SITE } from "../site.config";
 const eventLd = {
   "@context": "https://schema.org",
   "@type": "Event",
-  name: "Sorteo de 50 Canastas Navideñas — HispanoTech",
-  description: "Sorteo gratuito de 50 canastas navideñas para estudiantes, egresados y profesionales de la comunidad de investigación HispanoTech.",
+  name: "Sorteo de 25 Canastas Navideñas — HispanoTech",
+  description: "Sorteo gratuito de 25 canastas navideñas para estudiantes, egresados y profesionales de la comunidad de investigación HispanoTech.",
   startDate: NAVIDAD.fechaSorteo,
   eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
   eventStatus: "https://schema.org/EventScheduled",
@@ -34,11 +34,11 @@ const faqLd = {
 ---
 
 <Layout
-  title="Sorteo de 50 Canastas Navideñas"
-  description="¡Esta Navidad, HispanoTech premia tu esfuerzo académico! Inscríbete gratis, únete a la comunidad y participa por una de las 50 canastas navideñas."
+  title="Sorteo de 25 Canastas Navideñas"
+  description="¡Esta Navidad, HispanoTech premia tu esfuerzo académico! Inscríbete gratis, únete a la comunidad y participa por una de las 25 canastas navideñas."
   keywords={["sorteo navidad", "canastas navideñas", "sorteo canastas navideñas peru", "hispanotech", "tesis ia", "comunidad de investigación"]}
   image={`${SITE.url}/navidad/og-navidad.jpg`}
-  imageAlt="Canasta navideña 3D junto a un árbol de Navidad iluminado — Sorteo de 50 canastas HispanoTech"
+  imageAlt="Canasta navideña 3D junto a un árbol de Navidad iluminado — Sorteo de 25 canastas HispanoTech"
   jsonLd={[eventLd, faqLd]}
 >
   <SnowCanvas />

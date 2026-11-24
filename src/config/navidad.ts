@@ -1,30 +1,30 @@
-// Campaña "50 Canastas Navideñas" — fuente única de textos y datos de /navidad.
+// Campaña "25 Canastas Navideñas" — fuente única de textos y datos de /navidad.
 // Lo marcado con POR CONFIRMAR debe validarlo el supervisor antes de publicar
 // (ver docs/navidad/Navidad-TesisIA-01-Textos.docx).
 
 export const NAVIDAD = {
   marca: "HispanoTech",
-  totalCanastas: 50,
+  totalCanastas: 25,
 
   // El link del grupo de WhatsApp NO va aquí (sería visible en la página): está en
   // public/api/navidad.php (NAV_GRUPO_WHATSAPP) y solo se entrega tras un registro válido.
 
   // POR CONFIRMAR: fechas de cierre de inscripciones y del sorteo (hora Perú, UTC-5).
-  cierreInscripciones: "2026-12-20T23:59:00-05:00",
-  fechaSorteo: "2026-12-22T20:00:00-05:00",
-  cierreTexto: "20 de diciembre de 2026, 11:59 p. m.",
-  sorteoTexto: "22 de diciembre de 2026, 8:00 p. m. (hora de Perú)",
+  cierreInscripciones: "2026-12-14T23:59:00-05:00",
+  fechaSorteo: "2026-12-16T20:00:00-05:00",
+  cierreTexto: "14 de diciembre de 2026, 11:59 p. m.",
+  sorteoTexto: "16 de diciembre de 2026, 8:00 p. m. (hora de Perú)",
   // POR CONFIRMAR: canal de la transmisión en vivo del sorteo.
   canalSorteo: "en vivo por Facebook y TikTok de HispanoTech",
 } as const;
 
 export const NAVIDAD_HERO = {
   eyebrow: "Campaña navideña 2026 · HispanoTech",
-  titulo: "50 Canastas Navideñas",
+  titulo: "25 Canastas Navideñas",
   subtitulo: "¡Esta Navidad, HispanoTech premia tu esfuerzo académico!",
   texto:
-    "Participa en el sorteo de 50 canastas navideñas y forma parte de nuestra comunidad de estudiantes, egresados y profesionales que quieren llevar sus investigaciones al siguiente nivel.",
-  chips: ["50 ganadores", "Inscripción gratuita", "Sorteo en vivo"],
+    "Participa en el sorteo de 25 canastas navideñas y forma parte de nuestra comunidad de estudiantes, egresados y profesionales que quieren llevar sus investigaciones al siguiente nivel.",
+  chips: ["25 ganadores", "Inscripción gratuita", "Sorteo en vivo"],
   ctaPrincipal: "Quiero participar",
   ctaSecundario: "Unirme al grupo de WhatsApp", // lleva al formulario
 };
@@ -56,7 +56,7 @@ export const NAVIDAD_PASOS = [
   {
     icon: "lucide:radio",
     titulo: "Mira el sorteo en vivo",
-    texto: "Sorteamos las 50 canastas de forma pública y transparente. ¡Mucha suerte!",
+    texto: "Sorteamos las 25 canastas de forma pública y transparente. ¡Mucha suerte!",
   },
 ];
 
@@ -73,7 +73,7 @@ export const NAVIDAD_COMUNIDAD = {
 };
 
 // ---- Formulario (según la propuesta aprobada en las capturas) ----
-export const FORM_TITULO = "Participa por una de las 50 canastas navideñas de HispanoTech";
+export const FORM_TITULO = "Participa por una de las 25 canastas navideñas de HispanoTech";
 
 export const ETAPAS = [
   "Octavo ciclo",
@@ -130,7 +130,7 @@ export const NAVIDAD_BASES = [
   "La participación es gratuita y está dirigida a personas mayores de 18 años residentes en Perú.",
   `Para participar debes completar el formulario y unirte al grupo de WhatsApp de la comunidad antes del cierre de inscripciones.`,
   "Solo se admite una inscripción por persona (número de WhatsApp y correo únicos). Los registros duplicados o con datos falsos serán anulados.",
-  "Se sortearán 50 canastas navideñas; cada participante puede ganar como máximo una canasta.",
+  "Se sortearán 25 canastas navideñas; cada participante puede ganar como máximo una canasta.",
   "Los ganadores se anunciarán durante la transmisión en vivo y en el grupo de WhatsApp, y serán contactados al número registrado.",
   "Si un ganador no responde dentro de las 48 horas siguientes al sorteo, se elegirá un ganador suplente.",
   "La entrega se coordinará directamente con cada ganador. El premio no es canjeable por dinero.",
@@ -151,7 +151,7 @@ export const NAVIDAD_FAQ = [
   },
   {
     q: "¿Cómo sé si gané?",
-    a: "Los 50 ganadores se anuncian en la transmisión en vivo y en el grupo de WhatsApp. Además te escribiremos al número que registraste, indicando tu código de participación.",
+    a: "Los 25 ganadores se anuncian en la transmisión en vivo y en el grupo de WhatsApp. Además te escribiremos al número que registraste, indicando tu código de participación.",
   },
   {
     q: "¿Qué hacen con mis datos?",
@@ -161,7 +161,7 @@ export const NAVIDAD_FAQ = [
 
 export const NAVIDAD_CIERRE = {
   titulo: "Tu esfuerzo académico merece celebrarse",
-  texto: "Inscríbete hoy, únete a la comunidad y participa por una de las 50 canastas navideñas.",
+  texto: "Inscríbete hoy, únete a la comunidad y participa por una de las 25 canastas navideñas.",
 };
 
 // ---- Espacios de video y fotos (los llena marketing) ----
@@ -189,5 +189,5 @@ export const NAVIDAD_GALERIA = [
   { src: "/navidad/canastas/canasta-3.webp", titulo: "Todo lo que trae", alt: "Vista superior del contenido de la canasta navideña" },
   { src: "/navidad/canastas/canasta-4.webp", titulo: "Panetón navideño", alt: "Primer plano del panetón dentro de la canasta" },
   { src: "/navidad/canastas/canasta-5.webp", titulo: "Chocolates y dulces", alt: "Primer plano de bombones dorados y bastón de caramelo" },
-  { src: "/navidad/canastas/canasta-6.webp", titulo: "50 canastas por entregar", alt: "Canasta navideña junto al árbol de Navidad y regalos" },
+  { src: "/navidad/canastas/canasta-6.webp", titulo: "25 canastas por entregar", alt: "Canasta navideña junto al árbol de Navidad y regalos" },
 ];

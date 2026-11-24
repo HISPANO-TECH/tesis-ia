@@ -1,5 +1,5 @@
 <?php
-// public/api/navidad.php — Inscripción al sorteo "50 Canastas Navideñas" (tesis-ia.com/navidad).
+// public/api/navidad.php — Inscripción al sorteo "25 Canastas Navideñas" (tesis-ia.com/navidad).
 // 1) Valida los datos contra las mismas opciones del formulario (src/config/navidad.ts).
 // 2) Evita duplicados por WhatsApp o correo (1 inscripción por persona).
 // 3) Guarda la inscripción en api/data/navidad-inscritos.csv (carpeta bloqueada por .htaccess)
@@ -15,9 +15,9 @@ const NAV_CSV = __DIR__ . '/data/navidad-inscritos.csv';
 // (nunca se escribe en el HTML, así nadie entra al grupo sin dejar sus datos).
 const NAV_GRUPO_WHATSAPP = 'https://chat.whatsapp.com/HISPANOTECH-NAVIDAD-2026';
 // POR CONFIRMAR: mismas fechas que src/config/navidad.ts
-const NAV_CIERRE = '2026-12-20T23:59:00-05:00';
-const NAV_CIERRE_TEXTO = '20 de diciembre de 2026, 11:59 p. m.';
-const NAV_SORTEO_TEXTO = '22 de diciembre de 2026, 8:00 p. m. (hora de Perú)';
+const NAV_CIERRE = '2026-12-14T23:59:00-05:00';
+const NAV_CIERRE_TEXTO = '14 de diciembre de 2026, 11:59 p. m.';
+const NAV_SORTEO_TEXTO = '16 de diciembre de 2026, 8:00 p. m. (hora de Perú)';
 const NAV_CANAL_SORTEO = 'en vivo por Facebook y TikTok de HispanoTech';
 
 const NAV_ETAPAS = [
@@ -125,6 +125,8 @@ if (!$fh || !flock($fh, LOCK_EX)) {
 $total = 0;
 $duplicado = false;
 $codigoExistente = '';
+$emailExistente = '';
+$nombreExistente = '';
 rewind($fh);
 while (($row = fgetcsv($fh, 0, ',', '"', '')) !== false) {
     if ($row === [null] || ($row[0] ?? '') === 'codigo') continue;
@@ -132,14 +134,20 @@ while (($row = fgetcsv($fh, 0, ',', '"', '')) !== false) {
     if (!$duplicado && (($row[3] ?? '') === $whatsapp || ($row[4] ?? '') === $email)) {
         $duplicado = true;
         $codigoExistente = $row[0] ?? '';
+        $nombreExistente = ltrim($row[2] ?? '', "'");
+        $emailExistente = $row[4] ?? '';
     }
 }
 if ($duplicado) {
     flock($fh, LOCK_UN); fclose($fh);
-    // Ya registrado: se le vuelve a mostrar su código y el acceso al grupo (ya dejó sus datos).
-    json_response(409, ['ok' => false, 'duplicado' => true, 'codigo' => ltrim($codigoExistente, "'"),
-        'grupo' => NAV_GRUPO_WHATSAPP,
-        'error' => 'Este número de WhatsApp o correo ya está inscrito. ¡Ya estás participando!']);
+    // Ya registrado: se le vuelve a mostrar su código y el acceso al grupo (ya dejó sus datos)
+    // y se le REENVÍA la confirmación al correo con el que se inscribió (no al que escribió ahora).
+    $codigoExistente = ltrim($codigoExistente, "'");
+    $reenviado = $emailExistente !== '' && is_valid_email($emailExistente)
+        && nav_enviar_confirmacion($emailExistente, explode(' ', $nombreExistente)[0] ?: 'participante', $codigoExistente);
+    json_response(409, ['ok' => false, 'duplicado' => true, 'codigo' => $codigoExistente,
+        'grupo' => NAV_GRUPO_WHATSAPP, 'correo' => $reenviado,
+        'error' => 'Este número de WhatsApp o correo ya está inscrito. ¡Ya estás participando! Te reenviamos la confirmación a tu correo.']);
 }
 $codigo = sprintf('NAV-%04d', $total + 1);
 $fecha  = date('Y-m-d H:i:s');
@@ -162,7 +170,7 @@ $row = fn(string $k, string $v): string =>
     "<tr><td style='padding:7px 12px;color:#64748b;font-size:13px'>{$k}</td><td style='padding:7px 12px;color:#0f172a;font-weight:600'>{$e($v)}</td></tr>";
 $subject = "[Navidad] {$codigo} — {$nombre} — {$etapa}";
 $html = '<div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:auto;border:1px solid #e2e8f0;border-radius:14px;overflow:hidden">
-  <div style="background:#0B1D3A;padding:18px 24px;color:#fff;font-size:18px;font-weight:700">🎄 Sorteo 50 Canastas — <span style="color:#f59e0b">' . $codigo . '</span></div>
+  <div style="background:#0B1D3A;padding:18px 24px;color:#fff;font-size:18px;font-weight:700">🎄 Sorteo 25 Canastas — <span style="color:#f59e0b">' . $codigo . '</span></div>
   <table style="width:100%;border-collapse:collapse;padding:6px 12px">'
     . $row('Nombre', $nombre) . $row('WhatsApp', '+51 ' . $whatsapp) . $row('Correo', $email)
     . $row('Etapa', $etapa) . $row('Carrera', $carrera) . $row('Tesis', $situacion)
@@ -173,15 +181,19 @@ $html = '<div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;marg
 $headers  = "From: " . MAIL_FROM_NAME . " <" . MAIL_FROM . ">\r\n";
 $headers .= "Reply-To: " . $email . "\r\n";
 $headers .= "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\n";
-@mail(MAIL_TO_REAL, '=?UTF-8?B?' . base64_encode($subject) . '?=', $html, $headers, '-f ' . MAIL_FROM);
+if (!@mail(MAIL_TO_REAL, '=?UTF-8?B?' . base64_encode($subject) . '?=', $html, $headers, '-f ' . MAIL_FROM)) {
+    @file_put_contents(sys_get_temp_dir() . '/mail_errors.log',
+        '[' . date('c') . "] FAIL navidad.php aviso interno ({$codigo})" . PHP_EOL, FILE_APPEND);
+}
 
 // ---- Confirmación al participante (código + grupo de WhatsApp + fecha del sorteo) ----
-nav_enviar_confirmacion($email, explode(' ', $nombre)[0], $codigo);
+$correoEnviado = nav_enviar_confirmacion($email, explode(' ', $nombre)[0], $codigo);
 
 json_response(200, [
     'ok' => true,
     'codigo' => $codigo,
     'grupo' => NAV_GRUPO_WHATSAPP,
+    'correo' => $correoEnviado, // true si el servidor aceptó enviar la confirmación
     'message' => "¡Listo, {$e(explode(' ', $nombre)[0])}! Tu código es {$codigo}.",
 ]);
 
@@ -189,7 +201,7 @@ json_response(200, [
  * Correo de confirmación al participante. Multipart (texto + HTML) para mejor entrega.
  * Si falla, solo se registra en el log: la inscripción ya quedó guardada.
  */
-function nav_enviar_confirmacion(string $email, string $nombre, string $codigo): void
+function nav_enviar_confirmacion(string $email, string $nombre, string $codigo): bool
 {
     $h = fn(string $v): string => htmlspecialchars($v, ENT_QUOTES, 'UTF-8');
     $grupo = NAV_GRUPO_WHATSAPP;
@@ -198,7 +210,7 @@ function nav_enviar_confirmacion(string $email, string $nombre, string $codigo):
     $subject = "🎄 ¡Ya estás participando! Tu código es {$codigo}";
 
     $text = "¡Hola, {$nombre}!\n\n"
-        . "Tu inscripción al sorteo de las 50 Canastas Navideñas de HispanoTech quedó registrada.\n\n"
+        . "Tu inscripción al sorteo de las 25 Canastas Navideñas de HispanoTech quedó registrada.\n\n"
         . "Tu código de participación: {$codigo}\n"
         . "Guárdalo: con él identificamos a los ganadores.\n\n"
         . "ÚLTIMO PASO OBLIGATORIO: únete al grupo de WhatsApp para que tu participación sea válida:\n{$grupo}\n\n"
@@ -216,7 +228,7 @@ function nav_enviar_confirmacion(string $email, string $nombre, string $codigo):
   <tr><td><img src="' . $h($img) . '" width="600" alt="Canasta navideña HispanoTech" style="display:block;width:100%;max-width:600px;height:auto;border:0"></td></tr>
   <tr><td style="padding:30px 28px 8px">
     <h1 style="margin:0;font-size:26px;line-height:1.25;color:#0B1D3A">¡Hola, ' . $h($nombre) . '! Ya estás participando 🎄</h1>
-    <p style="margin:14px 0 0;font-size:16px;line-height:1.6;color:#334155">Tu inscripción al sorteo de las <strong>50 Canastas Navideñas</strong> de HispanoTech quedó registrada.</p>
+    <p style="margin:14px 0 0;font-size:16px;line-height:1.6;color:#334155">Tu inscripción al sorteo de las <strong>25 Canastas Navideñas</strong> de HispanoTech quedó registrada.</p>
   </td></tr>
   <tr><td align="center" style="padding:22px 28px 6px">
     <p style="margin:0 0 8px;font-size:13px;color:#64748b;text-transform:uppercase;letter-spacing:1px">Tu código de participación</p>
@@ -262,4 +274,5 @@ function nav_enviar_confirmacion(string $email, string $nombre, string $codigo):
         @file_put_contents(sys_get_temp_dir() . '/mail_errors.log',
             '[' . date('c') . "] FAIL navidad.php confirmacion a {$email} ({$codigo})\n", FILE_APPEND);
     }
+    return $ok;
 }
