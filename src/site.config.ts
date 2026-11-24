@@ -37,7 +37,7 @@ export const SITE = {
     contact: {
       telephone: "+51992005096",
       contactType: "customer service",
-      email: "informes@asesorestesisperu.com",
+      email: "informes@tesis-ia.com",
     },
   },
   geo: {

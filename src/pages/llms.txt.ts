@@ -21,7 +21,7 @@ export async function GET() {
 - URL: ${SITE.url}
 - Idioma: es-PE (Perú)
 - Cobertura: LATAM (atención remota) — Perú (Lima, Callao, Arequipa, Trujillo, Cusco, Piura, Chiclayo, Huancayo), Ecuador (Quito, Guayaquil, Cuenca), Colombia (Bogotá, Medellín, Cali), México (CDMX, Guadalajara, Monterrey), Bolivia (La Paz, Santa Cruz, Cochabamba) y Chile (Santiago, Valparaíso, Concepción)
-- Contacto: ${SITE.organization.contact.telephone} / informes@asesorestesisperu.com
+- Contacto: ${SITE.organization.contact.telephone} / informes@tesis-ia.com
 - WhatsApp: https://api.whatsapp.com/send/?phone=51992005096
 
 ## Qué es el Plan IAs Investigador Pro
@@ -60,7 +60,7 @@ La sola aplicación de las IAs no garantiza un buen desarrollo de tu tesis. Sin 
 ${blogBlock}
 
 ## CTA
-¿Listo para avanzar tu tesis de forma integral? Adquiere tu plan en ${SITE.url}#planes o escribe a informes@asesorestesisperu.com
+¿Listo para avanzar tu tesis de forma integral? Adquiere tu plan en ${SITE.url}#planes o escribe a informes@tesis-ia.com
 
 ## Páginas
 - Inicio: ${SITE.url}/

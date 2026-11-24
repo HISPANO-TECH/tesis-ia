@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Icon } from "astro-icon/components";
+import { AVISO_PLATAFORMAS } from "../config/navidad";
 ---
 
 <Layout title="Términos y Condiciones" description="Términos y Condiciones de tesis-ia.com - Plan IAs Investigador Pro. Servicio ético de asesoría y acompañamiento metodológico.">
@@ -13,7 +14,7 @@ import { Icon } from "astro-icon/components";
     <div id="term-hero" class="relative mx-auto max-w-4xl px-6">
       <div class="inline-flex items-center gap-2 rounded-full bg-amber-400 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0B1D3A]">Legal · tesis-ia.com</div>
       <h1 class="mt-4 font-display text-[32px] font-bold leading-none tracking-tight text-white md:text-[44px]">Términos y <span class="text-amber-300">Condiciones</span></h1>
-      <p class="mt-3 max-w-2xl text-blue-100/80">Reglas claras para usar el Plan IAs Investigador Pro con ética y transparencia. Actualizado: 30 de agosto de 2026.</p>
+      <p class="mt-3 max-w-2xl text-blue-100/80">Reglas claras para usar el Plan IAs Investigador Pro con ética y transparencia. Actualizado: 24 de noviembre de 2026.</p>
       <div class="mt-4 flex items-center gap-2 text-xs text-amber-200/70"><Icon name="lucide:scale" class="h-4 w-4" /> Servicio de asesoría, no de suplantación</div>
     </div>
   </section>
@@ -62,13 +63,16 @@ import { Icon } from "astro-icon/components";
         <p>Prohibido compartir accesos, revender el Plan o usarlo para generar contenido engañoso a gran escala. Incumplimiento puede implicar suspensión sin reembolso.</p>
 
         <h2>10. Privacidad</h2>
-        <p>Se rige por nuestra <a href="/privacidad">Política de Privacidad</a>. Escríbenos a <a href="mailto:informes@asesorestesisperu.com">informes@asesorestesisperu.com</a>.</p>
+        <p>Se rige por nuestra <a href="/privacidad">Política de Privacidad</a>. Escríbenos a <a href="mailto:informes@tesis-ia.com">informes@tesis-ia.com</a>.</p>
 
         <h2>11. Cambios</h2>
         <p>Podemos actualizar estos términos publicando la nueva versión aquí con fecha. Sigues usando el servicio implica aceptación.</p>
 
-        <h2>12. Contacto y reclamos</h2>
-        <p>Consultas: <a href="mailto:informes@asesorestesisperu.com">informes@asesorestesisperu.com</a> · WhatsApp <a href="https://api.whatsapp.com/send/?phone=51992005096&text=Hola%2C%20consulta%20sobre%20terminos%20tesis-ia.com&type=phone_number&app_absent=0">+51 992 005 096</a>. Atendemos Lun–Sáb 9am–8pm (GMT-5).</p>
+        <h2 id="sorteo" class="scroll-mt-32">12. Sorteo navideño 2026</h2>
+        <p>El sorteo se rige por sus <a href="/condiciones-sorteo/">bases y condiciones</a>. {AVISO_PLATAFORMAS}</p>
+
+        <h2>13. Contacto y reclamos</h2>
+        <p>Consultas: <a href="mailto:informes@tesis-ia.com">informes@tesis-ia.com</a> · WhatsApp <a href="https://api.whatsapp.com/send/?phone=51992005096&text=Hola%2C%20consulta%20sobre%20terminos%20tesis-ia.com&type=phone_number&app_absent=0">+51 992 005 096</a>. Atendemos Lun–Sáb 9am–8pm (GMT-5).</p>
       </div>
 
       <div class="reveal mt-10 rounded-2xl bg-[#0B1D3A] p-6 text-white">

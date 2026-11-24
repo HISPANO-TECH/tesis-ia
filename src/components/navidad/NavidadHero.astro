@@ -66,23 +66,22 @@ const { bannerVideo, bannerVideoMovil, bannerPoster } = NAVIDAD_MEDIA;
 
       <!-- Cuenta regresiva al sorteo -->
       <div class="reveal mt-8" style="--reveal-delay:300ms">
-        <p class="text-xs font-bold uppercase tracking-widest text-amber-200/80">El sorteo empieza en</p>
-        <div id="countdown" data-target={NAVIDAD.fechaSorteo} class="mt-2 grid max-w-md grid-cols-4 gap-2 sm:gap-3">
+        <div id="countdown" data-target={NAVIDAD.fechaSorteo} class="mt-2 hidden grid-cols-4 max-w-md gap-2 sm:gap-3">
           {[["dias", "Días"], ["horas", "Horas"], ["min", "Min"], ["seg", "Seg"]].map(([k, l]) => (
             <div class="rounded-2xl border border-white/15 bg-white/[0.07] px-2 py-3 text-center backdrop-blur-md [transform:perspective(600px)_rotateX(8deg)]">
-              <span data-cd={k} class="block font-display text-3xl font-bold tabular-nums text-white sm:text-4xl">--</span>
+              <span data-cd={k} class="block font-display text-3xl font-bold tabular-nums text-white sm:text-4xl"></span>
               <span class="text-[11px] font-semibold uppercase tracking-widest text-slate-300">{l}</span>
             </div>
           ))}
         </div>
         <p class="mt-3 text-sm text-slate-300">
           <Icon name="lucide:calendar-days" class="mr-1 inline h-4 w-4 text-amber-300" />
-          Sorteo: <strong class="text-white">{NAVIDAD.sorteoTexto}</strong>, {NAVIDAD.canalSorteo}.
+          Sorteo: <strong class="text-white">{NAVIDAD.sorteoTexto}</strong>, {NAVIDAD.canalSorteo}.<br />Inscripciones hasta: <strong class="text-white">{NAVIDAD.cierreTexto}</strong>.<br />{NAVIDAD.costoEnvio} <a href={NAVIDAD.urlBases} class="font-bold text-amber-300 underline">Lee las bases</a>.
         </p>
       </div>
     </div>
 
-    <!-- Formulario en el banner: es la única puerta de entrada al grupo de WhatsApp -->
+    <!-- Formulario en el banner -->
     <div id="registro" class="reveal reveal-right scroll-mt-28 w-full lg:max-w-[500px] lg:justify-self-end" style="--reveal-delay:200ms">
       <NavidadFormulario uid="nvb" compact />
     </div>
@@ -110,7 +109,7 @@ const { bannerVideo, bannerVideoMovil, bannerPoster } = NAVIDAD_MEDIA;
       set("seg", Math.floor((diff / 1e3) % 60));
       if (diff > 0) setTimeout(tick, 1000);
     };
-    tick();
+    if (!Number.isNaN(target)) { tick(); cd.classList.replace("hidden", "grid"); }
   }
 
   // Ahorro de datos / movimiento reducido: dejamos solo el póster.

@@ -1,0 +1,74 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { BASES, BASES_VERSION } from "../config/bases-sorteo";
+import { EMPRESA, NAVIDAD } from "../config/navidad";
+
+const resumen = [
+  ["Participación", "Gratuita, sin compra"],
+  ["Inscripción hasta", NAVIDAD.cierreTexto],
+  ["Sorteo en vivo", `${NAVIDAD.sorteoTexto}, por Zoom`],
+  ["Premios", "25 canastas navideñas y regalos sorpresa"],
+  ["Suplentes", "10"],
+  ["Entrega", "Solo Lima Metropolitana. El ganador asume el costo del envío o recojo"],
+];
+---
+
+<Layout
+  campana
+  title="Bases y condiciones del sorteo navideño"
+  description="Bases del sorteo de 25 canastas navideñas de Hispanotech: requisitos, fechas, premios, selección de ganadores, entrega y datos personales."
+>
+  <main>
+    <header class="bg-[#0B1D3A] py-14 text-white">
+      <div class="mx-auto max-w-5xl px-6">
+        <h1 class="font-display text-[32px] font-bold leading-tight tracking-tight md:text-[44px]">Bases del sorteo de <span class="text-amber-300">25 canastas navideñas</span> 2026</h1>
+        <p class="mt-3 max-w-2xl text-blue-100">Promoción gratuita de Hispanotech para estudiantes de los últimos ciclos, egresados y bachilleres de Lima.</p>
+        <p class="mt-2 text-sm text-blue-200">Versión del {BASES_VERSION}</p>
+      </div>
+    </header>
+
+    <div class="bg-white py-12 dark:bg-slate-950">
+      <div class="mx-auto grid max-w-5xl gap-10 px-6 lg:grid-cols-[230px_minmax(0,1fr)]">
+        <nav aria-label="Contenido" class="lg:sticky lg:top-32 lg:self-start">
+          <ol class="list-decimal space-y-1.5 pl-5 text-sm text-slate-700 dark:text-slate-300">
+            {BASES.map((s) => <li><a href={`#${s.id}`} class="hover:underline">{s.titulo}</a></li>)}
+          </ol>
+        </nav>
+
+        <div>
+          <dl class="overflow-hidden rounded-2xl border border-amber-200 dark:border-slate-700">
+            {resumen.map(([k, v]) => (
+              <div class="grid gap-1 border-b border-amber-100 px-5 py-3 last:border-0 sm:grid-cols-[170px_1fr] dark:border-slate-700">
+                <dt class="text-sm font-bold text-[#0B1D3A] dark:text-amber-300">{k}</dt>
+                <dd class="text-sm text-slate-700 dark:text-slate-200">{v}</dd>
+              </div>
+            ))}
+          </dl>
+
+          {BASES.map((s, i) => (
+            <section id={s.id} class="scroll-mt-32 pt-9">
+              <h2 class="font-display text-xl font-bold text-[#0B1D3A] dark:text-white">{i + 1}. {s.titulo}</h2>
+              <div class="mt-3 space-y-3 text-[15px] leading-relaxed text-slate-700 dark:text-slate-300">
+                {s.bloques.map((b) => (
+                  <>
+                    {b.p && <p>{b.p}</p>}
+                    {b.ul && <ul class="list-disc space-y-2 pl-5">{b.ul.map((x) => <li>{x}</li>)}</ul>}
+                    {b.ol && <ol class="list-decimal space-y-2 pl-5">{b.ol.map((x) => <li>{x}</li>)}</ol>}
+                  </>
+                ))}
+              </div>
+            </section>
+          ))}
+
+          <p class="mt-10 border-t border-slate-200 pt-5 text-sm text-slate-600 dark:border-slate-700 dark:text-slate-400">
+            {EMPRESA.razonSocial} · RUC {EMPRESA.ruc} · {EMPRESA.domicilio}
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="/navidad/#formulario" class="rounded-full bg-amber-400 px-6 py-3 text-sm font-bold text-[#0B1D3A] hover:bg-amber-300">Participar</a>
+            <a href="/libro-de-reclamaciones/" class="rounded-full border-2 border-[#0B1D3A] px-6 py-3 text-sm font-bold text-[#0B1D3A] dark:border-white dark:text-white">Libro de Reclamaciones</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

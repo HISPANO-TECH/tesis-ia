@@ -1,6 +1,6 @@
 <?php
 // public/api/contact.php — Recibe el formulario de contacto de tesis-ia.com
-// y envia el lead a MAIL_TO_REAL (informes@asesorestesisperu.com) usando mail().
+// y envia el lead a MAIL_TO_REAL (informes@tesis-ia.com) usando mail().
 // Copiado automaticamente a dist/api/contact.php en cada build.
 
 require_once __DIR__ . '/config.php';

@@ -30,7 +30,7 @@ import { Icon } from "astro-icon/components";
             <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#0B1D3A] text-amber-300"><Icon name="lucide:mail" class="h-5 w-5" /></span>
             <div>
               <div class="text-xs font-bold uppercase tracking-widest text-slate-500">Email</div>
-              <a href="mailto:informes@asesorestesisperu.com" class="text-sm font-bold text-[#0B1D3A] dark:text-white hover:text-amber-600">informes@asesorestesisperu.com</a>
+              <a href="mailto:informes@tesis-ia.com" class="text-sm font-bold text-[#0B1D3A] dark:text-white hover:text-amber-600">informes@tesis-ia.com</a>
             </div>
           </div>
           <div class="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 dark:bg-slate-800 dark:border-slate-700">
@@ -130,7 +130,7 @@ import { Icon } from "astro-icon/components";
               <input type="checkbox" name="privacidad" required class="mt-0.5 h-4 w-4 shrink-0 rounded border-slate-300 text-amber-500 focus:ring-amber-400" />
               <span>
                 Acepto la <a href="/privacidad" class="font-bold text-[#1e3a8a] underline hover:text-amber-600 dark:text-amber-300 dark:hover:text-amber-200">política de privacidad</a> y que mi consulta se envíe por correo a
-                <span class="break-all font-semibold text-[#0B1D3A] dark:text-white">informes@asesorestesisperu.com</span> para ser asesorado. *
+                <span class="break-all font-semibold text-[#0B1D3A] dark:text-white">informes@tesis-ia.com</span> para ser asesorado. *
               </span>
             </label>
             <span class="hidden mt-1 block pl-6 text-xs text-red-600" data-error="privacidad">Debes aceptar la política de privacidad</span>
@@ -234,9 +234,9 @@ import { Icon } from "astro-icon/components";
     const msg = buildMessage(fd);
     const waUrl = `https://api.whatsapp.com/send/?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(msg)}&type=phone_number&app_absent=0`;
 
-    // 1) Intenta envío por PHP -> correo a informes@asesorestesisperu.com
+    // 1) Intenta envío por PHP -> correo a informes@tesis-ia.com
     if (submitBtn) { submitBtn.disabled = true; submitLabel.textContent = "Enviando..."; }
-    setStatus("Enviando tu solicitud a " + "informes@asesorestesisperu.com" + "...", true);
+    setStatus("Enviando tu solicitud a " + "informes@tesis-ia.com" + "...", true);
 
     try {
       const res = await fetch(API_URL, {

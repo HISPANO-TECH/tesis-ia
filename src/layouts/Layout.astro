@@ -15,8 +15,9 @@ interface Props {
   publishedTime?: string;
   jsonLd?: object[];
   noIndex?: boolean;
+  campana?: boolean; // páginas del sorteo: sin planes, WhatsApp ni publicidad
 }
-const { title, description, keywords, image, imageAlt, type, publishedTime, jsonLd, noIndex } = Astro.props;
+const { title, description, keywords, image, imageAlt, type, publishedTime, jsonLd, noIndex, campana = false } = Astro.props;
 const pageTitle = title ? `${title} | ${SITE.name}` : `${SITE.name} — Plan IAs Investigador Pro para tu tesis`;
 const pageDescription = description ?? SITE.description;
 const pageKeywords = keywords ?? [...SITE.keywords];
@@ -97,10 +98,10 @@ const websiteLd = {
     <noscript><style>.reveal,.split-letters{opacity:1!important;transform:none!important}</style></noscript>
   </head>
   <body class="bg-white text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
-    <Navbar />
+    <Navbar campana={campana} />
     <slot />
-    <Footer />
-    <WhatsAppFloat />
+    <Footer campana={campana} />
+    {!campana && <WhatsAppFloat />}
     <script>
       const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       function splitLetters(root){

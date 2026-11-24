@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-import { NAVIDAD, NAVIDAD_BASES, NAVIDAD_FAQ } from "../../config/navidad";
+import { NAVIDAD, NAVIDAD_BASES, NAVIDAD_FAQ, AVISO_PLATAFORMAS } from "../../config/navidad";
 ---
 
 <section id="bases" class="bg-[#fffbeb] py-20 dark:bg-slate-900 md:py-24">
@@ -28,6 +28,8 @@ import { NAVIDAD, NAVIDAD_BASES, NAVIDAD_FAQ } from "../../config/navidad";
           </li>
         ))}
       </ol>
+      <a href={NAVIDAD.urlBases} class="mt-6 inline-flex rounded-full bg-[#0B1D3A] px-6 py-3 text-sm font-bold text-white hover:bg-[#1e3a8a] dark:bg-amber-400 dark:text-[#0B1D3A]">Leer las bases completas</a>
+      <p class="mt-5 text-sm leading-relaxed text-slate-600 dark:text-slate-300">{AVISO_PLATAFORMAS}</p>
     </div>
 
     <div id="faq-navidad">

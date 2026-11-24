@@ -2,7 +2,7 @@
 // "Mira nuestras canastas": carrusel de cards con fotos de las canastas.
 // Las fotos salen de NAVIDAD_GALERIA (src/config/navidad.ts) — marketing las reemplaza ahí.
 import { Icon } from "astro-icon/components";
-import { NAVIDAD_GALERIA } from "../../config/navidad";
+import { NAVIDAD_GALERIA, NAVIDAD_NOTA_PREMIO } from "../../config/navidad";
 ---
 
 <section id="canastas" class="relative overflow-hidden bg-[#050d22] py-20 text-white md:py-24">
@@ -65,6 +65,7 @@ import { NAVIDAD_GALERIA } from "../../config/navidad";
       <button type="button" aria-label={`Ir a la foto ${i + 1}`} data-dot={i} class="h-2.5 w-2.5 rounded-full bg-white/30 transition-all aria-[current=true]:w-8 aria-[current=true]:bg-amber-400"></button>
     ))}
   </div>
+  <p class="mx-auto mt-5 max-w-3xl px-6 text-center text-sm text-slate-300">{NAVIDAD_NOTA_PREMIO}</p>
 </section>
 
 <script>

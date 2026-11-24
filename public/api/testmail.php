@@ -1,7 +1,7 @@
 <?php
 // public/api/testmail.php — Prueba de envío (mismo patrón que academic-navigator)
 // Uso: https://tesis-ia.com/api/testmail.php  → envía a MAIL_TO_TEST (tu Gmail)
-//      ?to=informes@asesorestesisperu.com     → prueba otro destino
+//      ?to=informes@tesis-ia.com     → prueba otro destino
 // Después de la prueba, borra o protege este archivo en producción.
 
 require_once __DIR__ . '/config.php';

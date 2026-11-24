@@ -5,13 +5,10 @@
 // NO requiere App Password de Gmail: el correo sale desde una cuenta del dominio.
 
 // ====== DESTINATARIOS ======
-define('MAIL_TO_REAL', 'informes@asesorestesisperu.com'); // correo real de produccion
+define('MAIL_TO_REAL', 'informes@tesis-ia.com'); // correo real de produccion
 define('MAIL_TO_TEST', 'marxchip99@gmail.com');           // para testmail.php (te llega a tu Gmail)
-// MAIL_FROM debe ser una cuenta del MISMO dominio del hosting (tesis-ia.com) y existir en
-// cPanel > Email Accounts. El SPF de tesis-ia.com autoriza a este servidor (192.185.129.53);
-// el de asesorestesisperu.com NO (es otro servidor), por eso enviar "como" ese dominio
-// hacía que Gmail/Outlook descartaran o mandaran a SPAM los correos.
-// Las respuestas igual llegan a informes@asesorestesisperu.com gracias a MAIL_REPLY_TO.
+// MAIL_FROM debe ser una cuenta del mismo dominio del hosting (tesis-ia.com) y existir en
+// cPanel > Email Accounts, para que el SPF autorice el envío.
 define('MAIL_FROM', 'informes@tesis-ia.com');
 define('MAIL_FROM_NAME', 'Tesis IA Web');
 define('MAIL_REPLY_TO', MAIL_TO_REAL);
@@ -42,4 +39,13 @@ function json_response(int $code, array $payload): void {
 }
 function is_valid_email(string $email): bool {
     return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
+}
+
+// Correo HTML en UTF-8. Devuelve true si el servidor aceptó el envío; si falla lo registra.
+function enviar_correo(string $para, string $asunto, string $html, string $replyTo, string $deNombre = MAIL_FROM_NAME): bool {
+    $headers = 'From: ' . $deNombre . ' <' . MAIL_FROM . ">\r\nReply-To: " . $replyTo
+        . "\r\nMIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n";
+    $ok = @mail($para, '=?UTF-8?B?' . base64_encode($asunto) . '?=', chunk_split(base64_encode($html)), $headers, '-f ' . MAIL_FROM);
+    if (!$ok) @file_put_contents(sys_get_temp_dir() . '/mail_errors.log', '[' . date('c') . "] FAIL {$asunto}" . PHP_EOL, FILE_APPEND);
+    return $ok;
 }

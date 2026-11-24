@@ -1,5 +1,11 @@
 ---
-const navLinks = [
+const { campana = false } = Astro.props;
+const navLinks = campana ? [
+  { label: "Inicio", href: "/" },
+  { label: "Sorteo", href: "/navidad/" },
+  { label: "Bases", href: "/condiciones-sorteo/" },
+  { label: "Privacidad", href: "/privacidad/#sorteo" },
+] : [
   { label: "Inicio", href: "/" },
   { label: "Navidad", href: "/navidad" },
   { label: "Mitos", href: "/#mitos" },
@@ -12,7 +18,8 @@ const whatsappHref = "https://api.whatsapp.com/send/?phone=51992005096&text=Hola
 ---
 
 <div class="sticky top-0 z-50">
-  <!-- Topbar - dorado sobre azul profundo -->
+  {!campana && (<>
+  
   <div class="bg-[#0B1D3A] text-amber-100">
     <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-4 py-2 sm:px-6 lg:px-8">
       <p class="flex min-w-0 items-center gap-2 text-[11px] font-medium tracking-wide sm:text-[13px]">
@@ -24,12 +31,13 @@ const whatsappHref = "https://api.whatsapp.com/send/?phone=51992005096&text=Hola
         <span class="hidden truncate xl:inline text-amber-200/70">Asesoría con protocolo de tu universidad</span>
       </p>
       <div class="hidden items-center gap-3 md:flex">
-        <a href="mailto:informes@asesorestesisperu.com" class="hidden whitespace-nowrap text-xs text-amber-200/70 hover:text-amber-300 lg:inline">informes@asesorestesisperu.com</a>
+        <a href="mailto:informes@tesis-ia.com" class="hidden whitespace-nowrap text-xs text-amber-200/70 hover:text-amber-300 lg:inline">informes@tesis-ia.com</a>
         <span class="hidden h-3 w-px bg-[#1e3a5a] lg:block"></span>
         <a href={whatsappHref} target="_blank" rel="noopener" class="whitespace-nowrap text-xs font-semibold text-amber-400 hover:text-amber-300">WhatsApp</a>
       </div>
     </div>
   </div>
+  </>)}
 
   <!-- Main navbar - azul profundo a azul medio con borde dorado - EXTENDIDO -->
   <nav class="border-b-2 border-amber-400/40 bg-gradient-to-r from-[#0B1D3A] via-[#1e3a8a] to-[#274cab] shadow-lg shadow-blue-950/30 dark:from-[#070f24] dark:via-[#0B1D3A] dark:to-[#1e3a8a]">
@@ -47,7 +55,9 @@ const whatsappHref = "https://api.whatsapp.com/send/?phone=51992005096&text=Hola
             Tesis<span class="text-amber-300">IA</span><span class="hidden sm:inline text-amber-200/70 text-base font-semibold ml-1">.com</span>
           </span>
         </a>
+        {!campana && (
         <span class="hidden 2xl:inline-flex ml-3 rounded-full bg-amber-400 px-3.5 py-1 text-[11px] font-bold uppercase tracking-widest text-[#0B1D3A] shadow-sm">Investigador Pro</span>
+        )}
       </div>
 
       <!-- Desktop links - MÁS SEPARADOS (solo en xl+, si no hamburguesa) -->
@@ -62,10 +72,12 @@ const whatsappHref = "https://api.whatsapp.com/send/?phone=51992005096&text=Hola
           <svg class="hidden h-5 w-5 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
           <svg class="block h-5 w-5 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
+        {!campana && (<>
         <a href="/#planes" class="hidden md:inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-amber-400 px-4 py-2 font-display text-[11px] font-bold uppercase tracking-wide text-[#0B1D3A] shadow hover:bg-amber-300 transition lg:px-5 lg:py-2.5 lg:text-xs">Ver planes</a>
         <a href={whatsappHref} target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp" class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-[#0B1D3A] shadow-md transition hover:bg-amber-50 hover:scale-105">
           <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         </a>
+        </>)}
         <button id="nav-toggle" class="flex h-11 w-11 shrink-0 flex-col items-center justify-center gap-[5px] rounded-xl border border-white/20 bg-white/10 xl:hidden" aria-label="Abrir menú">
           <span class="block h-[2px] w-5 rounded-full bg-white"></span>
           <span class="block h-[2px] w-5 rounded-full bg-white"></span>
@@ -87,6 +99,7 @@ const whatsappHref = "https://api.whatsapp.com/send/?phone=51992005096&text=Hola
           <a href={l.href} class="mobile-link rounded-lg px-2 py-3 hover:bg-white/10">{l.label}</a>
         ))}
       </nav>
+      {!campana && (
       <div class="mt-auto pt-8 flex flex-col gap-3">
         <a href="/#planes" class="flex items-center justify-center rounded-full bg-amber-400 px-5 py-3 font-display text-sm font-bold uppercase tracking-wide text-[#0B1D3A]">Ver planes desde $20/mes</a>
         <a href={whatsappHref} target="_blank" rel="noopener" class="flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 font-display text-sm font-bold uppercase text-[#0B1D3A]">
@@ -94,6 +107,7 @@ const whatsappHref = "https://api.whatsapp.com/send/?phone=51992005096&text=Hola
           Hablar por WhatsApp
         </a>
       </div>
+      )}
     </aside>
   </div>
 </div>
