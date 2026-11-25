@@ -1,0 +1,262 @@
+---
+// BOCETO del lead magnet "Banco de temas de tesis 2027-2030".
+// noIndex y fuera del menú y del sitemap. El formulario todavía NO envía ni guarda datos.
+// Cifras y muestra: src/data/banco-temas.json (scripts/banco-temas/exportar.py).
+import Layout from "../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import banco from "../data/banco-temas.json";
+
+const num = (n: number) => String(n).replace(/\B(?=(\d{3})+$)/g, n >= 10000 ? " " : "");
+const pct = (n: number) => Math.round((n / banco.total) * 100);
+const alcance = [
+  { k: "Perú", n: banco.impacto["Perú"], c: "bg-amber-400" },
+  { k: "Latam", n: banco.impacto.Latam, c: "bg-blue-400" },
+  { k: "Global", n: banco.impacto.Global, c: "bg-slate-300" },
+];
+const ACCESO: Record<string, string> = { bajo: "Datos de acceso fácil", medio: "Datos de acceso medio", alto: "Datos de acceso difícil" };
+const f = banco.ficha;
+const lista = (s: string) => s.split(";").map((x) => x.trim()).filter(Boolean);
+const campos = [
+  ["lucide:variable", "Variables"], ["lucide:compass", "Enfoque metodológico"], ["lucide:target", "Objetivo general"], ["lucide:list-checks", "Objetivos específicos"],
+  ["lucide:flask-conical", "Metodología"], ["lucide:database", "Datos"], ["lucide:cpu", "Procesamiento"], ["lucide:globe", "Alcance y acceso"],
+];
+const pasos = [
+  ["Elige tu carrera", "Hay 13 carreras, con 100 temas cada una."],
+  ["Completa el formulario", "Son solo cuatro datos."],
+  ["Recibe tu banco", "Te llega el archivo con los temas de tu carrera."],
+];
+const usos = [
+  ["lucide:circle-help", "No tienes tema", "Recorre las categorías de tu carrera y descarta rápido."],
+  ["lucide:scale", "Dudas entre varios", "Compara qué datos pide cada tema y qué tan difícil es conseguirlos."],
+  ["lucide:file-text", "Vas a armar tu plan", "Parte de variables, objetivos y metodología ya planteados."],
+];
+const faqs = [
+  ["¿Tiene costo?", "No. El banco de temas es gratuito."],
+  ["¿Puedo usar un tema tal como está?", "Úsalo como punto de partida. Antes de presentarlo, revisa que no se haya investigado ya, adáptalo a tu contexto y consúltalo con tu asesor."],
+  ["¿Los temas están aprobados por mi universidad?", "No. Cada universidad tiene sus líneas de investigación y su propio proceso de aprobación."],
+  ["¿Todos los temas traen la ficha completa?", `${num(banco.completos)} de ${num(banco.total)} la traen completa. El resto, de Ingeniería Civil e Ingeniería Industrial, incluye menos campos.`],
+  ["¿Cómo se armó el banco?", "Las propuestas se generaron con inteligencia artificial a partir de tendencias estimadas por carrera."],
+];
+const input = "mt-1 w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-[15px] text-slate-900 outline-none transition focus:border-amber-400 focus:ring-4 focus:ring-amber-300/30 dark:border-slate-600 dark:bg-slate-900 dark:text-white";
+const label = "block text-sm font-semibold text-slate-800 dark:text-slate-100";
+const h2 = "font-display text-3xl font-bold leading-tight tracking-tight text-[#0B1D3A] dark:text-white md:text-[42px]";
+---
+
+<Layout
+  noIndex
+  title="Banco de temas de tesis 2027-2030"
+  description="1300 ideas de tesis para 13 carreras, con variables, objetivos, metodología y fuentes de datos. Descarga gratis los temas de tu carrera."
+>
+  <main class="banco">
+    <!-- 1. Portada -->
+    <section id="portada" class="relative overflow-hidden bg-gradient-to-br from-[#0B1D3A] via-[#1e3a8a] to-[#2a4b9f] text-white">
+      <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(245,158,11,0.07)_1px,transparent_1px),linear-gradient(to_bottom,rgba(245,158,11,0.07)_1px,transparent_1px)] bg-[size:44px_44px]"></div>
+      <div class="relative mx-auto grid max-w-7xl items-center gap-10 px-6 py-12 lg:grid-cols-[1.12fr_0.88fr] lg:py-16">
+        <div>
+          <h1 class="font-display text-[38px] font-bold leading-[1.02] tracking-tight md:text-[56px]">
+            Encuentra tu tema de tesis entre <span class="text-amber-300">{num(banco.total)} ideas</span>
+          </h1>
+          <p class="mt-4 max-w-xl text-lg leading-relaxed text-blue-100">
+            Banco de temas 2027-2030 para {banco.carreras.length} carreras. Explora variables, objetivos, metodología y dónde conseguir los datos.
+          </p>
+
+          <!-- Vista del archivo -->
+          <div class="mt-8 overflow-hidden rounded-2xl border border-white/15 bg-white text-slate-800 shadow-2xl shadow-black/30" role="img" aria-label="Vista previa del archivo con temas de varias carreras">
+            <div class="flex items-center gap-2 bg-[#107c41] px-4 py-2 text-xs font-semibold text-white"><Icon name="lucide:sheet" class="h-4 w-4" /> banco-temas-tesis-2027-2030</div>
+            <table class="w-full text-left text-[12px] leading-snug sm:text-[13px]">
+              <thead class="bg-slate-100 text-slate-600"><tr><th class="px-3 py-2">Carrera</th><th class="border-l border-slate-200 px-3 py-2">Tema</th><th class="hidden border-l border-slate-200 px-3 py-2 sm:table-cell">Alcance</th></tr></thead>
+              <tbody>
+                {[[1, 0], [5, 1], [8, 2], [10, 0]].map(([i, j]) => (
+                  <tr class="border-t border-slate-200"><td class="px-3 py-2 font-semibold">{banco.carreras[i].nombre}</td><td class="border-l border-slate-200 px-3 py-2"><span class="line-clamp-2">{banco.carreras[i].muestra[j].titulo}</span></td><td class="hidden border-l border-slate-200 px-3 py-2 sm:table-cell">{banco.carreras[i].muestra[j].impacto}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <form data-banco id="descargar" novalidate class="scroll-mt-32 rounded-[28px] bg-white p-6 text-slate-900 shadow-2xl shadow-black/40 dark:bg-slate-800 md:p-8">
+          <p class="font-display text-2xl font-bold text-[#0B1D3A] dark:text-white">Recibe gratis los temas de tu carrera</p>
+          <div class="mt-5 space-y-4">
+            <div><label for="b-carrera" class={label}>Carrera</label>
+              <select id="b-carrera" name="carrera" required class={input}><option value="">Selecciona</option>{banco.carreras.map((c) => <option>{c.nombre}</option>)}</select></div>
+            <div><label for="b-nombre" class={label}>Nombre</label><input id="b-nombre" name="nombre" required autocomplete="name" maxlength="120" class={input} /></div>
+            <div><label for="b-correo" class={label}>Correo electrónico</label><input id="b-correo" name="correo" type="email" required autocomplete="email" maxlength="160" class={input} /></div>
+            <div><label for="b-cel" class={label}>WhatsApp</label><input id="b-cel" name="celular" type="tel" inputmode="numeric" required placeholder="9XX XXX XXX" maxlength="15" class={input} /></div>
+          </div>
+          <div class="mt-4 space-y-3 text-xs leading-relaxed text-slate-700 dark:text-slate-200">
+            <label class="flex gap-3"><input type="checkbox" name="privacidad" required class="mt-0.5 h-4 w-4 shrink-0 accent-amber-500" /><span>Autorizo el uso de mis datos para recibir el banco, según la <a href="/privacidad/" class="font-semibold text-[#1e3a8a] underline dark:text-amber-300">política de privacidad</a>.</span></label>
+            <label class="flex gap-3"><input type="checkbox" name="promos" class="mt-0.5 h-4 w-4 shrink-0 accent-amber-500" /><span><strong>Opcional.</strong> Acepto recibir información de cursos y servicios. Puedo retirar mi consentimiento cuando quiera.</span></label>
+          </div>
+          <button type="submit" class="mt-5 w-full rounded-full bg-amber-400 px-6 py-3.5 font-display text-sm font-bold uppercase tracking-wide text-[#0B1D3A] transition hover:bg-amber-300">Quiero mis 100 temas</button>
+          <p data-estado role="status" aria-live="polite" class="mt-3 hidden rounded-xl bg-red-50 px-4 py-2.5 text-sm text-red-700">Completa todos los campos y acepta la política de privacidad.</p>
+        </form>
+        <div id="gracias" tabindex="-1" class="hidden rounded-[28px] bg-white p-8 text-center text-slate-900 shadow-2xl dark:bg-slate-800 dark:text-white">
+          <Icon name="lucide:mail-check" class="mx-auto h-14 w-14 text-emerald-600" />
+          <p class="mt-4 font-display text-2xl font-bold">Revisa tu correo</p>
+          <p class="mt-2 text-slate-600 dark:text-slate-300">Te enviamos los temas de <strong data-carrera></strong>. Mira también en Promociones y Spam.</p>
+          <p class="mt-6 rounded-xl bg-amber-50 px-4 py-3 text-sm text-amber-900">Boceto: esta versión todavía no envía ni guarda datos.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Cifras -->
+    <section id="cifras" class="bg-white py-14 dark:bg-slate-950">
+      <div class="mx-auto max-w-7xl px-6">
+        <dl class="grid gap-8 sm:grid-cols-3">
+          {[[num(banco.total), "ideas de tesis"], [banco.carreras.length, "carreras, con 100 ideas cada una"], [banco.categorias, "categorías, 10 por carrera"]].map(([n, t]) => (
+            <div class="border-l-4 border-amber-400 pl-5"><dt class="text-slate-600 dark:text-slate-300">{t}</dt><dd class="order-first font-display text-5xl font-bold tracking-tight text-[#0B1D3A] dark:text-white">{n}</dd></div>
+          ))}
+        </dl>
+        <div class="mt-10">
+          <p class="font-semibold text-[#0B1D3A] dark:text-white">Alcance de las ideas</p>
+          <div class="mt-3 flex h-12 overflow-hidden rounded-xl text-sm font-bold text-[#0B1D3A]">
+            {alcance.map((a) => <div class={`flex items-center px-4 ${a.c}`} style={`width:${(a.n / banco.total) * 100}%`}>{pct(a.n)} %</div>)}
+          </div>
+          <div class="mt-2 flex text-sm text-slate-600 dark:text-slate-300">
+            {alcance.map((a) => <div class="px-1" style={`width:${(a.n / banco.total) * 100}%`}>{a.k}: {a.n}</div>)}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Carreras y muestra -->
+    <section id="carreras" class="bg-[#fffbeb] py-16 dark:bg-slate-900 md:py-20">
+      <div class="mx-auto max-w-7xl px-6">
+        <h2 class={h2}>Elige tu carrera y mira una muestra</h2>
+        <div class="mt-8 grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)]">
+          <div role="tablist" aria-label="Carreras" class="flex gap-2 overflow-x-auto pb-2 lg:block lg:space-y-1 lg:overflow-visible">
+            {banco.carreras.map((c, i) => (
+              <button type="button" role="tab" id={`tab-${i}`} aria-controls={`panel-${i}`} aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1}
+                class="flex shrink-0 items-center gap-3 rounded-xl px-4 py-2.5 text-left text-sm font-semibold text-slate-700 transition hover:bg-amber-100 aria-selected:bg-[#0B1D3A] aria-selected:text-white lg:w-full dark:text-slate-200 dark:hover:bg-slate-800 dark:aria-selected:bg-amber-400 dark:aria-selected:text-[#0B1D3A]">
+                <Icon name={`lucide:${c.icono}`} class="h-5 w-5 shrink-0" />{c.nombre}
+              </button>
+            ))}
+          </div>
+          <div>
+            {banco.carreras.map((c, i) => (
+              <div role="tabpanel" id={`panel-${i}`} aria-labelledby={`tab-${i}`} hidden={i !== 0} data-nombre={c.nombre}>
+                <ul class="divide-y divide-amber-200 overflow-hidden rounded-2xl border border-amber-200 bg-white dark:divide-slate-700 dark:border-slate-700 dark:bg-slate-800">
+                  {c.muestra.map((t) => (
+                    <li class="p-5">
+                      <p class="text-sm text-slate-600 dark:text-slate-400">{t.categoria}</p>
+                      <p class="mt-1 font-display text-lg font-bold leading-snug text-[#0B1D3A] dark:text-white">{t.titulo}</p>
+                      <p class="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-sm font-medium text-slate-700 dark:text-slate-300"><span class="inline-flex items-center gap-1.5"><Icon name="lucide:globe" class="h-4 w-4 text-amber-600" />{t.impacto}</span><span class="inline-flex items-center gap-1.5"><Icon name="lucide:database" class="h-4 w-4 text-amber-600" />{ACCESO[t.acceso]}</span></p>
+                    </li>
+                  ))}
+                </ul>
+                <p class="mt-5 font-semibold text-[#0B1D3A] dark:text-white">Las 10 categorías de {c.nombre}</p>
+                <p class="mt-1 text-[15px] leading-relaxed text-slate-700 dark:text-slate-300">{c.categorias.join(" · ")}</p>
+                <a href="#descargar" data-elegir={c.nombre} class="mt-5 inline-flex items-center gap-2 rounded-full bg-[#0B1D3A] px-6 py-3 text-sm font-bold text-white hover:bg-[#1e3a8a] dark:bg-amber-400 dark:text-[#0B1D3A]"><Icon name="lucide:lock-open" class="h-4 w-4" /> Ver los otros {c.temas - 3} temas</a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Ficha -->
+    <section id="ficha" class="bg-white py-16 dark:bg-slate-950 md:py-20">
+      <div class="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr]">
+        <div>
+          <h2 class={h2}>Más que un título</h2>
+          <p class="mt-4 text-lg leading-relaxed text-slate-600 dark:text-slate-300">Las ideas vienen desarrolladas en una ficha, para que sepas qué implican antes de elegir.</p>
+          <ul class="mt-6 grid grid-cols-2 gap-x-4 gap-y-4">
+            {campos.map(([ic, t]) => <li class="flex items-center gap-3 text-[15px] font-medium text-slate-800 dark:text-slate-200"><Icon name={ic} class="h-5 w-5 shrink-0 text-amber-600" />{t}</li>)}
+          </ul>
+        </div>
+        <article class="rounded-3xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-700 dark:bg-slate-900 md:p-8">
+          <p class="text-sm text-slate-600 dark:text-slate-400">Ejemplo: {f.Carrera}</p>
+          <h3 class="mt-1 font-display text-xl font-bold leading-snug text-[#0B1D3A] dark:text-white">{f["Título"]}</h3>
+          <dl class="mt-5 space-y-4 text-[15px] leading-relaxed text-slate-700 dark:text-slate-300">
+            <div><dt class="font-bold text-[#0B1D3A] dark:text-amber-300">Objetivo general</dt><dd>{f["Objetivo general"]}</dd></div>
+            <div><dt class="font-bold text-[#0B1D3A] dark:text-amber-300">Variables</dt><dd>{lista(f.Variables).slice(0, 4).join(", ")} y {lista(f.Variables).length - 4} más.</dd></div>
+            <div><dt class="font-bold text-[#0B1D3A] dark:text-amber-300">Metodología</dt><dd>{f["Metodología"]}</dd></div>
+            <div><dt class="font-bold text-[#0B1D3A] dark:text-amber-300">Datos</dt><dd>{f.Datos}</dd></div>
+          </dl>
+          <p class="mt-5 border-t border-slate-200 pt-4 text-sm text-slate-600 dark:border-slate-700 dark:text-slate-400">La ficha también trae objetivos específicos, enfoque y procesamiento.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5. Para quién -->
+    <section id="para-quien" class="bg-[#0B1D3A] py-16 text-white md:py-20">
+      <div class="mx-auto max-w-7xl px-6">
+        <h2 class="font-display text-3xl font-bold tracking-tight md:text-[42px]">Te sirve si…</h2>
+        <div class="mt-8 grid gap-8 md:grid-cols-3">
+          {usos.map(([ic, t, d]) => <div><Icon name={ic} class="h-9 w-9 text-amber-300" /><h3 class="mt-4 font-display text-xl font-bold">{t}</h3><p class="mt-2 leading-relaxed text-blue-100">{d}</p></div>)}
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Cómo funciona -->
+    <section id="como-funciona" class="bg-white py-16 dark:bg-slate-950 md:py-20">
+      <div class="mx-auto max-w-7xl px-6">
+        <h2 class={h2}>Cómo lo recibes</h2>
+        <ol class="mt-8 grid gap-6 md:grid-cols-3">
+          {pasos.map(([t, d], i) => (
+            <li class="flex gap-4"><span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-amber-400 font-display text-xl font-bold text-[#0B1D3A]">{i + 1}</span><div><h3 class="font-display text-lg font-bold text-[#0B1D3A] dark:text-white">{t}</h3><p class="mt-1 text-slate-600 dark:text-slate-300">{d}</p></div></li>
+          ))}
+        </ol>
+        <p class="mt-10 max-w-3xl rounded-2xl border border-amber-300 bg-amber-50 p-5 text-[15px] leading-relaxed text-amber-950 dark:border-amber-700 dark:bg-amber-950/30 dark:text-amber-100"><strong>Úsalo con criterio.</strong> Son ideas de partida, no temas aprobados. Verifica antecedentes y acceso a los datos, y valida tu elección con tu asesor. La autoría de tu tesis es tuya.</p>
+      </div>
+    </section>
+
+    <!-- 7. Preguntas -->
+    <section id="preguntas" class="bg-[#fffbeb] py-16 dark:bg-slate-900 md:py-20">
+      <div class="mx-auto max-w-4xl px-6">
+        <h2 class={h2}>Preguntas frecuentes</h2>
+        <div class="mt-7 divide-y divide-amber-200 dark:divide-slate-700">
+          {faqs.map(([q, a], i) => (
+            <details class="group py-4" open={i === 0}>
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-lg font-bold text-[#0B1D3A] dark:text-white">{q}<Icon name="lucide:plus" class="h-5 w-5 shrink-0 text-amber-600 transition group-open:rotate-45" /></summary>
+              <p class="mt-2 leading-relaxed text-slate-700 dark:text-slate-300">{a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Cierre -->
+    <section id="cierre-banco" class="bg-gradient-to-r from-[#1e3a8a] to-[#0B1D3A] py-16 text-white">
+      <div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-6 md:flex-row md:items-center">
+        <h2 class="max-w-2xl font-display text-3xl font-bold leading-tight tracking-tight md:text-4xl">Tu próximo tema puede estar en las 100 ideas de tu carrera</h2>
+        <a href="#descargar" class="shrink-0 rounded-full bg-amber-400 px-8 py-4 font-display text-sm font-bold uppercase tracking-wide text-[#0B1D3A] hover:bg-amber-300">Quiero mis 100 temas</a>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script>
+  const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>(".banco [role=tab]"));
+  const ver = (i: number, foco = false) => tabs.forEach((t, k) => {
+    t.setAttribute("aria-selected", String(k === i));
+    t.tabIndex = k === i ? 0 : -1;
+    document.getElementById(t.getAttribute("aria-controls")!)!.hidden = k !== i;
+    if (k === i && foco) t.focus();
+  });
+  tabs.forEach((t, i) => {
+    t.addEventListener("click", () => ver(i));
+    t.addEventListener("keydown", (e) => {
+      const d = ["ArrowDown", "ArrowRight"].includes(e.key) ? 1 : ["ArrowUp", "ArrowLeft"].includes(e.key) ? -1 : 0;
+      if (d) { e.preventDefault(); ver((i + d + tabs.length) % tabs.length, true); }
+    });
+  });
+
+  const form = document.querySelector<HTMLFormElement>("[data-banco]")!;
+  const sel = form.querySelector<HTMLSelectElement>("[name=carrera]")!;
+  document.querySelectorAll<HTMLElement>("[data-elegir]").forEach((a) => a.addEventListener("click", () => { sel.value = a.dataset.elegir!; }));
+
+  // BOCETO: valida y muestra la pantalla final, pero no envía ni guarda nada.
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const cel = String(new FormData(form).get("celular")).replace(/\D/g, "").replace(/^51(?=9\d{8}$)/, "");
+    const ok = form.checkValidity() && /^9\d{8}$/.test(cel);
+    form.querySelector("[data-estado]")!.classList.toggle("hidden", ok);
+    if (!ok) { (form.querySelector<HTMLElement>(":invalid:not(fieldset)") || form.querySelector<HTMLElement>("[name=celular]"))?.focus(); return; }
+    const g = document.getElementById("gracias")!;
+    g.querySelector("[data-carrera]")!.textContent = sel.value;
+    form.classList.add("hidden");
+    g.classList.remove("hidden");
+    g.focus();
+  });
+</script>

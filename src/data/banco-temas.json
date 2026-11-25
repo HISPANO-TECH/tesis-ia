@@ -1,0 +1,513 @@
+{
+ "total": 1300,
+ "categorias": 130,
+ "completos": 1210,
+ "impacto": {
+  "Perú": 524,
+  "Latam": 394,
+  "Global": 382
+ },
+ "acceso": {
+  "bajo": 430,
+  "medio": 611,
+  "alto": 169,
+  "sin clasificar": 90
+ },
+ "ficha": {
+  "Categoría": "Comercio internacional y exportaciones",
+  "Título": "Predicción de la demanda de arándano peruano en mercados de Estados Unidos y China mediante aprendizaje automático, 2027-2030",
+  "Impacto": "Perú",
+  "Acceso": "bajo",
+  "Variables": "Volumen exportado de arándano fresco (kg); Precio FOB promedio (USD/kg); Tipo de cambio PEN/USD; Índice de precios al consumidor del mercado destino; Aranceles aplicados por el mercado destino; Estacionalidad de la oferta por campaña",
+  "Enfoque metodológico": "Cuantitativo predictivo orientado a anticipar la demanda exportadora para planificación de campañas 2027-2030, con énfasis en la adaptación de modelos a escenarios arancelarios y cambiarios recientes.",
+  "Objetivo general": "Desarrollar un modelo de aprendizaje automático que prediga el volumen mensual de exportación de arándano peruano a Estados Unidos y China, con horizonte de seis meses.",
+  "Objetivos específicos": "Comparar el desempeño predictivo de regresión con gradient boosting y series temporales ARIMA sobre datos históricos de 2015-2025.; Evaluar el impacto de variables arancelarias y cambiarias en la precisión del pronóstico y proponer recomendaciones para exportadores.",
+  "Metodología": "Diseño cuantitativo, no experimental, longitudinal y predictivo. Se entrena y valida con partición temporal (entrenamiento hasta 2023, validación 2024-2025) y se generan escenarios para 2027-2030 sin usar datos futuros observados.",
+  "Datos": "Estadísticas de exportación de SUNAT y de Agrodata-Perú publicadas por MIDAGRI, series del BCRP, índices de precios de la Oficina de Estadísticas Laborales de EE. UU. y de la Oficina Nacional de Estadística de China, y aranceles de bases públicas de la OMC.",
+  "Procesamiento": "Limpieza y armonización de series mensuales en Python (pandas), ingeniería de variables con rezagos y estacionalidad, entrenamiento de modelos con scikit-learn y statsmodels, validación temporal, cálculo de MAPE y RMSE y análisis de importancia de variables con SHAP.",
+  "Carrera": "Administración de Empresas"
+ },
+ "carreras": [
+  {
+   "nombre": "Administración de Empresas",
+   "icono": "briefcase-business",
+   "temas": 100,
+   "muestra": [
+    {
+     "titulo": "Factores de éxito de incubadoras universitarias peruanas: un análisis cualitativo comparado",
+     "categoria": "Emprendimiento y planes de negocio para pymes",
+     "impacto": "Perú",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Resiliencia de la cadena de suministro en pymes manufactureras latinoamericanas: un modelo de ecuaciones estructurales",
+     "categoria": "Logística y cadena de suministro",
+     "impacto": "Latam",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Predicción de abandono de clientes en suscripciones digitales mediante aprendizaje automático",
+     "categoria": "Marketing digital y comportamiento del consumidor",
+     "impacto": "Global",
+     "acceso": "bajo"
+    }
+   ],
+   "categorias": [
+    "Comercio internacional y exportaciones",
+    "Contabilidad de costos y control de gestión",
+    "Emprendimiento y planes de negocio para pymes",
+    "Finanzas corporativas y valoración de empresas",
+    "Gestión de operaciones y mejora de procesos",
+    "Gestión de recursos humanos y clima organizacional",
+    "Gobierno corporativo y ética empresarial",
+    "Logística y cadena de suministro",
+    "Marketing digital y comportamiento del consumidor",
+    "Responsabilidad social empresarial y sostenibilidad"
+   ]
+  },
+  {
+   "nombre": "Contabilidad",
+   "icono": "calculator",
+   "temas": 100,
+   "muestra": [
+    {
+     "titulo": "Aplicación de la Ley de Benford a pagos de contrataciones públicas en gobiernos locales peruanos, 2019-2024",
+     "categoria": "Auditoría financiera y control interno",
+     "impacto": "Perú",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Valoración de proyectos de energía renovable en Latinoamérica mediante opciones reales",
+     "categoria": "Análisis financiero y evaluación de inversiones",
+     "impacto": "Latam",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Sostenibilidad de la deuda pública en economías emergentes: un modelo de dinámica de sistemas, 2000-2025",
+     "categoria": "Contabilidad gubernamental y sector público",
+     "impacto": "Global",
+     "acceso": "bajo"
+    }
+   ],
+   "categorias": [
+    "Análisis financiero y evaluación de inversiones",
+    "Auditoría financiera y control interno",
+    "Contabilidad ambiental y sostenibilidad (reporte ESG)",
+    "Contabilidad de costos y gestión estratégica",
+    "Contabilidad en cooperativas y economía social",
+    "Contabilidad forense y prevención del fraude",
+    "Contabilidad gubernamental y sector público",
+    "Contabilidad y finanzas para pymes",
+    "Normas Internacionales de Información Financiera (NIIF)",
+    "Tributación y planificación fiscal empresarial"
+   ]
+  },
+  {
+   "nombre": "Marketing y Negocios Internacionales",
+   "icono": "megaphone",
+   "temas": 100,
+   "muestra": [
+    {
+     "titulo": "Predicción del tipo de cambio PEN/USD con bosques aleatorios y variables macrofinancieras",
+     "categoria": "Finanzas internacionales y tipo de cambio",
+     "impacto": "Perú",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Estrategias de marketplaces transfronterizos en Latinoamérica: un análisis comparado con lógica difusa",
+     "categoria": "Marketing digital y comercio electrónico",
+     "impacto": "Latam",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Dinámica de sistemas para la resiliencia de las exportaciones de servicios en América Latina frente a choques globales",
+     "categoria": "Negocios internacionales en América Latina",
+     "impacto": "Global",
+     "acceso": "bajo"
+    }
+   ],
+   "categorias": [
+    "Acuerdos comerciales y tratados de libre comercio",
+    "Comercio exterior y logística internacional",
+    "Comportamiento del consumidor intercultural",
+    "Estrategias de marca global y localización",
+    "Exportación de pymes y acceso a mercados",
+    "Finanzas internacionales y tipo de cambio",
+    "Gestión de marcas y franquicias internacionales",
+    "Marketing de sostenibilidad y consumo responsable",
+    "Marketing digital y comercio electrónico",
+    "Negocios internacionales en América Latina"
+   ]
+  },
+  {
+   "nombre": "Ingeniería Civil",
+   "icono": "hard-hat",
+   "temas": 100,
+   "muestra": [
+    {
+     "titulo": "Optimización de la electrocoagulación para la remoción de cromo y sólidos en efluentes de curtiembres de Trujillo",
+     "categoria": "Ingeniería Ambiental y Residuos",
+     "impacto": "Perú",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Análisis de la robustez y vulnerabilidad de la red de transporte público de Santiago de Chile mediante teoría de redes complejas",
+     "categoria": "Transporte y Movilidad Urbana",
+     "impacto": "Latam",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Autorreparación de fisuras en concreto de pavimentos mediante biomineralización bacteriana en condiciones de exposición global",
+     "categoria": "Pavimentos y Vías Sostenibles",
+     "impacto": "Global",
+     "acceso": "bajo"
+    }
+   ],
+   "categorias": [
+    "BIM Avanzado, Gemelos Digitales y Realidad Extendida",
+    "Edificaciones Inteligentes y Construcción 4.0",
+    "Estructuras Resilientes y Materiales Avanzados",
+    "Geotecnia Predictiva y Monitoreo Geotécnico IoT",
+    "Gestión de Proyectos con IA y Automatización",
+    "Hidráulica Computacional y Gestión Hídrica Digital",
+    "Ingeniería Ambiental y Residuos",
+    "Pavimentos y Vías Sostenibles",
+    "Regulación, Certificación y Blockchain en Construcción",
+    "Transporte y Movilidad Urbana"
+   ]
+  },
+  {
+   "nombre": "Ingeniería Industrial",
+   "icono": "factory",
+   "temas": 100,
+   "muestra": [
+    {
+     "titulo": "Optimización entera de la logística inversa de envases post-consumo en la ciudad de Arequipa",
+     "categoria": "Sostenibilidad y economía circular",
+     "impacto": "Perú",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Algoritmo genético para el ruteo de distribución de productos agrícolas perecederos en la macrorregión sur de Latinoamérica",
+     "categoria": "Investigación de operaciones y optimización",
+     "impacto": "Latam",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Dinámica de sistemas para el análisis de retrasos en proyectos industriales de largo plazo a nivel global",
+     "categoria": "Diseño y gestión de proyectos industriales",
+     "impacto": "Global",
+     "acceso": "bajo"
+    }
+   ],
+   "categorias": [
+    "Diseño y gestión de proyectos industriales",
+    "Ergonomía y seguridad y salud ocupacional",
+    "Finanzas y evaluación económica de inversiones",
+    "Gestión de calidad y mejora continua",
+    "Gestión de mantenimiento y confiabilidad",
+    "Industria 4.0 y manufactura inteligente",
+    "Ingeniería de métodos y estudio del trabajo",
+    "Investigación de operaciones y optimización",
+    "Logística y cadena de suministro digital",
+    "Sostenibilidad y economía circular"
+   ]
+  },
+  {
+   "nombre": "Ingeniería de Sistemas / Cómputo",
+   "icono": "monitor",
+   "temas": 100,
+   "muestra": [
+    {
+     "titulo": "Evaluación de cabeceras de seguridad HTTP en portales web del Estado peruano",
+     "categoria": "Ciberseguridad y seguridad informática",
+     "impacto": "Perú",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Evaluación comparativa del tiempo de arranque en frío de funciones serverless basadas en WebAssembly",
+     "categoria": "Computación en la nube y sistemas distribuidos",
+     "impacto": "Latam",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Pruebas basadas en propiedades para validar bibliotecas de procesamiento numérico de código abierto",
+     "categoria": "Ingeniería de software y calidad de pruebas",
+     "impacto": "Global",
+     "acceso": "bajo"
+    }
+   ],
+   "categorias": [
+    "Automatización de procesos y robótica de software",
+    "Bases de datos y sistemas de información",
+    "Ciberseguridad y seguridad informática",
+    "Ciencia de datos y analítica de negocios",
+    "Computación en la nube y sistemas distribuidos",
+    "Desarrollo de aplicaciones web y móviles",
+    "Ingeniería de software y calidad de pruebas",
+    "Interacción humano-computadora y accesibilidad",
+    "Redes de computadoras y telecomunicaciones",
+    "Sistemas embebidos e Internet de las cosas"
+   ]
+  },
+  {
+   "nombre": "Ingeniería Ambiental",
+   "icono": "leaf",
+   "temas": 100,
+   "muestra": [
+    {
+     "titulo": "Red de sensores de bajo costo para monitoreo continuo de calidad de agua en microcuencas de la sierra peruana",
+     "categoria": "Conservación de ecosistemas y biodiversidad",
+     "impacto": "Perú",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Priorización de áreas de conservación hídrica en la cuenca del río Magdalena mediante AHP y análisis SIG",
+     "categoria": "Gestión integral de cuencas hidrográficas",
+     "impacto": "Latam",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Gemelo digital de un edificio para la optimización del consumo de climatización y la eficiencia energética",
+     "categoria": "Energías renovables y eficiencia energética",
+     "impacto": "Global",
+     "acceso": "bajo"
+    }
+   ],
+   "categorias": [
+    "Calidad del aire y contaminación atmosférica",
+    "Cambio climático y huella de carbono",
+    "Conservación de ecosistemas y biodiversidad",
+    "Economía circular y valorización de desechos",
+    "Energías renovables y eficiencia energética",
+    "Evaluación de impacto ambiental",
+    "Gestión de residuos sólidos urbanos",
+    "Gestión integral de cuencas hidrográficas",
+    "Remediación de suelos contaminados",
+    "Tratamiento de aguas residuales"
+   ]
+  },
+  {
+   "nombre": "Psicología",
+   "icono": "brain",
+   "temas": 100,
+   "muestra": [
+    {
+     "titulo": "Capital social y bienestar comunitario en distritos del Perú: un análisis multinivel con ENAHO",
+     "categoria": "Psicología social y comportamiento comunitario",
+     "impacto": "Perú",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Metaanálisis de la terapia cognitivo-conductual para insomnio en estudios latinoamericanos publicados entre 2010 y 2025",
+     "categoria": "Psicología clínica y tratamientos basados en evidencia",
+     "impacto": "Latam",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Integridad y trazabilidad de datos en estudios longitudinales de desarrollo infantil mediante registros distribuidos",
+     "categoria": "Psicología del desarrollo infantil y adolescente",
+     "impacto": "Global",
+     "acceso": "bajo"
+    }
+   ],
+   "categorias": [
+    "Neuropsicología y procesos cognitivos",
+    "Psicología ambiental y conducta sostenible",
+    "Psicología clínica y tratamientos basados en evidencia",
+    "Psicología de la salud y adherencia terapéutica",
+    "Psicología del deporte y rendimiento",
+    "Psicología del desarrollo infantil y adolescente",
+    "Psicología educativa y aprendizaje escolar",
+    "Psicología forense y justicia",
+    "Psicología organizacional y bienestar laboral",
+    "Psicología social y comportamiento comunitario"
+   ]
+  },
+  {
+   "nombre": "Medicina Humana",
+   "icono": "stethoscope",
+   "temas": 100,
+   "muestra": [
+    {
+     "titulo": "Brechas de accesibilidad espacial a establecimientos de primer nivel de atención en distritos rurales del Perú",
+     "categoria": "Salud pública y determinantes sociales de la salud",
+     "impacto": "Perú",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Prevalencia de hipertensión arterial en América Latina: metaanálisis con meta-regresión sobre estudios poblacionales 2010–2024",
+     "categoria": "Epidemiología de enfermedades crónicas en atención primaria",
+     "impacto": "Latam",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Metaanálisis en red bayesiano de intervenciones para la prevención del parto pretérmino en gestantes de alto riesgo",
+     "categoria": "Obstetricia y salud materna perinatal",
+     "impacto": "Global",
+     "acceso": "bajo"
+    }
+   ],
+   "categorias": [
+    "Cirugía general y técnicas mínimamente invasivas",
+    "Epidemiología de enfermedades crónicas en atención primaria",
+    "Farmacología clínica y uso racional de antibióticos",
+    "Medicina de emergencias y manejo del trauma",
+    "Medicina legal y bioética en la práctica clínica",
+    "Nutrición clínica y metabolismo",
+    "Obstetricia y salud materna perinatal",
+    "Pediatría y desarrollo infantil temprano",
+    "Salud mental y psiquiatría comunitaria",
+    "Salud pública y determinantes sociales de la salud"
+   ]
+  },
+  {
+   "nombre": "Enfermería",
+   "icono": "heart-pulse",
+   "temas": 100,
+   "muestra": [
+    {
+     "titulo": "Aplicación móvil gamificada para la educación en salud materna en gestantes adolescentes de zonas rurales del Perú",
+     "categoria": "Atención primaria y salud comunitaria",
+     "impacto": "Perú",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Desigualdades territoriales en el acceso a servicios de cuidados paliativos en países de Latinoamérica: un análisis espacial",
+     "categoria": "Enfermería gerontológica y cuidados paliativos",
+     "impacto": "Latam",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Aplicación móvil para la educación al alta de pacientes con ostomía: ensayo controlado en servicios de cirugía",
+     "categoria": "Enfermería quirúrgica y recuperación postoperatoria",
+     "impacto": "Global",
+     "acceso": "bajo"
+    }
+   ],
+   "categorias": [
+    "Atención primaria y salud comunitaria",
+    "Cuidados intensivos y manejo del paciente crítico",
+    "Educación para la salud y adherencia terapéutica",
+    "Enfermería gerontológica y cuidados paliativos",
+    "Enfermería pediátrica y neonatal",
+    "Enfermería quirúrgica y recuperación postoperatoria",
+    "Gestión del cuidado y calidad en servicios de salud",
+    "Prevención y control de infecciones hospitalarias",
+    "Salud materna, obstétrica y lactancia",
+    "Salud mental y enfermería psiquiátrica"
+   ]
+  },
+  {
+   "nombre": "Derecho",
+   "icono": "scale",
+   "temas": 100,
+   "muestra": [
+    {
+     "titulo": "Brecha salarial de género en el Perú urbano: una descomposición Oaxaca-Blinder, 2015-2024",
+     "categoria": "Derecho Laboral y Seguridad Social",
+     "impacto": "Perú",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Mecanismos de cumplimiento de sentencias de la Corte Interamericana en Colombia, Perú y México: un rastreo de procesos",
+     "categoria": "Derecho Internacional Público y Derechos Humanos",
+     "impacto": "Latam",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Análisis de supervivencia de sociedades comerciales tras reformas al régimen de disolución y liquidación",
+     "categoria": "Derecho Mercantil y Sociedades",
+     "impacto": "Global",
+     "acceso": "bajo"
+    }
+   ],
+   "categorias": [
+    "Derecho Administrativo y Contratación Pública",
+    "Derecho Ambiental y Recursos Naturales",
+    "Derecho Civil y Responsabilidad Extracontractual",
+    "Derecho Constitucional y Derechos Fundamentales",
+    "Derecho Internacional Público y Derechos Humanos",
+    "Derecho Laboral y Seguridad Social",
+    "Derecho Mercantil y Sociedades",
+    "Derecho Penal y Política Criminal",
+    "Derecho Tributario y Finanzas Públicas",
+    "Derecho de Familia, Niñez y Adolescencia"
+   ]
+  },
+  {
+   "nombre": "Educación (Inicial / Primaria)",
+   "icono": "book-open",
+   "temas": 100,
+   "muestra": [
+    {
+     "titulo": "Fotovoz y narrativas visuales de la práctica reflexiva de docentes en formación en zonas rurales de Perú",
+     "categoria": "Formación docente y práctica reflexiva en el aula",
+     "impacto": "Perú",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Indicadores consensuados de participación familiar en la escuela en América Latina: un estudio Delphi con expertos de la región",
+     "categoria": "Participación familiar y vínculo escuela-comunidad",
+     "impacto": "Latam",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Meta-análisis bayesiano de intervenciones de pensamiento numérico en educación inicial publicadas entre 2010 y 2026",
+     "categoria": "Matemática temprana: pensamiento numérico en niños de 3 a 6 años",
+     "impacto": "Global",
+     "acceso": "bajo"
+    }
+   ],
+   "categorias": [
+    "Didáctica de la lectoescritura en educación inicial",
+    "Educación ambiental y ciudadanía en primaria",
+    "Evaluación formativa en educación primaria",
+    "Formación docente y práctica reflexiva en el aula",
+    "Inclusión y atención a la diversidad en el aula",
+    "Juego y desarrollo socioemocional en la primera infancia",
+    "Matemática temprana: pensamiento numérico en niños de 3 a 6 años",
+    "Participación familiar y vínculo escuela-comunidad",
+    "Psicomotricidad y aprendizaje corporal en la infancia",
+    "Recursos educativos digitales en primaria (uso pedagógico de TIC)"
+   ]
+  },
+  {
+   "nombre": "Ciencias de la Comunicación",
+   "icono": "radio",
+   "temas": 100,
+   "muestra": [
+    {
+     "titulo": "Mapeo participativo del acceso a información de salud en comunidades amazónicas de Ucayali",
+     "categoria": "Comunicación para el desarrollo y cambio social",
+     "impacto": "Perú",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Comunidades de espectadores de documentales sobre migración en espacios digitales: una etnografía netnográfica",
+     "categoria": "Narrativas audiovisuales y cine documental",
+     "impacto": "Latam",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Gobernanza comparada de medios comunitarios en Perú, Ecuador y Sudáfrica: un análisis cualitativo comparado",
+     "categoria": "Medios locales, comunitarios y ciudadanía",
+     "impacto": "Global",
+     "acceso": "bajo"
+    }
+   ],
+   "categorias": [
+    "Comunicación ambiental y de riesgo",
+    "Comunicación en salud y salud pública",
+    "Comunicación organizacional e interna",
+    "Comunicación para el desarrollo y cambio social",
+    "Comunicación política y campañas electorales",
+    "Medios locales, comunitarios y ciudadanía",
+    "Narrativas audiovisuales y cine documental",
+    "Periodismo de datos y visualización",
+    "Publicidad, marca y consumo cultural",
+    "Relaciones públicas y gestión de crisis"
+   ]
+  }
+ ]
+}
