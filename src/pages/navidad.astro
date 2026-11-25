@@ -20,7 +20,7 @@ const eventLd = {
   eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
   eventStatus: "https://schema.org/EventScheduled",
   location: { "@type": "VirtualLocation", url: `${SITE.url}/navidad` },
-  image: [`${SITE.url}/navidad/og-navidad.jpg`],
+  image: [`${SITE.url}/navidad/og-canastas.jpg`],
   organizer: { "@type": "Organization", name: "Mate Fácil E.I.R.L.", url: SITE.url },
   isAccessibleForFree: true,
 };
@@ -36,8 +36,8 @@ const faqLd = {
   title="Sorteo de 25 Canastas Navideñas"
   description="Sorteo gratuito de 25 canastas navideñas de Hispanotech para estudiantes de últimos ciclos, egresados y bachilleres de Lima Metropolitana. 19 de diciembre, por Zoom."
   keywords={["sorteo navidad", "canastas navideñas", "sorteo canastas navideñas peru", "hispanotech", "tesis ia", "comunidad de investigación"]}
-  image={`${SITE.url}/navidad/og-navidad.jpg`}
-  imageAlt="Canasta navideña 3D junto a un árbol de Navidad iluminado — Sorteo de 25 canastas Hispanotech"
+  image={`${SITE.url}/navidad/og-canastas.jpg`}
+  imageAlt="Canastas navideñas del sorteo de Hispanotech"
   jsonLd={[eventLd, faqLd]}
 >
   <SnowCanvas />
@@ -51,21 +51,8 @@ const faqLd = {
 
     <!-- Cierre -->
     <section id="cierre" class="relative isolate overflow-hidden py-24 text-center text-white md:py-32">
-      <!-- Fondo animado 3D (Blender): solo se descarga y reproduce cuando la sección está en pantalla -->
-      <video
-        id="cta-video"
-        class="absolute inset-0 -z-20 h-full w-full object-cover object-[68%_center]"
-        muted
-        loop
-        playsinline
-        preload="none"
-        poster={NAVIDAD_MEDIA.ctaPoster}
-        aria-hidden="true"
-      >
-        <source src={NAVIDAD_MEDIA.ctaVideoWebm} type="video/webm" />
-        <source src={NAVIDAD_MEDIA.ctaVideoMp4} type="video/mp4" />
-      </video>
-      <div class="absolute inset-0 -z-10 bg-gradient-to-b from-[#050d22]/80 via-[#050d22]/55 to-[#050d22]/85"></div>
+      <img src={NAVIDAD_MEDIA.ctaImagen} alt="" aria-hidden="true" width="1254" height="1254" loading="lazy" decoding="async" class="cta-zoom absolute inset-0 -z-20 h-full w-full object-cover" />
+      <div class="absolute inset-0 -z-10 bg-gradient-to-b from-[#050d22]/85 via-[#050d22]/70 to-[#050d22]/85"></div>
       <div class="mx-auto max-w-3xl px-6">
         <h2 class="reveal font-display text-4xl font-bold leading-tight tracking-tight md:text-5xl">{NAVIDAD_CIERRE.titulo}</h2>
         <p class="reveal mt-4 text-lg text-slate-200" style="--reveal-delay:100ms">{NAVIDAD_CIERRE.texto}</p>
@@ -87,22 +74,16 @@ const faqLd = {
     transform-style: preserve-3d;
     will-change: transform;
   }
+  @keyframes cta-zoom { from { transform: scale(1); } to { transform: scale(1.12); } }
+  .cta-zoom { animation: cta-zoom 14s ease-in-out infinite alternate; }
   @media (prefers-reduced-motion: reduce) {
+    .cta-zoom { animation: none; }
     .tilt-3d { transform: none !important; }
     .navidad .animate-float { animation: none; }
   }
 </style>
 
 <script>
-  // Video de fondo del CTA: reproducir solo mientras está visible (ahorra datos y batería)
-  const cta = document.getElementById("cta-video") as HTMLVideoElement | null;
-  const conn = (navigator as any).connection;
-  if (cta && !window.matchMedia("(prefers-reduced-motion: reduce)").matches && !conn?.saveData) {
-    new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { cta.preload = "auto"; cta.play().catch(() => {}); } else cta.pause();
-    }, { threshold: 0.2 }).observe(cta);
-  }
-
   // Tilt 3D solo en dispositivos con mouse
   if (window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
       !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {

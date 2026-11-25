@@ -37,7 +37,7 @@ export const NAVIDAD_CANASTA = [
   { icon: "lucide:gift", titulo: "Regalos sorpresa", texto: "Se sortean junto con las 25 canastas." },
 ];
 export const NAVIDAD_NOTA_PREMIO =
-  "Imágenes referenciales creadas en 3D: no muestran el contenido exacto. El contenido puede variar según disponibilidad, sin reducir el valor del premio. No canjeable por dinero en efectivo.";
+  "Imágenes referenciales: no muestran el contenido exacto. El contenido puede variar según disponibilidad, sin reducir el valor del premio. No canjeable por dinero en efectivo.";
 
 export const NAVIDAD_PASOS = [
   { icon: "lucide:clipboard-list", titulo: "Completa tus datos", texto: "Son seis campos. Cada persona puede inscribirse una sola vez." },
@@ -96,23 +96,19 @@ export const NAVIDAD_MEDIA = {
   // Mientras sea null, el banner muestra la imagen de fondo (bannerPoster).
   bannerVideo: null as string | null,
   bannerVideoMovil: null as string | null, // opcional 1080x1920
-  bannerPoster: "/navidad/hero-poster.webp",
-  // POR REEMPLAZAR: video vertical de "Cómo participar" (1080x1920, MP4 H.264, con audio, ≤ 15 MB).
-  comoParticiparVideo: "/navidad/como-participar.mp4",
-  comoParticiparPoster: "/navidad/como-participar-poster.webp",
-  // Fondo animado 3D (Blender) del CTA final.
-  ctaVideoMp4: "/navidad/hero-navidad.mp4",
-  ctaVideoWebm: "/navidad/hero-navidad.webm",
-  ctaPoster: "/navidad/hero-poster.webp",
+  bannerPoster: "/navidad/premio-canasta.webp",
+  // Video vertical con las canastas (720x1280). Se puede reemplazar por el de marketing.
+  comoParticiparVideo: "/navidad/canastas-video.mp4",
+  comoParticiparPoster: "/navidad/canastas-video-poster.webp",
+  // Imagen de fondo del cierre (con zoom suave)
+  ctaImagen: "/navidad/premio-canasta.webp",
 };
 
-// POR REEMPLAZAR: fotos reales de las canastas (1080x1350 px, 4:5, WebP/JPG ≤ 200 KB).
-// Hoy son renders 3D referenciales. Se pueden agregar o quitar cards libremente.
+// Imágenes entregadas por marketing (24/11/2026), 1080x1350 px. Se pueden agregar o quitar cards.
 export const NAVIDAD_GALERIA = [
-  { src: "/navidad/canastas/canasta-1.webp", titulo: "Canasta navideña", alt: "Canasta navideña de mimbre rojo con panetón, chocolates y adornos" },
-  { src: "/navidad/canastas/canasta-2.webp", titulo: "Para compartir en familia", alt: "Canasta navideña vista de costado junto a regalos" },
-  { src: "/navidad/canastas/canasta-3.webp", titulo: "Vista superior", alt: "Vista superior del contenido de la canasta navideña" },
-  { src: "/navidad/canastas/canasta-4.webp", titulo: "Panetón navideño", alt: "Primer plano del panetón dentro de la canasta" },
-  { src: "/navidad/canastas/canasta-5.webp", titulo: "Detalles navideños", alt: "Primer plano de bombones dorados y bastón de caramelo" },
-  { src: "/navidad/canastas/canasta-6.webp", titulo: "Sorteo: 19 de diciembre", alt: "Canasta navideña junto al árbol de Navidad y regalos" },
+  { src: "/navidad/canastas/canasta-navidena-1.webp", titulo: "Canasta con lazo dorado", alt: "Canasta navideña en caja Feliz Navidad con lazo dorado, panetón, café y termo con tazas" },
+  { src: "/navidad/canastas/canasta-navidena-2.webp", titulo: "Canasta con lazo granate", alt: "Canasta navideña en caja roja con lazo granate, panetón, arroz, avena y fideos" },
+  { src: "/navidad/canastas/canasta-navidena-3.webp", titulo: "Canasta con lazo azul", alt: "Canasta navideña con lazo azul, panetón, aceite, azúcar y avena" },
+  { src: "/navidad/canastas/canasta-navidena-4.webp", titulo: "Canasta con lazo verde", alt: "Canasta navideña en caja Feliz Navidad con lazo verde, panetón, café, aceite y arroz" },
+  { src: "/navidad/canastas/canasta-navidena-5.webp", titulo: "Canasta navideña en casa", alt: "Canasta navideña en una sala junto al árbol, con panetón, arroz, avena y termo con tazas" },
 ];

@@ -30,7 +30,7 @@ import { NAVIDAD_GALERIA, NAVIDAD_NOTA_PREMIO } from "../../config/navidad";
     aria-roledescription="carrusel"
     aria-label="Fotos de las canastas navideñas"
     tabindex="0"
-    class="relative mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-6 pb-4 [scrollbar-width:none] md:px-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] [&::-webkit-scrollbar]:hidden"
+    class="relative mt-10 flex snap-x snap-mandatory scroll-px-6 gap-5 overflow-x-auto scroll-smooth px-6 pb-4 [scrollbar-width:none] md:scroll-px-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] md:px-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] [&::-webkit-scrollbar]:hidden"
   >
     {NAVIDAD_GALERIA.map((f, i) => (
       <figure
@@ -52,7 +52,7 @@ import { NAVIDAD_GALERIA, NAVIDAD_NOTA_PREMIO } from "../../config/navidad";
             class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
           />
         </div>
-        <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-5 pt-16">
+        <figcaption class="p-5">
           <span class="text-xs font-bold uppercase tracking-widest text-amber-300">0{i + 1}</span>
           <p class="mt-1 font-display text-lg font-bold leading-tight">{f.titulo}</p>
         </figcaption>
