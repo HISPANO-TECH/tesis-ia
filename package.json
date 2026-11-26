@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/csp-headers.mjs",
+    "build": "astro build && node scripts/csp-headers.mjs && node scripts/htaccess.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
