@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import NavidadFormulario from "./NavidadFormulario.astro";
+import NavidadBotonGrupo from "./NavidadBotonGrupo.astro";
 import { FORM_TITULO } from "../../config/navidad";
 ---
 
@@ -19,11 +20,15 @@ import { FORM_TITULO } from "../../config/navidad";
         {FORM_TITULO}
       </h2>
       <p class="reveal mx-auto mt-3 max-w-xl text-slate-300" style="--reveal-delay:140ms">
-        Completa seis campos y recibe tu <strong class="text-amber-300">código de participación</strong>.
+        Completa el formulario, recibe tu <strong class="text-amber-300">código de participación</strong> y únete al grupo de WhatsApp.
       </p>
     </div>
     <div class="reveal mt-10" style="--reveal-delay:200ms">
       <NavidadFormulario uid="nv" />
+    </div>
+    <div class="reveal mt-10 flex flex-col items-center gap-3 text-center">
+      <p class="font-display text-lg font-bold text-white">Paso obligatorio: únete al grupo de WhatsApp</p>
+      <NavidadBotonGrupo />
     </div>
   </div>
 </section>

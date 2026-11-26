@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import { NAVIDAD, NAVIDAD_PASOS, NAVIDAD_MEDIA } from "../../config/navidad";
+import NavidadBotonGrupo from "./NavidadBotonGrupo.astro";
 ---
 
 <section id="como-participar" class="relative overflow-hidden bg-[#0B1D3A] py-20 text-white md:py-28">
@@ -13,30 +14,27 @@ import { NAVIDAD, NAVIDAD_PASOS, NAVIDAD_MEDIA } from "../../config/navidad";
         <Icon name="lucide:list-checks" class="h-3.5 w-3.5" /> Cómo participar
       </span>
       <h2 class="reveal mt-4 font-display text-4xl font-bold leading-tight tracking-tight md:text-5xl" style="--reveal-delay:80ms">
-        4 pasos y ya estás <span class="text-amber-300">participando</span>
+        3 pasos y ya estás <span class="text-amber-300">participando</span>
       </h2>
-      <p class="reveal mt-4 text-lg text-slate-300" style="--reveal-delay:140ms">
-        Inscripciones abiertas hasta el <strong class="text-white">{NAVIDAD.cierreTexto}</strong>
-      </p>
 
       <ol class="relative mt-10 space-y-4">
         <li aria-hidden="true" class="absolute bottom-8 left-[45px] top-8 w-0.5 list-none bg-gradient-to-b from-amber-300/70 via-amber-300/30 to-amber-300/0"></li>
         {NAVIDAD_PASOS.map((p, i) => (
-          <li class="reveal relative flex gap-5 rounded-3xl border border-white/10 bg-white/[0.05] p-5 backdrop-blur-md transition hover:border-amber-300/50 hover:bg-white/[0.08]" style={`--reveal-delay:${i * 100}ms`}>
+          <li class="reveal relative flex items-center gap-5 rounded-3xl border border-white/10 bg-white/[0.05] p-5 backdrop-blur-md transition hover:border-amber-300/50 hover:bg-white/[0.08]" style={`--reveal-delay:${i * 100}ms`}>
             <span class="relative flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-300 to-amber-500 text-[#0B1D3A] shadow-lg shadow-amber-500/30">
               <Icon name={p.icon} class="h-6 w-6" />
               <span class="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-red-600 text-[11px] font-bold text-white ring-2 ring-[#0B1D3A]">{i + 1}</span>
             </span>
             <div>
-              <h3 class="font-display text-lg font-bold">{p.titulo}</h3>
-              <p class="mt-1 text-sm leading-relaxed text-slate-300">{p.texto}</p>
+              <h3 class="font-display text-lg font-bold leading-snug">{p.titulo}</h3>
             </div>
           </li>
         ))}
       </ol>
 
       <div class="reveal mt-8 flex flex-wrap items-center gap-3">
-        <a href="#formulario" class="inline-flex items-center gap-2 rounded-full bg-amber-400 px-6 py-3 font-display text-sm font-bold uppercase tracking-wide text-[#0B1D3A] transition hover:bg-amber-300">
+        <NavidadBotonGrupo />
+        <a href="#formulario" class="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-4 font-display text-sm font-bold uppercase tracking-wide text-white transition hover:bg-white/10">
           <Icon name="lucide:clipboard-list" class="h-4 w-4" /> Ir al formulario
         </a>
       </div>

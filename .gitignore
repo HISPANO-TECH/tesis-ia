@@ -13,3 +13,6 @@ public/api/data/*.csv
 
 # Paquetes de despliegue para cPanel
 /*.zip
+
+# Clave de la hoja de Google del sorteo
+public/api/sheets-config.php

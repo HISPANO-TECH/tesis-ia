@@ -1,7 +1,7 @@
 ---
 // Formulario de inscripción: una sola página con seis campos. Se usa en el banner y en #formulario.
 import { Icon } from "astro-icon/components";
-import { CONDICIONES_ACADEMICAS, DISTRITOS, NAVIDAD } from "../../config/navidad";
+import { CONDICIONES_ACADEMICAS, DISTRITOS, ESPECIALIDADES, NAVIDAD, SITUACIONES_TESIS } from "../../config/navidad";
 
 interface Props { uid: string; compact?: boolean }
 const { uid, compact = false } = Astro.props;
@@ -14,7 +14,7 @@ const check = "flex cursor-pointer items-start gap-3 text-xs leading-relaxed tex
 const link = "font-semibold text-[#1e3a8a] underline dark:text-amber-300";
 ---
 
-<div data-nv-root class="relative">
+<div data-nv-root data-api={NAVIDAD.apiBase} class="relative">
   <form data-nv-form novalidate class:list={["rounded-[28px] border border-white/10 bg-white text-left shadow-2xl shadow-black/40 dark:bg-slate-800", compact ? "p-5 md:p-6" : "p-6 md:p-9"]}>
     {compact && <p class="mb-4 font-display text-xl font-bold text-[#0B1D3A] dark:text-white">Inscríbete gratis</p>}
     <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="absolute -left-[9999px]" />
@@ -40,6 +40,14 @@ const link = "font-semibold text-[#1e3a8a] underline dark:text-amber-300";
         <input id={id("email")} name="email" type="email" autocomplete="email" maxlength="160" required class={input} />
         <p data-error="email" class={err}>Ingresa un correo válido.</p>
       </div>
+      <div class="sm:col-span-2">
+        <label for={id("especialidad")} class={label}>Especialidad</label>
+        <select id={id("especialidad")} name="especialidad" required class={input}>
+          <option value="">Selecciona</option>
+          {ESPECIALIDADES.map((d) => <option value={d}>{d}</option>)}
+        </select>
+        <p data-error="especialidad" class={err}>Selecciona tu especialidad.</p>
+      </div>
       <div class:list={[compact && "sm:col-span-2 xl:col-span-1"]}>
         <label for={id("distrito")} class={label}>Distrito de residencia</label>
         <select id={id("distrito")} name="distrito" required class={input}>
@@ -55,6 +63,14 @@ const link = "font-semibold text-[#1e3a8a] underline dark:text-amber-300";
           {CONDICIONES_ACADEMICAS.map((c) => <option value={c}>{c}</option>)}
         </select>
         <p data-error="condicion" class={err}>Selecciona tu condición académica.</p>
+      </div>
+      <div class="sm:col-span-2">
+        <label for={id("situacion")} class={label}>Situación de mi tesis</label>
+        <select id={id("situacion")} name="situacion" required class={input}>
+          <option value="">Selecciona</option>
+          {SITUACIONES_TESIS.map((d) => <option value={d}>{d}</option>)}
+        </select>
+        <p data-error="situacion" class={err}>Selecciona la situación de tu tesis.</p>
       </div>
     </div>
 
@@ -78,7 +94,6 @@ const link = "font-semibold text-[#1e3a8a] underline dark:text-amber-300";
     <button type="submit" class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-red-600 to-red-700 px-6 py-3.5 font-display text-sm font-bold uppercase tracking-wide text-white transition hover:from-red-500 hover:to-red-600 disabled:cursor-wait disabled:opacity-70">
       <Icon name="lucide:gift" class="h-5 w-5" /> <span class="submit-label">Quiero participar</span>
     </button>
-    <p class="mt-3 text-xs text-slate-600 dark:text-slate-400">{NAVIDAD.costoEnvio}</p>
     <p data-status role="status" aria-live="polite" class="hidden"></p>
   </form>
 
@@ -91,9 +106,10 @@ const link = "font-semibold text-[#1e3a8a] underline dark:text-amber-300";
       <p data-ok-codigo class="mx-auto mt-3 inline-block rounded-2xl border-2 border-dashed border-amber-400 bg-amber-50 px-6 py-3 font-display text-3xl font-bold tracking-widest text-[#0B1D3A] dark:bg-amber-400/10 dark:text-amber-300"></p>
       <p data-ok-correo class="mt-4 text-sm text-slate-600 dark:text-slate-300"></p>
       <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Sorteo: {NAVIDAD.sorteoTexto}, {NAVIDAD.canalSorteo}.</p>
-      <div data-ok-grupo class="mt-5 hidden">
-        <p class="text-sm text-slate-600 dark:text-slate-300">Únete al grupo de WhatsApp para recibir el enlace de Zoom. Es opcional y no condiciona el premio; también te lo enviaremos por correo. Los demás miembros podrán ver tu número.</p>
-        <a target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-2 rounded-full border-2 border-emerald-600 px-6 py-2.5 text-sm font-bold text-emerald-700 dark:text-emerald-300"><Icon is:inline name="simple-icons:whatsapp" class="h-4 w-4" /> Unirme al grupo</a>
+      <div data-ok-grupo class="mt-6 hidden rounded-2xl border-2 border-[#25D366] bg-emerald-50 p-5 dark:bg-emerald-950/30">
+        <p class="font-display text-lg font-bold text-[#0B1D3A] dark:text-white">Último paso: únete al grupo de WhatsApp</p>
+        <p class="mt-1 text-sm text-slate-700 dark:text-slate-300">Es requisito para participar. Ahí compartimos el enlace de Zoom.</p>
+        <a target="_blank" rel="noopener" class="grupo-pulso mt-4 inline-flex w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-full bg-[#25D366] px-5 py-4 font-display text-base font-bold sm:gap-3 sm:px-8 sm:text-lg uppercase tracking-wide text-white shadow-xl shadow-emerald-700/40 transition hover:-translate-y-0.5 hover:bg-[#1ebe5b]"><Icon is:inline name="simple-icons:whatsapp" class="h-6 w-6" /> Unirme al grupo</a>
       </div>
     </div>
   </template>
@@ -107,6 +123,8 @@ const link = "font-semibold text-[#1e3a8a] underline dark:text-amber-300";
     email: (fd) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(fd.get("email")).trim()),
     distrito: (fd) => !!fd.get("distrito"),
     condicion: (fd) => !!fd.get("condicion"),
+    especialidad: (fd) => !!fd.get("especialidad"),
+    situacion: (fd) => !!fd.get("situacion"),
     declara: (fd) => !!fd.get("declara"),
     acepta_bases: (fd) => !!fd.get("acepta_bases"),
   };
@@ -162,7 +180,7 @@ const link = "font-semibold text-[#1e3a8a] underline dark:text-amber-300";
       btnLabel.textContent = "Registrando…";
       setStatus("Registrando tu participación…", false);
       try {
-        const res = await fetch("/api/navidad.php", { method: "POST", body: fd, headers: { Accept: "application/json" } });
+        const res = await fetch(`${root.dataset.api}/api/navidad.php`, { method: "POST", body: fd, headers: { Accept: "application/json" } });
         const json = await res.json();
         if (json.ok) return mostrarExito(String(fd.get("nombre")).trim().split(" ")[0], json, root);
         Object.keys(json.fields || {}).forEach((k) => showError(k, true));
@@ -176,3 +194,10 @@ const link = "font-semibold text-[#1e3a8a] underline dark:text-amber-300";
     });
   });
 </script>
+
+<style is:global>
+  /* Pulso suave del botón al grupo en la pantalla final */
+  @keyframes grupo-pulso { 0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55); } 50% { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); } }
+  .grupo-pulso { animation: grupo-pulso 1.8s ease-out infinite; }
+  @media (prefers-reduced-motion: reduce) { .grupo-pulso { animation: none; } }
+</style>

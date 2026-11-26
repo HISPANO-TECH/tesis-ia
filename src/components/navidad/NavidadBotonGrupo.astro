@@ -1,0 +1,18 @@
+---
+// Botón al grupo de WhatsApp del sorteo (requisito para participar).
+// Mientras NAVIDAD.grupoWhatsApp esté vacío, lleva al formulario.
+import { Icon } from "astro-icon/components";
+import { NAVIDAD } from "../../config/navidad";
+interface Props { class?: string }
+const link = NAVIDAD.grupoWhatsApp;
+---
+
+<a
+  href={link || "#formulario"}
+  target={link ? "_blank" : undefined}
+  rel={link ? "noopener" : undefined}
+  class:list={["group inline-flex items-center justify-center gap-3 rounded-full bg-[#25D366] px-8 py-4 font-display text-base font-bold uppercase tracking-wide text-white shadow-xl shadow-emerald-900/40 ring-4 ring-[#25D366]/25 transition hover:-translate-y-0.5 hover:bg-[#1ebe5b]", Astro.props.class]}
+>
+  <Icon name="simple-icons:whatsapp" class="h-6 w-6" /> Únete al grupo
+  <Icon name="lucide:arrow-right" class="h-5 w-5 transition group-hover:translate-x-1" />
+</a>

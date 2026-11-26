@@ -65,7 +65,7 @@ const h2 = "font-display text-lg font-bold text-[#0B1D3A] dark:text-white";
     const btn = form.querySelector("button")!;
     btn.disabled = true;
     try {
-      const res = await fetch("/api/reclamaciones.php", { method: "POST", body: new FormData(form) });
+      const res = await fetch("https://tesis-ia.com/api/reclamaciones.php", { method: "POST", body: new FormData(form) });
       const j = await res.json();
       if (j.ok) {
         form.reset();

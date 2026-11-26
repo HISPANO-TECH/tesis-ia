@@ -3,7 +3,7 @@
 // docs/navidad/Navidad-TesisIA-04-Analisis-legal.docx.
 import { AVISO_PLATAFORMAS } from "./navidad";
 
-export const BASES_VERSION = "24 de noviembre de 2026";
+export const BASES_VERSION = "26 de noviembre de 2026";
 type Bloque = { p?: string; ul?: string[]; ol?: string[] };
 export const BASES: { id: string; titulo: string; bloques: Bloque[] }[] = [
   { id: "organizador", titulo: "Organizador", bloques: [
@@ -16,15 +16,15 @@ export const BASES: { id: string; titulo: string; bloques: Bloque[] }[] = [
       "Personas mayores de 18 años.",
       "Que residan en Lima Metropolitana, zona donde se entrega el premio.",
       "Que cumplan al menos una de estas condiciones: cursar el 8.º, 9.º o 10.º ciclo de una universidad; ser egresado de una universidad; o ser bachiller y estar en proceso de obtener el título profesional." ] },
-    { p: "Si resultas ganador, deberás presentar carnet universitario, constancia de egresado o constancia de bachiller." },
+    { p: "Si resultas ganador, deberás presentar carnet universitario, constancia de egresado o constancia de bachiller. Si no lo presentas, no se entrega la canasta y se asigna el suplente correspondiente. Mate Fácil E.I.R.L. - Hispano Tech se reserva el derecho de consultar bases de datos académicas, como la de SUNEDU u otras, para verificar la situación académica del participante." },
     { p: "No pueden participar los colaboradores de Mate Fácil E.I.R.L. ni de Hispanotech, ni sus familiares directos." } ] },
   { id: "como-participar", titulo: "Cómo participar", bloques: [
     { ol: [
-      "Ingresa al formulario de inscripción en tesis-ia.com/navidad.",
-      "Completa tus datos.",
-      "Acepta las presentes bases. La casilla para recibir promociones es opcional y viene desmarcada.",
+      "Ingresa al formulario de inscripción en tesis-ia.com/navidad, completa tus datos y acepta las presentes bases. La casilla para recibir promociones es opcional y viene desmarcada.",
+      "Únete al grupo de WhatsApp del sorteo.",
+      "Recibe tu código de participación.",
       "Únete a la sesión de Zoom del sorteo. El enlace se comparte con todos los inscritos, antes de la fecha, a través del grupo de WhatsApp y al correo que registraron." ] },
-    { p: "La participación es gratuita y no requiere ninguna compra. Cada persona puede inscribirse una sola vez. Al inscribirte podrás unirte al grupo de WhatsApp del sorteo. Es opcional y no condiciona la participación ni el premio. Si te unes, los demás miembros podrán ver tu número y tu perfil." } ] },
+    { p: "La participación es gratuita y no requiere ninguna compra. Cada persona puede inscribirse una sola vez. Son requisitos para participar registrarse en el formulario y unirse al grupo de WhatsApp del sorteo. Los miembros del grupo pueden ver el número y el perfil de los demás." } ] },
   { id: "premios", titulo: "Premios", bloques: [
     { p: "Se sortearán 25 canastas navideñas y regalos sorpresa. Cada canasta incluye productos navideños, entre ellos panetón y café embolsado y, en algunos casos, tomatodo. El contenido exacto puede variar según disponibilidad, sin reducir el valor del premio. Los premios no son canjeables por dinero en efectivo." } ] },
   { id: "sorteo", titulo: "Sorteo y selección de ganadores", bloques: [
@@ -32,6 +32,7 @@ export const BASES: { id: string; titulo: string; bloques: Bloque[] }[] = [
       "Fecha y hora: sábado 19 de diciembre de 2026, 8:00 p. m. (hora de Perú).",
       "Método: selección aleatoria en vivo, por Zoom, a partir de la lista de inscritos que cumplen las bases. Se utiliza una herramienta de sorteo aleatorio ante los participantes.",
       "Ganadores: 25 ganadores y 10 suplentes, en el orden en que sean seleccionados.",
+      "Número de canastas: las 25 canastas se sortean al alcanzar la meta de 1000 participantes. Si participan menos de 1000 personas, Mate Fácil E.I.R.L. podrá sortear un número menor de canastas y lo comunicará a los inscritos antes del sorteo.",
       "Anuncio: los resultados se anuncian durante la sesión y se comunican al correo electrónico registrado.",
       "Confirmación: el ganador debe responder dentro de las 48 horas posteriores al anuncio. Si no responde, o no cumple las condiciones, se asigna el suplente correspondiente." ] },
     { p: "Si el sorteo debe postergarse por causas de fuerza mayor, se comunicará la nueva fecha a todos los inscritos al correo electrónico registrado." } ] },
@@ -43,8 +44,8 @@ export const BASES: { id: string; titulo: string; bloques: Bloque[] }[] = [
   { id: "datos", titulo: "Datos personales", bloques: [
     { p: "Mate Fácil E.I.R.L. trata los datos que entregas de la siguiente manera:" },
     { ul: [
-      "Datos recopilados: nombres y apellidos, DNI, correo electrónico, celular, distrito de residencia y condición académica. El documento que acredita la condición académica se solicita solo a los ganadores.",
-      "Finalidad: administrar el sorteo, contactar a los ganadores y coordinar la entrega del premio.",
+      "Datos recopilados: nombres y apellidos, DNI, correo electrónico, celular, especialidad, distrito de residencia, condición académica y situación de la tesis. El documento que acredita la condición académica se solicita solo a los ganadores.",
+      "Finalidad: administrar el sorteo, verificar la situación académica de los participantes en bases de datos académicas como la de SUNEDU, contactar a los ganadores y coordinar la entrega del premio.",
       "Promociones: solo si marcas la casilla correspondiente, que viene desmarcada por defecto, aceptas recibir comunicaciones comerciales.",
       "Conservación: los datos se conservan por el tiempo necesario para cumplir estas finalidades y las obligaciones legales aplicables.",
       "Derechos: puedes acceder, rectificar, cancelar u oponerte al tratamiento de tus datos, así como revocar tu consentimiento para promociones, escribiendo a informes@tesis-ia.com." ] } ] },
