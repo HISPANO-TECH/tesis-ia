@@ -162,7 +162,7 @@ const link = "font-semibold text-[#1e3a8a] underline dark:text-amber-300";
       btnLabel.textContent = "Registrando…";
       setStatus("Registrando tu participación…", false);
       try {
-        const res = await fetch("/api/navidad.php", { method: "POST", body: fd, headers: { Accept: "application/json" } });
+        const res = await fetch("https://tesis-ia.com/api/navidad.php", { method: "POST", body: fd, headers: { Accept: "application/json" } });
         const json = await res.json();
         if (json.ok) return mostrarExito(String(fd.get("nombre")).trim().split(" ")[0], json, root);
         Object.keys(json.fields || {}).forEach((k) => showError(k, true));
