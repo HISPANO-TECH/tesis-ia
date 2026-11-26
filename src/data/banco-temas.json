@@ -30,6 +30,7 @@
  "carreras": [
   {
    "nombre": "Administración de Empresas",
+   "slug": "administracion",
    "icono": "briefcase-business",
    "temas": 100,
    "muestra": [
@@ -50,6 +51,12 @@
      "categoria": "Marketing digital y comportamiento del consumidor",
      "impacto": "Global",
      "acceso": "bajo"
+    },
+    {
+     "titulo": "Lean Manufacturing y mapeo de flujo de valor para reducir desperdicios en una pyme textil de Lima",
+     "categoria": "Gestión de operaciones y mejora de procesos",
+     "impacto": "Perú",
+     "acceso": "bajo"
     }
    ],
    "categorias": [
@@ -67,6 +74,7 @@
   },
   {
    "nombre": "Contabilidad",
+   "slug": "contabilidad",
    "icono": "calculator",
    "temas": 100,
    "muestra": [
@@ -87,6 +95,12 @@
      "categoria": "Contabilidad gubernamental y sector público",
      "impacto": "Global",
      "acceso": "bajo"
+    },
+    {
+     "titulo": "Redes de inversionistas institucionales y difusión de criterios ESG en mercados globales de capital (2019-2024)",
+     "categoria": "Contabilidad ambiental y sostenibilidad (reporte ESG)",
+     "impacto": "Global",
+     "acceso": "bajo"
     }
    ],
    "categorias": [
@@ -104,6 +118,7 @@
   },
   {
    "nombre": "Marketing y Negocios Internacionales",
+   "slug": "marketing-negocios-internacionales",
    "icono": "megaphone",
    "temas": 100,
    "muestra": [
@@ -124,6 +139,12 @@
      "categoria": "Negocios internacionales en América Latina",
      "impacto": "Global",
      "acceso": "bajo"
+    },
+    {
+     "titulo": "Predicción de la compra de productos con etiquetas ecológicas en hogares mexicanos mediante bosques aleatorios",
+     "categoria": "Marketing de sostenibilidad y consumo responsable",
+     "impacto": "Latam",
+     "acceso": "bajo"
     }
    ],
    "categorias": [
@@ -141,6 +162,7 @@
   },
   {
    "nombre": "Ingeniería Civil",
+   "slug": "ingenieria-civil",
    "icono": "hard-hat",
    "temas": 100,
    "muestra": [
@@ -161,6 +183,12 @@
      "categoria": "Pavimentos y Vías Sostenibles",
      "impacto": "Global",
      "acceso": "bajo"
+    },
+    {
+     "titulo": "Concreto permeable con fibras de bagazo de caña de azúcar para pavimentos de estacionamientos en la costa peruana",
+     "categoria": "Pavimentos y Vías Sostenibles",
+     "impacto": "Perú",
+     "acceso": "bajo"
     }
    ],
    "categorias": [
@@ -178,6 +206,7 @@
   },
   {
    "nombre": "Ingeniería Industrial",
+   "slug": "ingenieria-industrial",
    "icono": "factory",
    "temas": 100,
    "muestra": [
@@ -198,6 +227,12 @@
      "categoria": "Diseño y gestión de proyectos industriales",
      "impacto": "Global",
      "acceso": "bajo"
+    },
+    {
+     "titulo": "Análisis de la fatiga por turnos rotativos en operadores de planta mediante simulación de eventos discretos",
+     "categoria": "Ergonomía y seguridad y salud ocupacional",
+     "impacto": "Global",
+     "acceso": "bajo"
     }
    ],
    "categorias": [
@@ -215,6 +250,7 @@
   },
   {
    "nombre": "Ingeniería de Sistemas / Cómputo",
+   "slug": "ingenieria-sistemas",
    "icono": "monitor",
    "temas": 100,
    "muestra": [
@@ -235,6 +271,12 @@
      "categoria": "Ingeniería de software y calidad de pruebas",
      "impacto": "Global",
      "acceso": "bajo"
+    },
+    {
+     "titulo": "Sistema de riego inteligente basado en lógica difusa para pequeños agricultores de la costa peruana",
+     "categoria": "Sistemas embebidos e Internet de las cosas",
+     "impacto": "Perú",
+     "acceso": "bajo"
     }
    ],
    "categorias": [
@@ -252,6 +294,7 @@
   },
   {
    "nombre": "Ingeniería Ambiental",
+   "slug": "ingenieria-ambiental",
    "icono": "leaf",
    "temas": 100,
    "muestra": [
@@ -272,6 +315,12 @@
      "categoria": "Energías renovables y eficiencia energética",
      "impacto": "Global",
      "acceso": "bajo"
+    },
+    {
+     "titulo": "Columnas de metano troposférico sobre ciudades latinoamericanas a partir de observaciones Sentinel-5P (2019-2024)",
+     "categoria": "Cambio climático y huella de carbono",
+     "impacto": "Latam",
+     "acceso": "bajo"
     }
    ],
    "categorias": [
@@ -289,6 +338,7 @@
   },
   {
    "nombre": "Psicología",
+   "slug": "psicologia",
    "icono": "brain",
    "temas": 100,
    "muestra": [
@@ -309,6 +359,12 @@
      "categoria": "Psicología del desarrollo infantil y adolescente",
      "impacto": "Global",
      "acceso": "bajo"
+    },
+    {
+     "titulo": "Precariedad laboral y salud autorreportada en el Perú urbano: análisis de microdatos de la ENAHO",
+     "categoria": "Psicología organizacional y bienestar laboral",
+     "impacto": "Perú",
+     "acceso": "bajo"
     }
    ],
    "categorias": [
@@ -326,6 +382,7 @@
   },
   {
    "nombre": "Medicina Humana",
+   "slug": "medicina-humana",
    "icono": "stethoscope",
    "temas": 100,
    "muestra": [
@@ -346,6 +403,12 @@
      "categoria": "Obstetricia y salud materna perinatal",
      "impacto": "Global",
      "acceso": "bajo"
+    },
+    {
+     "titulo": "Autonomía del paciente en la jurisprudencia peruana: análisis de contenido de sentencias sobre decisiones médicas",
+     "categoria": "Medicina legal y bioética en la práctica clínica",
+     "impacto": "Perú",
+     "acceso": "bajo"
     }
    ],
    "categorias": [
@@ -363,6 +426,7 @@
   },
   {
    "nombre": "Enfermería",
+   "slug": "enfermeria",
    "icono": "heart-pulse",
    "temas": 100,
    "muestra": [
@@ -383,6 +447,12 @@
      "categoria": "Enfermería quirúrgica y recuperación postoperatoria",
      "impacto": "Global",
      "acceso": "bajo"
+    },
+    {
+     "titulo": "Estrategias de dotación de enfermería y resultados en pacientes hospitalizados: una revisión sistemática con metaanálisis",
+     "categoria": "Gestión del cuidado y calidad en servicios de salud",
+     "impacto": "Global",
+     "acceso": "bajo"
     }
    ],
    "categorias": [
@@ -400,6 +470,7 @@
   },
   {
    "nombre": "Derecho",
+   "slug": "derecho",
    "icono": "scale",
    "temas": 100,
    "muestra": [
@@ -420,6 +491,12 @@
      "categoria": "Derecho Mercantil y Sociedades",
      "impacto": "Global",
      "acceso": "bajo"
+    },
+    {
+     "titulo": "Justicia restaurativa y reincidencia juvenil: un análisis cualitativo comparado de reformas en cinco países (2000-2024)",
+     "categoria": "Derecho Penal y Política Criminal",
+     "impacto": "Global",
+     "acceso": "bajo"
     }
    ],
    "categorias": [
@@ -437,6 +514,7 @@
   },
   {
    "nombre": "Educación (Inicial / Primaria)",
+   "slug": "educacion",
    "icono": "book-open",
    "temas": 100,
    "muestra": [
@@ -457,6 +535,12 @@
      "categoria": "Matemática temprana: pensamiento numérico en niños de 3 a 6 años",
      "impacto": "Global",
      "acceso": "bajo"
+    },
+    {
+     "titulo": "Estructura de redes sociales de pares y bienestar socioemocional en el juego libre de aulas de educación inicial",
+     "categoria": "Juego y desarrollo socioemocional en la primera infancia",
+     "impacto": "Perú",
+     "acceso": "bajo"
     }
    ],
    "categorias": [
@@ -474,6 +558,7 @@
   },
   {
    "nombre": "Ciencias de la Comunicación",
+   "slug": "ciencias-comunicacion",
    "icono": "radio",
    "temas": 100,
    "muestra": [
@@ -493,6 +578,12 @@
      "titulo": "Gobernanza comparada de medios comunitarios en Perú, Ecuador y Sudáfrica: un análisis cualitativo comparado",
      "categoria": "Medios locales, comunitarios y ciudadanía",
      "impacto": "Global",
+     "acceso": "bajo"
+    },
+    {
+     "titulo": "Consensos de expertos sobre indicadores de comunicación interna en gobiernos regionales del Perú",
+     "categoria": "Comunicación organizacional e interna",
+     "impacto": "Perú",
      "acceso": "bajo"
     }
    ],

@@ -1,6 +1,6 @@
 ---
-// BOCETO del lead magnet "Banco de temas de tesis 2027-2030".
-// noIndex y fuera del menú y del sitemap. El formulario todavía NO envía ni guarda datos.
+// Lead magnet "Banco de temas de tesis 2027-2030". El formulario guarda el registro y descarga el PDF de la
+// carrera (api/banco-temas.php). noIndex y fuera del menú hasta validar los temas.
 // Cifras y muestra: src/data/banco-temas.json (scripts/banco-temas/exportar.py).
 import Layout from "../layouts/Layout.astro";
 import { Icon } from "astro-icon/components";
@@ -13,6 +13,9 @@ const alcance = [
   { k: "Latam", n: banco.impacto.Latam, c: "bg-blue-400" },
   { k: "Global", n: banco.impacto.Global, c: "bg-slate-300" },
 ];
+// POR CONFIRMAR: número del chatbot de Hispano Tech (mismo valor en scripts/banco-temas/generar_pdfs.py)
+const CHATBOT = { texto: "+51 992 005 096", link: "https://wa.me/51992005096" };
+const SITUACIONES = ["En cero, recién iniciando", "Plan de tesis aprobado", "Plan aprobado y avanzando el informe", "Levantamiento de observaciones"];
 const ACCESO: Record<string, string> = { bajo: "Datos de acceso fácil", medio: "Datos de acceso medio", alto: "Datos de acceso difícil" };
 const f = banco.ficha;
 const lista = (s: string) => s.split(";").map((x) => x.trim()).filter(Boolean);
@@ -22,8 +25,8 @@ const campos = [
 ];
 const pasos = [
   ["Elige tu carrera", "Hay 13 carreras, con 100 temas cada una."],
-  ["Completa el formulario", "Son solo cuatro datos."],
-  ["Recibe tu banco", "Te llega el archivo con los temas de tu carrera."],
+  ["Completa el formulario", "Son cinco datos. No pedimos DNI."],
+  ["Descarga tu PDF", "Se descarga al instante con los 100 temas de tu carrera."],
 ];
 const usos = [
   ["lucide:circle-help", "No tienes tema", "Recorre las categorías de tu carrera y descarta rápido."],
@@ -31,11 +34,12 @@ const usos = [
   ["lucide:file-text", "Vas a armar tu plan", "Parte de variables, objetivos y metodología ya planteados."],
 ];
 const faqs = [
-  ["¿Tiene costo?", "No. El banco de temas es gratuito."],
+  ["¿Cómo recibo el banco?", "Al enviar el formulario se descarga un PDF con los 100 temas de tu carrera, cada uno con su ficha."],
   ["¿Puedo usar un tema tal como está?", "Úsalo como punto de partida. Antes de presentarlo, revisa que no se haya investigado ya, adáptalo a tu contexto y consúltalo con tu asesor."],
   ["¿Los temas están aprobados por mi universidad?", "No. Cada universidad tiene sus líneas de investigación y su propio proceso de aprobación."],
   ["¿Todos los temas traen la ficha completa?", `${num(banco.completos)} de ${num(banco.total)} la traen completa. El resto, de Ingeniería Civil e Ingeniería Industrial, incluye menos campos.`],
   ["¿Cómo se armó el banco?", "Las propuestas se generaron con inteligencia artificial a partir de tendencias estimadas por carrera."],
+  ["¿Puedo recibir ayuda para desarrollar mi tema?", `Sí. Escríbenos por WhatsApp al ${CHATBOT.texto}.`],
 ];
 const input = "mt-1 w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-[15px] text-slate-900 outline-none transition focus:border-amber-400 focus:ring-4 focus:ring-amber-300/30 dark:border-slate-600 dark:bg-slate-900 dark:text-white";
 const label = "block text-sm font-semibold text-slate-800 dark:text-slate-100";
@@ -45,7 +49,7 @@ const h2 = "font-display text-3xl font-bold leading-tight tracking-tight text-[#
 <Layout
   noIndex
   title="Banco de temas de tesis 2027-2030"
-  description="1300 ideas de tesis para 13 carreras, con variables, objetivos, metodología y fuentes de datos. Descarga gratis los temas de tu carrera."
+  description="1300 ideas de tesis para 13 carreras, con variables, objetivos, metodología y fuentes de datos. Descarga en PDF los temas de tu carrera."
 >
   <main class="banco">
     <!-- 1. Portada -->
@@ -74,27 +78,31 @@ const h2 = "font-display text-3xl font-bold leading-tight tracking-tight text-[#
           </div>
         </div>
 
-        <form data-banco id="descargar" novalidate class="scroll-mt-32 rounded-[28px] bg-white p-6 text-slate-900 shadow-2xl shadow-black/40 dark:bg-slate-800 md:p-8">
-          <p class="font-display text-2xl font-bold text-[#0B1D3A] dark:text-white">Recibe gratis los temas de tu carrera</p>
+        <form data-banco data-api="https://tesis-ia.com" id="descargar" novalidate class="scroll-mt-32 rounded-[28px] bg-white p-6 text-slate-900 shadow-2xl shadow-black/40 dark:bg-slate-800 md:p-8">
+          <p class="font-display text-2xl font-bold text-[#0B1D3A] dark:text-white">Descarga los temas de tu carrera</p>
           <div class="mt-5 space-y-4">
             <div><label for="b-carrera" class={label}>Carrera</label>
-              <select id="b-carrera" name="carrera" required class={input}><option value="">Selecciona</option>{banco.carreras.map((c) => <option>{c.nombre}</option>)}</select></div>
-            <div><label for="b-nombre" class={label}>Nombre</label><input id="b-nombre" name="nombre" required autocomplete="name" maxlength="120" class={input} /></div>
+              <select id="b-carrera" name="carrera" required class={input}><option value="">Selecciona</option>{banco.carreras.map((c) => <option value={c.slug}>{c.nombre}</option>)}</select></div>
+            <div><label for="b-nombre" class={label}>Nombres y apellidos</label><input id="b-nombre" name="nombre" required autocomplete="name" maxlength="120" class={input} /></div>
             <div><label for="b-correo" class={label}>Correo electrónico</label><input id="b-correo" name="correo" type="email" required autocomplete="email" maxlength="160" class={input} /></div>
             <div><label for="b-cel" class={label}>WhatsApp</label><input id="b-cel" name="celular" type="tel" inputmode="numeric" required placeholder="9XX XXX XXX" maxlength="15" class={input} /></div>
+            <div><label for="b-situacion" class={label}>Situación de tu tesis</label>
+              <select id="b-situacion" name="situacion" required class={input}><option value="">Selecciona</option>{SITUACIONES.map((x) => <option>{x}</option>)}</select></div>
           </div>
           <div class="mt-4 space-y-3 text-xs leading-relaxed text-slate-700 dark:text-slate-200">
             <label class="flex gap-3"><input type="checkbox" name="privacidad" required class="mt-0.5 h-4 w-4 shrink-0 accent-amber-500" /><span>Autorizo el uso de mis datos para recibir el banco, según la <a href="/privacidad/" class="font-semibold text-[#1e3a8a] underline dark:text-amber-300">política de privacidad</a>.</span></label>
             <label class="flex gap-3"><input type="checkbox" name="promos" class="mt-0.5 h-4 w-4 shrink-0 accent-amber-500" /><span><strong>Opcional.</strong> Acepto recibir información de cursos y servicios. Puedo retirar mi consentimiento cuando quiera.</span></label>
           </div>
-          <button type="submit" class="mt-5 w-full rounded-full bg-amber-400 px-6 py-3.5 font-display text-sm font-bold uppercase tracking-wide text-[#0B1D3A] transition hover:bg-amber-300">Quiero mis 100 temas</button>
-          <p data-estado role="status" aria-live="polite" class="mt-3 hidden rounded-xl bg-red-50 px-4 py-2.5 text-sm text-red-700">Completa todos los campos y acepta la política de privacidad.</p>
+          <button type="submit" class="mt-5 w-full rounded-full bg-amber-400 px-6 py-3.5 font-display text-sm font-bold uppercase tracking-wide text-[#0B1D3A] transition hover:bg-amber-300">Descargar mis 100 temas en PDF</button>
+          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="absolute -left-[9999px]" />
+          <p data-estado role="status" aria-live="polite" class="mt-3 hidden rounded-xl bg-red-50 px-4 py-2.5 text-sm text-red-700"></p>
         </form>
         <div id="gracias" tabindex="-1" class="hidden rounded-[28px] bg-white p-8 text-center text-slate-900 shadow-2xl dark:bg-slate-800 dark:text-white">
-          <Icon name="lucide:mail-check" class="mx-auto h-14 w-14 text-emerald-600" />
-          <p class="mt-4 font-display text-2xl font-bold">Revisa tu correo</p>
-          <p class="mt-2 text-slate-600 dark:text-slate-300">Te enviamos los temas de <strong data-carrera></strong>. Mira también en Promociones y Spam.</p>
-          <p class="mt-6 rounded-xl bg-amber-50 px-4 py-3 text-sm text-amber-900">Boceto: esta versión todavía no envía ni guarda datos.</p>
+          <Icon name="lucide:file-down" class="mx-auto h-14 w-14 text-emerald-600" />
+          <p class="mt-4 font-display text-2xl font-bold">Tu descarga empezó</p>
+          <p class="mt-2 text-slate-600 dark:text-slate-300">Es el banco de <strong data-carrera></strong>. Si no se descargó, usa el botón.</p>
+          <a data-descarga class="mt-5 inline-flex items-center gap-2 rounded-full bg-amber-400 px-6 py-3 text-sm font-bold text-[#0B1D3A] hover:bg-amber-300"><Icon name="lucide:download" class="h-4 w-4" /> Descargar de nuevo</a>
+          <p class="mt-6 text-sm text-slate-600 dark:text-slate-300">¿Quieres ayuda con tu tema? <a href={CHATBOT.link} target="_blank" rel="noopener" class="font-bold text-emerald-700 underline dark:text-emerald-400">Escríbenos por WhatsApp</a></p>
         </div>
       </div>
     </section>
@@ -146,7 +154,7 @@ const h2 = "font-display text-3xl font-bold leading-tight tracking-tight text-[#
                 </ul>
                 <p class="mt-5 font-semibold text-[#0B1D3A] dark:text-white">Las 10 categorías de {c.nombre}</p>
                 <p class="mt-1 text-[15px] leading-relaxed text-slate-700 dark:text-slate-300">{c.categorias.join(" · ")}</p>
-                <a href="#descargar" data-elegir={c.nombre} class="mt-5 inline-flex items-center gap-2 rounded-full bg-[#0B1D3A] px-6 py-3 text-sm font-bold text-white hover:bg-[#1e3a8a] dark:bg-amber-400 dark:text-[#0B1D3A]"><Icon name="lucide:lock-open" class="h-4 w-4" /> Ver los otros {c.temas - 3} temas</a>
+                <a href="#descargar" data-elegir={c.slug} class="mt-5 inline-flex items-center gap-2 rounded-full bg-[#0B1D3A] px-6 py-3 text-sm font-bold text-white hover:bg-[#1e3a8a] dark:bg-amber-400 dark:text-[#0B1D3A]"><Icon name="lucide:lock-open" class="h-4 w-4" /> Ver los otros {c.temas - c.muestra.length} temas</a>
               </div>
             ))}
           </div>
@@ -220,7 +228,7 @@ const h2 = "font-display text-3xl font-bold leading-tight tracking-tight text-[#
     <section id="cierre-banco" class="bg-gradient-to-r from-[#1e3a8a] to-[#0B1D3A] py-16 text-white">
       <div class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-6 md:flex-row md:items-center">
         <h2 class="max-w-2xl font-display text-3xl font-bold leading-tight tracking-tight md:text-4xl">Tu próximo tema puede estar en las 100 ideas de tu carrera</h2>
-        <a href="#descargar" class="shrink-0 rounded-full bg-amber-400 px-8 py-4 font-display text-sm font-bold uppercase tracking-wide text-[#0B1D3A] hover:bg-amber-300">Quiero mis 100 temas</a>
+        <a href="#descargar" class="shrink-0 rounded-full bg-amber-400 px-8 py-4 font-display text-sm font-bold uppercase tracking-wide text-[#0B1D3A] hover:bg-amber-300">Descargar mis 100 temas</a>
       </div>
     </section>
   </main>
@@ -246,17 +254,44 @@ const h2 = "font-display text-3xl font-bold leading-tight tracking-tight text-[#
   const sel = form.querySelector<HTMLSelectElement>("[name=carrera]")!;
   document.querySelectorAll<HTMLElement>("[data-elegir]").forEach((a) => a.addEventListener("click", () => { sel.value = a.dataset.elegir!; }));
 
-  // BOCETO: valida y muestra la pantalla final, pero no envía ni guarda nada.
-  form.addEventListener("submit", (e) => {
+  const estado = form.querySelector<HTMLElement>("[data-estado]")!;
+  const boton = form.querySelector<HTMLButtonElement>("button[type=submit]")!;
+  const avisar = (t: string) => { estado.textContent = t; estado.classList.remove("hidden"); };
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const cel = String(new FormData(form).get("celular")).replace(/\D/g, "").replace(/^51(?=9\d{8}$)/, "");
-    const ok = form.checkValidity() && /^9\d{8}$/.test(cel);
-    form.querySelector("[data-estado]")!.classList.toggle("hidden", ok);
-    if (!ok) { (form.querySelector<HTMLElement>(":invalid:not(fieldset)") || form.querySelector<HTMLElement>("[name=celular]"))?.focus(); return; }
-    const g = document.getElementById("gracias")!;
-    g.querySelector("[data-carrera]")!.textContent = sel.value;
-    form.classList.add("hidden");
-    g.classList.remove("hidden");
-    g.focus();
+    const fd = new FormData(form);
+    const cel = String(fd.get("celular")).replace(/\D/g, "").replace(/^51(?=9\d{8}$)/, "");
+    fd.set("celular", cel);
+    if (!form.checkValidity() || !/^9\d{8}$/.test(cel) || !String(fd.get("nombre")).trim().includes(" ")) {
+      avisar("Completa todos los campos (nombres y apellidos, y un celular de 9 dígitos) y acepta la política de privacidad.");
+      (form.querySelector<HTMLElement>(":invalid") || form.querySelector<HTMLElement>("[name=celular]"))?.focus();
+      return;
+    }
+    estado.classList.add("hidden");
+    boton.disabled = true;
+    boton.textContent = "Preparando tu PDF…";
+    try {
+      const res = await fetch(`${form.dataset.api}/api/banco-temas.php`, { method: "POST", body: fd });
+      if (!res.ok || !(res.headers.get("Content-Type") || "").includes("pdf")) {
+        const j = await res.json().catch(() => null);
+        avisar(j?.error || "No pudimos generar tu descarga. Inténtalo de nuevo en unos minutos.");
+        return;
+      }
+      const url = URL.createObjectURL(await res.blob());
+      const nombre = `banco-temas-tesis-${fd.get("carrera")}.pdf`;
+      const a = Object.assign(document.createElement("a"), { href: url, download: nombre });
+      document.body.append(a); a.click(); a.remove();
+      const g = document.getElementById("gracias")!;
+      g.querySelector("[data-carrera]")!.textContent = sel.selectedOptions[0].textContent;
+      Object.assign(g.querySelector<HTMLAnchorElement>("[data-descarga]")!, { href: url, download: nombre });
+      form.classList.add("hidden");
+      g.classList.remove("hidden");
+      g.focus();
+    } catch {
+      avisar("No pudimos conectar con el servidor. Revisa tu conexión e inténtalo de nuevo.");
+    } finally {
+      boton.disabled = false;
+      boton.textContent = "Descargar mis 100 temas en PDF";
+    }
   });
 </script>

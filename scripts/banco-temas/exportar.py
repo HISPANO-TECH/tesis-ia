@@ -1,4 +1,4 @@
-"""Exporta del Excel las cifras y una MUESTRA (3 temas por carrera y una ficha) para la landing.
+"""Exporta del Excel las cifras y una MUESTRA (4 temas por carrera y una ficha) para la landing.
 El banco completo no se publica. Uso, desde tesis-ia/:
   python scripts/banco-temas/exportar.py ../banco-temas-tesis-2027-2030.xlsx
 """
@@ -10,6 +10,9 @@ import openpyxl
 
 ICONOS = ["briefcase-business", "calculator", "megaphone", "hard-hat", "factory", "monitor", "leaf", "brain",
           "stethoscope", "heart-pulse", "scale", "book-open", "radio"]
+SLUGS = ["administracion", "contabilidad", "marketing-negocios-internacionales", "ingenieria-civil", "ingenieria-industrial",
+         "ingenieria-sistemas", "ingenieria-ambiental", "psicologia", "medicina-humana", "enfermeria", "derecho", "educacion",
+         "ciencias-comunicacion"]
 wb = openpyxl.load_workbook(sys.argv[1], data_only=True)
 carreras, impacto, acceso = [], collections.Counter(), collections.Counter()
 total = completos = 0
@@ -27,11 +30,17 @@ for n, fila in enumerate(wb["Índice"].iter_rows(min_row=2, values_only=True)):
         f = min(op, key=lambda x: ({"bajo": 0, "medio": 1, "alto": 2}[x["Acceso"]], len(x["Título"])))
         usadas.add(f["Categoría"])
         muestra.append({"titulo": f["Título"], "categoria": f["Categoría"], "impacto": imp, "acceso": f["Acceso"]})
+    # 4.º tema: otra categoría, cualquier alcance
+    elegidos = {m["titulo"] for m in muestra}
+    op = [f for f in filas if completa(f) and f["Categoría"] not in usadas] or \
+         [f for f in filas if completa(f) and f["Título"] not in elegidos]
+    f = min(op, key=lambda x: ({"bajo": 0, "medio": 1, "alto": 2}[x["Acceso"]], len(x["Título"])))
+    muestra.append({"titulo": f["Título"], "categoria": f["Categoría"], "impacto": f["Impacto"], "acceso": f["Acceso"]})
     if ficha is None:
         ficha = {k: filas[0][k] for k in ("Categoría", "Título", "Impacto", "Acceso", "Variables", "Enfoque metodológico", "Objetivo general",
                                         "Objetivos específicos", "Metodología", "Datos", "Procesamiento")} | {"Carrera": fila[0]}
     nombre = fila[0].split(" (")[0] if "Sistemas" in fila[0] else fila[0]
-    carreras.append({"nombre": nombre, "icono": ICONOS[n], "temas": len(filas), "muestra": muestra,
+    carreras.append({"nombre": nombre, "slug": SLUGS[n], "icono": ICONOS[n], "temas": len(filas), "muestra": muestra,
                      "categorias": list(dict.fromkeys(f["Categoría"] for f in filas))})
     for f in filas:
         impacto[f["Impacto"]] += 1

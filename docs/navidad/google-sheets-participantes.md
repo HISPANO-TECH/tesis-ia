@@ -50,3 +50,5 @@ function respuesta(obj) {
 ```
 
 Las columnas DNI y Celular se guardan como texto para conservar los ceros iniciales.
+
+El banco de temas (`/banco-temas-tesis/`) no usa la hoja: sus registros quedan solo en `api/data/banco-temas-registros.csv`.

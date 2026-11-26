@@ -9,7 +9,7 @@ const year = 2026;
   <div class="mx-auto max-w-[1440px] px-6 py-12 lg:px-8 lg:py-14">
     {campana ? (
     <div class="max-w-3xl space-y-3 text-sm leading-relaxed text-blue-100">
-      <p class="font-display text-xl font-bold uppercase tracking-[0.08em] text-white">Hispano <span class="text-amber-300">Tech</span></p>
+      <img src="/logo-hispano-tech-blanco.webp" alt="Hispano Tech" width="440" height="404" loading="lazy" class="h-auto w-36" />
       <p><strong class="text-white">{EMPRESA.razonSocial}</strong> · RUC {EMPRESA.ruc}<br />{EMPRESA.domicilio}<br /><a href={`mailto:${EMPRESA.correo}`} class="underline">{EMPRESA.correo}</a></p>
     </div>
     ) : (
@@ -64,7 +64,7 @@ const year = 2026;
 
     <div class="mt-10 flex flex-col gap-3 border-t border-[#1e3a5a] pt-6 text-xs text-blue-200/50 sm:flex-row sm:items-center sm:justify-between">
       <div class="flex flex-wrap gap-2">
-        <span>© {year} <span class="font-display font-bold text-amber-300">TesisIA</span> · Todos los derechos reservados</span>
+        <span>© {year} <span class="font-display font-bold text-amber-300">{campana ? "Hispano Tech" : "TesisIA"}</span> · Todos los derechos reservados</span>
         <span class="hidden sm:inline">·</span>
         <span>Hecho con rigor académico en Perú</span>
       </div>

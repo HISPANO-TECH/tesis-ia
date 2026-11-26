@@ -43,6 +43,12 @@ const whatsappHref = "https://api.whatsapp.com/send/?phone=51992005096&text=Hola
   <nav class="border-b-2 border-amber-400/40 bg-gradient-to-r from-[#0B1D3A] via-[#1e3a8a] to-[#274cab] shadow-lg shadow-blue-950/30 dark:from-[#070f24] dark:via-[#0B1D3A] dark:to-[#1e3a8a]">
     <div class="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between gap-4 px-4 sm:gap-6 sm:px-6 lg:h-[84px] lg:px-8">
       <div class="flex min-w-0 shrink-0 items-center gap-3">
+        {campana ? (
+        <a href="/" class="flex items-center gap-2.5" aria-label="Hispano Tech">
+          <img src="/logo-hispano-tech-emblema.webp" alt="" width="200" height="154" class="h-11 w-auto sm:h-12" />
+          <span class="font-display text-lg font-extrabold uppercase leading-none tracking-wide text-white sm:text-2xl">Hispano <em class="not-italic sm:italic">Tech</em></span>
+        </a>
+        ) : (
         <a href="/" class="flex items-center gap-2">
           <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-amber-400 shadow-md sm:h-11 sm:w-11">
             <svg class="h-5 w-5 text-[#0B1D3A] sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -51,14 +57,11 @@ const whatsappHref = "https://api.whatsapp.com/send/?phone=51992005096&text=Hola
               <path d="M9 15h6" />
             </svg>
           </span>
-          {campana ? (
-            <span class="font-display text-lg font-bold uppercase leading-none tracking-[0.08em] text-white sm:text-2xl">Hispano <span class="text-amber-300">Tech</span></span>
-          ) : (
           <span class="font-display text-lg font-bold leading-none tracking-tight text-white sm:text-2xl">
               Tesis<span class="text-amber-300">IA</span><span class="hidden sm:inline text-amber-200/70 text-base font-semibold ml-1">.com</span>
             </span>
-          )}
         </a>
+        )}
         {!campana && (
         <span class="hidden 2xl:inline-flex ml-3 rounded-full bg-amber-400 px-3.5 py-1 text-[11px] font-bold uppercase tracking-widest text-[#0B1D3A] shadow-sm">Investigador Pro</span>
         )}
